@@ -1,0 +1,44 @@
+{% extends "zeloplus/base.html" %}
+
+{% block content %}
+{% for entry in object_list %}
+<div class="post">
+   <h2 class="title"><span>{{ entry.pub_date|date:"Y年n月j日" }}</span><a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a></h2>
+   <div class="entry">{% if entry.excerpt_html %}
+       {{ entry.excerpt_html|safe }}
+   {% else %}
+       {{ entry.body_html|truncatewords_html:"50"|safe }}
+   {% endif %}
+   <p class="post-tags">
+   {% load tagging_tags %}
+   {% tags_for_object entry as tag_list %}
+   {% if tag_list %}
+    Tags:
+    {% for tag in tag_list %}
+    <a href="{% url zeloplus_entries_by_tag tag.name %}">{{ tag.name }}</a>
+    {% endfor %}
+    {% endif %}
+   </p>
+   </div>
+   <div class="meta">
+   {% load comments %}
+   {% get_comment_count for entry as comment_count %}
+   {% if comment_count %}
+    <span class="comments"><a href="{{ entry.get_absolute_url }}">已有{{ comment_count }}个脚印</a></span>
+   {% else %}
+    <span class="comments">还没人踩过</span>
+   {% endif %}
+
+    <span class="categories">
+    {% if entry.categories.count %}
+    Categories:
+    {% for category in entry.categories.all %}
+    <a href="{{ category.get_absolute_url }}">{{ category.title }}</a>
+    {% if forloop.last %}{% else %} |{% endif %}
+    {% endfor %}
+    {% endif %}
+    </span>   
+   </div>
+</div>
+{% endfor %}
+{% endblock %}

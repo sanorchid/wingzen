@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>文臻教育 | 每一个孩子都可以是优秀生 {% block title %}{% endblock %}</title>
+    {% block csslink %}
+    {% load staticfiles %}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="screen" />
+    {% endblock %}
+</head>
+<body>
+    <div id="header">
+      <div id="logo"></div>
+    </div>
+    <div id="menu">
+	  <ul>
+	    <li><a href="/" title="文臻教育">首页</a></li>
+      {% for item in navitem %}
+      <li id="{{item.slug}}"><a title="{{item.description}}" href="/news/categories/{{item.slug}}">{{item.title}}</a></li>
+      {% endfor %}
+      <li id="msg"><a title="请留言" href="/msgboard/">留言咨询</a></li>
+	  </ul>
+    </div>
+    <div id="wrap">
+    {% block wrap %}
+      <div class="main">
+       {% block main %}{% endblock %}
+      </div>
+      <div class="side">
+       {% block side %}{% endblock %}
+      </div>
+    {% endblock %}
+    </div><!wrap>
+    <div id="footer">
+    <p class="navi right"><a href="/aboutus/">关于我们</a>|<a href="/joinus/">加入文臻</a>|<a href="/contactus/">联系我们</a>|<a href="/cooperate/">合作专区</a>|<a href="/admin/">管理入口</a>|<a href="http://mail.wingzen.com/">邮箱登陆</a>|<a href="/advice/">意见建议</a></p>
+    <p class="info left">&copy; {% now "Y" %} 杭州文臻教育科技版权所有. 旗下文化课辅导品牌：博智学堂</p>
+    <p class="info left">Powered by <a href="http://djangoproject.com/" target="_blank">DJANGO</a>.</p>
+    </div>
+</body>
+{% block jslink %}{% endblock %}
+</html>

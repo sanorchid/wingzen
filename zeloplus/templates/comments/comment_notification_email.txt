@@ -1,0 +1,1 @@
+a new comment "{{ comment.comment }}" on {{ content_object }} by "{{comment.name}}"

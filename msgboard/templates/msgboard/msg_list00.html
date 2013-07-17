@@ -1,0 +1,30 @@
+<!--<li class="message {% cycle 'odd' 'even' %}"><p><label class="author">{{ msg[0].author }}</label> @{{ msg[0].add_date.date|unlocalize }}<label class="hidden">{{ msg[0].id }}</label></p><p>{{ msg[0].content }}</p><p align="right" class="rpl_btn"><a href="?parent_id={{msg[0].id}}">回复</a></p></li>
+{% if msg[1] %}
+{% for reply in msg[1] %}
+<li class="reply"><label class="author">{{ reply.author }}</label> @{{ reply.add_date.date|unlocalize }}<label class="hidden">{{ reply.id }}</label></p><p>{{ reply.content }}</p><p align="right" class="rpl_btn"><a href="?parent_id={{reply.id}}">回复</a></p></li>
+{% endfor %}
+{% endif %}
+-->
+{% for msg in object_list %}
+
+<p>{{msg}}</p>
+{% endfor %}
+<p>==========</p>
+{% for reply in qry_reply %}
+<p>{{reply.parent_id}}</p>
+{% endfor %}
+<p>=============</p>
+<p>{{reply_dic}}</p>
+<p>=============</p>
+<p>{{msg_dic}}</p>
+{% for reply in reply_lst %}
+<p>{{reply}}</p>
+{% endfor %}
+<p>===========</p>
+<p>{{message}}</p>
+<p>===========</p>
+{% for reply in qry_msg %}
+<p>{{reply}}</p>
+{% endfor %}
+
+</ul>

@@ -1,0 +1,11 @@
+      <div id="userpad">
+      <div id="loginpad">
+         <form action="/" method="post">
+         <label for="username">用户名: </label><input id="username" type="text" name="username" class="input" />
+         <label for="password">密码: </label><input id="password" type="password" name="password" class="input" />
+         <input type="submit" name="post" value="登录" />
+         <span><a href="/accounts/register/">立即注册</a></span>
+         </form>
+      </div>
+      <div id="slogan">A bad beginning makes a bad ending.</div>
+      </div>

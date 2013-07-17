@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="clist">
+{% for item in object_list %}
+<h2 class="title"><span class="float_r">上课时间：{{ item.cdate}}</span>{{ item.name }}</h2>
+<div class="details"><p>{{ item.details }}</p></div>
+<div class="meta"><span class="align_l">科目：{{ item.subject }}</span><span class="grade">年级：{{ item.grade }}</span></div>
+<div class="meta"><span class="float_r">学费：{{ item.tuition }}，{{ item.ctimes }}</span><span class="align_l">类别：{{ item.csort }}</span><span class="align_l">机构：{{ item.cinst}}</span></div>
+{% endfor %}
+</div><!clist>
+{% endblock %}
+
+{% block side %}
+    <ul>
+        <li>
+        <h2>搜索</h2>
+        	<form id="searchform" method="get" action="">
+		    <input type="text" name="s" id="s" class="textbox" value="" />
+	     	<input id="btnSearch" type="submit" name="submit" value="Go" />
+	        </form>
+        </li> 
+    </ul>
+{% endblock %}

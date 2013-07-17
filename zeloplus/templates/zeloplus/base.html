@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>Fly!piggy {% block title %}{% endblock %}</title>
+	<link href="/sitemedia/css/base.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+    <div id="header">
+      <div id="logo">
+        <h2 id="slogan">I hear you call my name, and it feels like…home.</h2>
+        <h1 id="branding"><a href="{% url zeloplus_entry_archive_index %}">Fly!piggy</a></h1>
+      </div>
+    </div>
+    <div id="menu">
+	  <ul>
+	    <li ><a href="{% url zeloplus_entry_archive_index %}" title="flypiggy">HOME</a></li>
+        {% load zeloplus_tags %}
+        {% get_all_tuples zeloplus.Category as categories %}
+        {% for category in categories %}
+        <li>
+        <a href="{% url zeloplus_category_detail category.slug %}" title="{{ category.description }}">{{ category.title }}</a>
+        </li>
+        {% endfor %}
+        <li id="rss"><a title="RSS Feed of Posts" href="/feed/">RSS Feed</a></li>
+	  </ul>
+	</div>
+    <div id="wrap">
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div id="sidebar">
+    <ul>
+        <li>
+        <h2>搜索</h2>
+        	<form id="searchform" method="get" action="">
+		    <input type="text" name="s" id="s" class="textbox" value="" />
+	     	<input id="btnSearch" type="submit" name="submit" value="Go" />
+	        </form>
+        </li> 
+        <li>
+        <h2>文章分类</h2>
+        <ul>
+          {% get_all_tuples zeloplus.Category as categories %}
+          {% for category in categories %}
+          <li>
+            <a href="{% url zeloplus_category_detail category.slug %}">{{ category.title }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+        </li>
+        <li>
+        <h3>最新文章</h3>
+        <ul>
+           {% get_latest_content zeloplus.entry 5 as latest_entries %}
+           {% for entry in latest_entries %}
+           <li>
+             <a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a>,
+             发表于 {{ entry.pub_date|timesince }} 前.
+           </li>
+           {% endfor %}
+        </ul>
+        </li>
+        <li>
+        {% load tagging_tags %}
+        <h3>文章标签</h3>
+        {% tag_cloud_for_model zeloplus.Entry as entry_tags with steps=20 min_count=1 distribution=log %}
+        <p>{% for tag in entry_tags %}
+        <a href="{% url zeloplus_entries_by_tag tag.name %}">{{ tag.name }}</a>
+        {% endfor %}</p>
+        <h3>日志存档</h3>
+        <ul>
+          {% get_archive_month zeloplus.Entry as months %}
+          {% for month in months %}
+          <li>
+            <a href="{% url zeloplus_entry_archive_month month|date:'Y' month|date:'m' %}">{{ month|date:"Y年n月" }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+        </li>
+    </ul>
+    </div>    
+    </div>
+    <div id="footer">
+	<p>&copy; {% now "Y" %} ZELOPLUS PROJECT. Powered by <a href="http://djangoproject.com/" target="_blank">DJANGO</a>. Host Provided by <a href="http://www.deardns.com" target="_blank">DearDNS</a>.</p>
+    </div>
+</body>
+{% block media %}{% endblock %}
+
+</html>

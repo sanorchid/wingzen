@@ -1,0 +1,12 @@
+{% extends "zenews/base.html" %}
+
+{% block title %}
+{{ block.super }} | Tags
+{% endblock %}
+{% block content %}
+        <h1>tag cloud</h1>
+        #"% tag_cloud_for_model zenews.news as news_tags with steps=20 min_count=1 distribution=log %"
+        {% for tag in news_tags %}
+        <p><a href="{% url zenews_news_by_tag tag.slug %}">{{ tag.name }}</a></p>
+        {% endfor %}
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block wrap %}
+<div class="container">
+<div class="col-a" id="focpic">{% block focpic %}{% endblock %}</div>
+<div class="frm-f">{% block crsfrm %}{% endblock %}</div>
+</div><!container>
+
+<div class="container">
+<div class="main">
+    <div class="col-a">
+    <div class="lst-a"><h2>教学成果</h2>{% block lst_jxcg %}{% endblock %}</div>
+    <div class="lst-a"><h2>家长课堂</h2>{% block lst_jzkt %}{% endblock %}</div>
+    </div><!col-a>
+    <div class="col-b">
+    {% if prs_month == 6 or prs_month == 7 or prs_month == 8 %}
+    <div class="lst-b"><h2>暑假班专题</h2>{% block lst_sjbzt %}{% endblock %}</div>
+    {% endif %}
+    <div class="lst-b"><h2>中考专栏</h2>{% block lst_zkzl %}{% endblock %}</div>
+    <div class="lst-b"><h2>小升初专栏</h2>{% block lst_xsczl %}{% endblock %}</div>
+    </div><!col-b>
+</div><!main>
+<div class="side">
+    <div class="lst-c"><h2>文臻公告 »</h2>{% block lst_wzgg %}{% endblock %}</div>
+    <div class="lst-c"><h2>拱宸桥校区 »</h2>{% block lst_gcqxq %}{% endblock %}</div>
+</div><! side>
+</div><!container>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load zenews_filters %}
+
+{% block main %}
+{% for news in object_list %}
+<div class="post">
+   <h2 class="title"><span class="float_r">{{ news.pub_date|date:"Y年n月j日" }}</span><a href="{{ news.get_absolute_url }}">{{ news.title }}</a></h2>
+   <div class="news">{% if news.excerpt_html %}
+       {{ news.excerpt_html|safe }}
+   {% else %}
+       {{ news.body_html|truncatehanzi:80|safe }}
+   {% endif %}
+   <p class="post-tags">
+   {% if tag_list %}
+    Tags:
+    {% for tag in tag_list %}
+    <a href="{% url 'zenews_news_by_tag' tag.slug %}">{{ tag.name }}</a>
+    {% endfor %}
+    {% endif %}
+   </p>
+   </div>
+   <div class="meta">
+   {% load comments %}
+   {% get_comment_count for news as comment_count %}
+   {% if comment_count %}
+    <span class="comments"><a href="{{ news.get_absolute_url }}">已有{{ comment_count }}个评论</a></span>
+   {% else %}
+    <span class="comments">还没有评论</span>
+   {% endif %}
+
+    <span class="categories">
+    {% if news.categories.count %}
+    Categories:
+    {% for category in news.categories.all %}
+    <a href="{% url 'zenews_news_list' category.slug %}">{{ category.title }}</a>
+    {% if forloop.last %}{% else %} |{% endif %}
+    {% endfor %}
+    {% endif %}
+    </span>   
+   </div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block side %}
+    <ul>
+        <li>
+        <h2>搜索</h2>
+        	<form id="searchform" method="get" action="">
+		    <input type="text" name="s" id="s" class="textbox" value="" />
+	     	<input id="btnSearch" type="submit" name="submit" value="Go" />
+	        </form>
+        </li> 
+    </ul>
+{% endblock %}

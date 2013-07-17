@@ -1,0 +1,153 @@
+{% extends "base_index.html" %}
+{% load zenews_filters %}
+{% load zenews_tags %}
+{% load l10n %}
+{% load staticfiles %}
+{% block focpic %}
+<div id="play">     
+    <div id="play_bg"></div>   
+    <div id="play_info"></div>   
+    <div id="play_text">   
+        <ul>   
+            <li>1</li>   
+            <li>2</li>   
+            <li>3</li>   
+            <li>4</li>   
+            <li>5</li>   
+            <li>6</li>   
+        </ul>   
+    </div>   
+    <div id="play_list">
+    {% for item in focpic %}
+    <a href="{{item.get_absolute_url}}" target="_blank">   
+        <img src="media/{{ item.cover }}" title="{{ item.title }}" alt="{{item.title|truncatehanzi:14}}" />   
+    </a>   
+    {% endfor %}
+    </div>   
+</div> 
+{% endblock %}
+
+{% block crsfrm %}
+<form  method=post action="">
+{% get_all_tuples curriculum.cinst as cinst %}
+<select name="cinst">
+    {% for item in cinst %}
+    <option value="{{item.id}}" selected="selected">{{item.name}}</option>
+    {% endfor %}
+</select>
+{% get_all_tuples curriculum.csort as csort %}
+<select name="csort">
+    {% for item in csort %}
+    <option value="{{item.id}}" selected="selected">{{item.name}}</option>
+    {% endfor %}
+</select>
+{% get_all_tuples eduzen.grade as grade %}
+<select name="grade">
+    {% for item in grade %}
+    <option value="{{item.id}}">{{item.name}}</option>
+    {% endfor %}
+</select>
+{% get_all_tuples curriculum.subject as subject %}
+<select name="subject">
+    {% for item in subject %}
+    <option value="{{item.id}}">{{item.name}}</option>
+    {% endfor %}
+</select>
+<input type="text" name="keywords" />
+<input type="button" value="搜索课程" />
+</form>
+<table>
+<caption>[推荐课程]</caption>
+<tr class="row">
+    <th class="name">名称</th>
+    <th class="cinst">机构</th>
+    <th class="csort">类别</th>
+    <th class="grade">年级</th>
+    <th class="subject">科目</th>
+    <th class="cdate">时间</th>
+    <th class="ctimes">次数</th>
+</tr>
+<tr>
+    {% for item in recrs %}
+    <td class="name"><a href="/curriculum/list/" target="_blank">{{ item.name }}</a></td>
+    <td class="cinst">{{ item.cinst }}</td>
+    <td class="csort">{{ item.csort }}</td>
+    <td class="grade">{{ item.grade }}</td>
+    <td class="subject">{{ item.subject }}</td>
+    <td class="cdate">{{ item.cdate }}</td>
+    <td class="ctimes">{{ item.ctimes }}</td>
+    {% endfor %}
+</tr>
+</table>
+{% endblock %}
+
+{% block lst_jxcg %}
+<ul class="nlist">
+    {% get_category_content zenews.news 'jxcg' 5 as latest_jxcg %}
+    {% for item in latest_jxcg %}
+	<li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href="{{ item.get_absolute_url }}" title="{{ item.title}}">{{ item.title|truncatehanzi:11 }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block lst_jzkt %}
+<ul class="nlist">
+    {% get_category_content zenews.news 'jzkt' 5 as latest_jzkt %}
+    {% for item in latest_jzkt %}
+	<li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href="{{ item.get_absolute_url }}" title="{{ item.title}}">{{ item.title|truncatehanzi:14 }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block lst_sjbzt %}
+<ul class="nlist">
+    {% get_category_content zenews.news 'sjbzt' 5 as latest_sjbzt %}
+    {% for item in latest_sjbzt %}
+	<li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href="{{ item.get_absolute_url }}" title="{{ item.title}}">{{ item.title|truncatehanzi:14 }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block lst_wzgg %}
+<ul class="nlist">
+    {% get_category_content zenews.news 'wzgg' 5 as latest_wzgg %}
+    {% for item in latest_wzgg %}
+    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href="{{ item.get_absolute_url }}" title="{{ item.title}}">{{ item.title|truncatehanzi:14 }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block lst_xsczl %}
+<ul class="nlist">
+    {% get_category_content zenews.news 'xsczl' 5 as latest_xsczl %}
+    {% for item in latest_xsczl %}
+	<li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block lst_gcqxq %}
+<ul class="nlist">
+    {% get_category_content zenews.news 'gcqxq' 5 as latest_gcqxq %}
+    {% for item in latest_gcqxq %}
+	<li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block lst_zkzl %}
+<ul class="nlist">
+    {% get_category_content zenews.news 'zkzl' 5 as latest_zkzl %}
+    {% for item in latest_zkzl %}
+	<li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block lad1 %}<div class="block sitead"></div>{% endblock %}
+{% block rad1 %}<div class="lst-c sitead"></div>{% endblock %}
+
+{% block jslink %}
+<script type="text/javascript" src="{% static 'js/jquery-1.4.3.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/play.js' %}"></script>
+{% endblock %}

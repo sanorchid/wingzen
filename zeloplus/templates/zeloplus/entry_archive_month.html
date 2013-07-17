@@ -1,0 +1,6 @@
+{% extends "zeloplus/base_entry_list.html" %}
+    
+{% block title %}
+{{ block.super }} | Entries in {{ month|date:"F, Y" }}
+{% endblock %}
+    

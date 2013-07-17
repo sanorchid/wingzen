@@ -1,0 +1,12 @@
+{% extends "zeloplus/base.html" %}
+{% load tagging_tags %}
+{% block title %}
+{{ block.super }} | Tags
+{% endblock %}
+{% block content %}
+        <h1>tag cloud</h1>
+        {% tag_cloud_for_model zeloplus.Entry as entry_tags with steps=20 min_count=1 distribution=log %}
+        {% for tag in entry_tags %}
+        <p><a href="{% url zeloplus_entries_by_tag tag.name %}">{{ tag.name }}</a></p>
+        {% endfor %}
+{% endblock %}
