@@ -15,9 +15,9 @@ class LiveNewsManager(models.Manager):
         return super(LiveNewsManager, self).get_query_set().filter(status=self.model.LIVE_STATUS)
 
 class Category(models.Model):
-    isnav = models.BooleanField(default=False) # whether to show it on navibar.
-    title = models.CharField(max_length = 250, help_text = "Maximum 250 characters.")
-    slug = models.SlugField(unique = True, help_text = "Suggested value automatically generated from title. Must be unique.")
+    isnav = models.BooleanField(default=False, verbose_name='是否显示在导航栏') # whether to show it on navibar.
+    title = models.CharField(max_length = 250, help_text = "最多120个字",  verbose_name='标题')
+    slug = models.SlugField(unique = True, help_text = "使用英文字母，显示在地址栏，用于区别网址，必须唯一。",  verbose_name='唯一标识符')
     description = models.CharField(blank=True, null=True, max_length=80, verbose_name='描述')
 
     class Meta:
@@ -41,27 +41,27 @@ class News(models.Model):
         (HIDDEN_STATUS, 'Hidden'),
     )
     # Core fields.
-    title = models.CharField(max_length = 250)
-    excerpt = models.TextField(blank = True)
-    body = models.TextField()
+    title = models.CharField(max_length = 250,  verbose_name='标题')
+    excerpt = models.TextField(blank = True,  verbose_name='摘要')
+    body = models.TextField(verbose_name='内容')
     cover = models.ImageField(upload_to='newscover/%Y/%m/%d', blank=True, verbose_name='焦点图片(280*180)')
-    pub_date = models.DateTimeField(default = datetime.now)
+    pub_date = models.DateTimeField(default = datetime.now,  verbose_name='发表日期')
 
     # Fields to store generated HTML.
     excerpt_html = models.TextField(editable = False, blank = True)
     body_html = models.TextField(editable = False, blank = True)
 
     # Metadata.
-    author = models.ForeignKey(User)
-    enable_comments = models.BooleanField(default = True)
-    isfoc = models.BooleanField(default = False)        
-    slug = models.SlugField(unique_for_date = 'pub_date')
-    source = models.CharField(max_length = 250)
-    status = models.IntegerField(choices = STATUS_CHOICES, default = LIVE_STATUS)
+    author = models.ForeignKey(User,  verbose_name='作者')
+    enable_comments = models.BooleanField(default = True,  verbose_name='是否允许评论')
+    isfoc = models.BooleanField(default = False,  verbose_name='是否焦点新闻')        
+    slug = models.SlugField(unique_for_date = 'pub_date', verbose_name='唯一标识符')
+    source = models.CharField(max_length = 250, verbose_name='来源')
+    status = models.IntegerField(choices = STATUS_CHOICES, default = LIVE_STATUS, verbose_name='新闻稿状态')
 
     # Categorization.
-    categories = models.ManyToManyField(Category)
-    tags = TaggableManager(help_text = u"标签之间用逗号分隔。")
+    categories = models.ManyToManyField(Category, verbose_name='新闻分类')
+    tags = TaggableManager(help_text = u"标签之间用逗号分隔。", verbose_name='新闻标签')
 
     objects = models.Manager()
     live = LiveNewsManager()
