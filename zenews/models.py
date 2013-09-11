@@ -61,8 +61,8 @@ class News(models.Model):
 
     # Categorization.
     categories = models.ManyToManyField(Category, verbose_name='新闻分类')
-    tags = TaggableManager(help_text = u"标签之间用逗号分隔。", verbose_name='新闻标签')
-
+    tags = TaggableManager(help_text = u"标签之间用空格分隔。", verbose_name='新闻标签')
+    # 新闻中填写标签时有bug，即有些中文字的slug会空着导致显示标签时出错
     objects = models.Manager()
     live = LiveNewsManager()
 
@@ -88,28 +88,11 @@ class News(models.Model):
 
 
 # The comment moderate with akismet.
-from akismet import Akismet
-from django.conf import settings
-from django.contrib.comments.moderation import CommentModerator, moderator
-from django.contrib.sites.models import Site
-from django.utils.encoding import smart_str
+from fluent_comments.moderation import moderate_model
+from zenews.models import News
 
-class NewsModerator(CommentModerator):
-    auto_moderate_field = 'pub_date'
-    moderate_after = 30
-    email_notification = False
-
-    def moderate(self, comment, content_object, request):
-        already_moderated = super(NewsModerator, self).moderate(self, comment. content_object, request)
-        if already_moderated:
-            return True
-        akismet_api = Akismet(key=settings.AKISMET_API_KEY,blog_url="http:/%s/"%Site.objects.get_current().domain)
-        if akismet_api.verify_key():
-            akismet_data = { 'comment_type': 'comment',
-                             'referrer': request.META['HTTP_REFERER'],
-                             'user_ip': comment.ip_address,
-                             'user-agent': request.META['HTTP_USER_AGENT'] }
-            return akismet_api.comment_check(smart_str(comment.comment), akismet_data, build_data=True)
-        return False
-moderator.register(News, NewsModerator)
+moderate_model(News,
+    publication_date_field='pub_date',
+    enable_comments_field='enable_comments',
+)
 

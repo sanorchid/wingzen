@@ -8,19 +8,19 @@
 <div class="container">
 <div class="main">
     <div class="col-a">
-    <div class="lst-a"><h2>教学成果</h2>{% block lst_jxcg %}{% endblock %}</div>
+    {% if prs_month == 6 or prs_month == 7 or prs_month == 8 %}
+    <div class="lst-a"><h2>暑假班专题</h2>{% block lst_sjbzt %}{% endblock %}</div>
+    {% endif %}
     <div class="lst-a"><h2>家长课堂</h2>{% block lst_jzkt %}{% endblock %}</div>
     </div><!col-a>
     <div class="col-b">
-    {% if prs_month == 6 or prs_month == 7 or prs_month == 8 %}
-    <div class="lst-b"><h2>暑假班专题</h2>{% block lst_sjbzt %}{% endblock %}</div>
-    {% endif %}
-    <div class="lst-b"><h2>中考专栏</h2>{% block lst_zkzl %}{% endblock %}</div>
-    <div class="lst-b"><h2>小升初专栏</h2>{% block lst_xsczl %}{% endblock %}</div>
+    <div class="lst-b"><h2>小学 奥数</h2>{% block lst_xxzl %}{% endblock %}</div>
+    <div class="lst-b"><h2>初中 中考</h2>{% block lst_czzl %}{% endblock %}</div>
+    <div class="lst-b"><h2>高中 高考</h2>{% block lst_gzzl %}{% endblock %}</div>
     </div><!col-b>
 </div><!main>
 <div class="side">
-    <div class="lst-c"><h2>文臻公告 »</h2>{% block lst_wzgg %}{% endblock %}</div>
+    <div class="lst-c"><h2>东新园校区 »</h2>{% block lst_dxyxq %}{% endblock %}</div>
     <div class="lst-c"><h2>拱宸桥校区 »</h2>{% block lst_gcqxq %}{% endblock %}</div>
 </div><! side>
 </div><!container>

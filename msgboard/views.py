@@ -9,10 +9,13 @@ from msgboard.models import Msg
 
 def message(request):
     ip_address = request.META['REMOTE_ADDR']
-    qry_msg = Msg.objects.filter(parent_id=0).order_by('-add_date')
+    try:
+        qry_msg = Msg.objects.filter(parent_id=0).order_by('-add_date')
+    except:
+        qry_msg = []
     msg_lst = []
     reply_lst = []
-    #message = []
+    message = []
     mid_lst = []
     msg_dic = {}
     reply_dic = {}
@@ -25,7 +28,10 @@ def message(request):
         msg_dic['add_date'] = msg.add_date
         msg_dic['parent_id'] = msg.parent_id
 
-        qry_reply = Msg.objects.filter(parent_id=msg.id).order_by('add_date')
+        try:
+            qry_reply = Msg.objects.filter(parent_id=msg.id).order_by('add_date')
+        except:
+            qry_reply = []
         if qry_reply:
             for reply in qry_reply:
                 reply_dic['id'] = reply.id
@@ -56,7 +62,7 @@ def message(request):
             return HttpResponseRedirect('/msgboard/')
     else:
             form = MsgForm()
-    return render_to_response('msgboard/msg_list.html', {'form': form,'message':message, 'qry_msg':qry_msg, 'object_list': msg_lst, 'qry_reply':qry_reply, 'msg_dic':msg_dic,'reply_dic':reply_dic,'reply_lst':reply_lst,'mid_lst':mid_lst}, context_instance=RequestContext(request))
+    return render_to_response('msgboard/msg_list.html', {'form': form, 'object_list': msg_lst}, context_instance=RequestContext(request))
     
         
 

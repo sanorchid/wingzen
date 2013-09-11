@@ -28,4 +28,6 @@ class NewsListView(ListView):
 class TagListView(ListView):
     model = Tag
 
-
+class TagView(ListView):
+    def get_queryset(self):
+        return News.objects.filter(tags__slug__iexact=self.kwargs['slug']).order_by('-pub_date')

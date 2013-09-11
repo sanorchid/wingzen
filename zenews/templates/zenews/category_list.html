@@ -6,6 +6,6 @@
 {% block main %}
         <h1>category list</h1>
         {% for item in object_list %}
-        <p><a href="{{item.get_absolute_url}}" title="{{ item.description }}">{{ item.title }}</a></p>
+        <p><a href="/news/categories/{{item.slug}}" title="{{ item.description }}">{{ item.title }}</a></p>
         {% endfor %}
 {% endblock %}
