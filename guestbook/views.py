@@ -3,8 +3,8 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from datetime import datetime
 #from django.utils.timezone import utc
-from msgboard.forms import MsgForm
-from msgboard.models import Msg
+from guestbook.forms import MsgForm
+from guestbook.models import Msg
 
 
 def message(request):
@@ -51,6 +51,7 @@ def message(request):
     if request.method == 'POST':
         form = MsgForm(request.POST)
         if form.is_valid():
+            human = True  # for captcha.
             cd = form.cleaned_data
             author = cd['author']
             content = cd['content']
@@ -59,10 +60,10 @@ def message(request):
             parent_id = 0
             m = Msg(author=author, content=content, ip=ip, add_date=add_date, parent_id='0')
             m.save()
-            return HttpResponseRedirect('/msgboard/')
+            return HttpResponseRedirect('/guestbook/')
     else:
             form = MsgForm()
-    return render_to_response('msgboard/msg_list.html', {'form': form, 'object_list': msg_lst}, context_instance=RequestContext(request))
+    return render_to_response('guestbook/msg_list.html', {'form': form, 'object_list': msg_lst}, context_instance=RequestContext(request))
     
         
 

@@ -14,7 +14,7 @@
 {% endblock %}
 {% block side %}
 <h2>您也说点吧...</h2>
-<form action="/msgboard/" method="post">{% csrf_token %}
+<form action="/guestbook/" method="post">{% csrf_token %}
 {{form.as_p}}
     <p class="submit">
     <input type="submit" name="post" class="submit-post" value="张贴" />

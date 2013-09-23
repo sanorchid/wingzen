@@ -12,7 +12,8 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^curriculum/', include('curriculum.urls')),
     url(r'^comments/', include('django.contrib.comments.urls')),
-    #url(r'^msgboard/', include('msgboard.urls')),
+    url(r'^guestbook/', include('guestbook.urls')),
+    url(r'^captcha/', include('captcha.urls')),
     url(r'^news/', include('zenews.urls')),
 ) + static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

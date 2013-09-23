@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.markup',
+    'captcha',
     'fluent_comments',
     'crispy_forms',
     'django.contrib.comments',
@@ -149,7 +150,7 @@ INSTALLED_APPS = (
     'testbank',
     'curriculum',
     'eduzen',
-    'msgboard',
+    'guestbook',
     'zenews',
 )
 
