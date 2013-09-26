@@ -1,3 +1,4 @@
+#coding=utf-8
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -5,10 +6,23 @@ from datetime import datetime
 #from django.utils.timezone import utc
 from guestbook.forms import MsgForm
 from guestbook.models import Msg
-
+import urllib
+import json
 
 def message(request):
-    ip_address = request.META['REMOTE_ADDR']
+    # get the visitor's real ip.
+    try:
+        ip_address = request.META['HTTP_X_FORWARDED_FOR']
+    except KeyError:
+        pass
+    else:
+        ip_address = ip_address.split(",")[0]
+        request.META['REMOTE_ADDR'] = ip_address
+    ip_address = request.META.get("REMOTE_ADDR", None)
+    #get the city of the ip.
+    city_ip = ipinfo(ip_address)
+
+    # get the query messages if it is not empty.
     try:
         qry_msg = Msg.objects.filter(parent_id=0).order_by('-add_date')
     except:
@@ -24,7 +38,7 @@ def message(request):
         msg_dic['id'] = msg.id
         msg_dic['author'] = msg.author
         msg_dic['content'] = msg.content
-        msg_dic['ip'] = msg.ip
+        msg_dic['city'] = msg.city
         msg_dic['add_date'] = msg.add_date
         msg_dic['parent_id'] = msg.parent_id
 
@@ -37,7 +51,7 @@ def message(request):
                 reply_dic['id'] = reply.id
                 reply_dic['author'] = reply.author
                 reply_dic['content'] = reply.content
-                reply_dic['ip'] = reply.ip
+                reply_dic['city'] = reply.city
                 reply_dic['add_date'] = reply.add_date
                 reply_dic['parent_id'] = reply.parent_id
                 reply_lst.append(reply_dic)
@@ -56,9 +70,10 @@ def message(request):
             author = cd['author']
             content = cd['content']
             ip = ip_address
+            city = city_ip
             add_date = datetime.now()
             parent_id = 0
-            m = Msg(author=author, content=content, ip=ip, add_date=add_date, parent_id='0')
+            m = Msg(author=author, content=content, ip=ip, city=city, add_date=add_date, parent_id='0')
             m.save()
             return HttpResponseRedirect('/guestbook/')
     else:
@@ -67,14 +82,16 @@ def message(request):
     
         
 
-# Get the visitor's ip address.
-def get_remote_addr(request):
-    try:
-        if request.META.has_key('HTTP_X_FORWARDED_FOR'):
-            ip = request.META['HTTP_X_FORWARDED_FOR']
-        else:
-            ip = request.META['REMOTE_ADDR']
-    except:
-        pass
+# Get the visitor's ip information.
+def ipinfo(ipaddress):
+    url = r'http://ip.taobao.com/service/getIpInfo.php?ip=%s' % ipaddress
+    page = urllib.urlopen(url)
+    data = page.read()
+    jsondata = json.loads(data)
+    if jsondata[u'code'] == 0:
+        city_ip = r'%s %s'%(jsondata[u'data'][u'country'].encode('utf-8'), jsondata[u'data'][u'city'].encode('utf-8'))
+    else:
+        city_ip = u'火星'
+    return city_ip
 
 

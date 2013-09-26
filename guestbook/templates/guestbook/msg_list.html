@@ -4,7 +4,7 @@
 <h2>大家都在说...</h2>
 <ul class="msg">
 {% for msg, rpl in object_list %}
-<li class="message {% cycle 'odd' 'even' %}"><p><label class="author">{{ msg.author }}</label> @{{ msg.add_date.date|unlocalize }}<label class="hidden">{{ msg.id }}</label></p><p>{{ msg.content }}</p><p align="right" class="rpl_btn"><a href="?parent_id=1">回复</a></p></li>
+<li class="message {% cycle 'odd' 'even' %}"><p> 来自于 <label class="city">{{ msg.city }}</label> 的 <label class="author">{{ msg.author }}</label> 于 {{ msg.add_date.date|unlocalize }}<label class="hidden">{{ msg.id }}</label> 留言：</p><p>{{ msg.content }}</p><p align="right" class="rpl_btn"><a href="?parent_id=1">回复</a></p></li>
 {% if rpl %}
 {% for reply in rpl %}
 <li class="reply"><label class="author">{{ reply.author }}</label> @{{ reply.add_date.date|unlocalize }}<label class="hidden">{{ reply.id }}</label></p><p>{{ reply.content }}</p></li>
