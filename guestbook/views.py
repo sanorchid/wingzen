@@ -10,17 +10,9 @@ import urllib
 import json
 
 def message(request):
-    # get the visitor's real ip.
-    try:
-        ip_address = request.META['HTTP_X_FORWARDED_FOR']
-    except KeyError:
-        pass
-    else:
-        ip_address = ip_address.split(",")[0]
-        request.META['REMOTE_ADDR'] = ip_address
-    ip_address = request.META.get("REMOTE_ADDR", None)
+    ip_address = get_real_ip(request)
     #get the city of the ip.
-    city_ip = ipinfo(ip_address)
+    city_ip = get_ipinfo(ip_address)
 
     # get the query messages if it is not empty.
     try:
@@ -79,15 +71,29 @@ def message(request):
     else:
             form = MsgForm()
     return render_to_response('guestbook/msg_list.html', {'form': form, 'object_list': msg_lst}, context_instance=RequestContext(request))
-    
-        
+
+
+def get_real_ip(request):
+    # get the visitor's real ip.
+    try:
+        ip_address = request.META['HTTP_X_FORWARDED_FOR']
+    except KeyError:
+        pass
+    else:
+        ip_address = ip_address.split(",")[0]
+        request.META['REMOTE_ADDR'] = ip_address
+    ip_address = request.META.get("REMOTE_ADDR", None)
+    return ip_address
 
 # Get the visitor's ip information.
-def ipinfo(ipaddress):
-    url = r'http://ip.taobao.com/service/getIpInfo.php?ip=%s' % ipaddress
+def get_ipinfo(ip_address):
+    url = r'http://ip.taobao.com/service/getIpInfo.php?ip=%s' % ip_address
     page = urllib.urlopen(url)
     data = page.read()
-    jsondata = json.loads(data)
+    try:
+        jsondata = json.loads(data)
+    except:
+        city_ip = u'地球'
     if jsondata[u'code'] == 0:
         city_ip = r'%s %s'%(jsondata[u'data'][u'country'].encode('utf-8'), jsondata[u'data'][u'city'].encode('utf-8'))
     else:
