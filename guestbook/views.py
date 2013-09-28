@@ -10,9 +10,6 @@ import urllib
 import json
 
 def message(request):
-    ip_address = get_real_ip(request)
-    #get the city of the ip.
-    city_ip = get_ipinfo(ip_address)
 
     # get the query messages if it is not empty.
     try:
@@ -55,6 +52,9 @@ def message(request):
         reply_dic = {}
 
     if request.method == 'POST':
+        ip_address = get_real_ip(request)
+        #get the city of the ip.
+        city_ip = get_ipinfo(ip_address)
         form = MsgForm(request.POST)
         if form.is_valid():
             human = True  # for captcha.
@@ -92,12 +92,12 @@ def get_ipinfo(ip_address):
     data = page.read()
     try:
         jsondata = json.loads(data)
+        if jsondata[u'code'] == 0:
+            city_ip = r'%s %s'%(jsondata[u'data'][u'country'].encode('utf-8'), jsondata[u'data'][u'city'].encode('utf-8'))
+        else:
+            city_ip = u'火星'
     except:
         city_ip = u'地球'
-    if jsondata[u'code'] == 0:
-        city_ip = r'%s %s'%(jsondata[u'data'][u'country'].encode('utf-8'), jsondata[u'data'][u'city'].encode('utf-8'))
-    else:
-        city_ip = u'火星'
     return city_ip
 
 
