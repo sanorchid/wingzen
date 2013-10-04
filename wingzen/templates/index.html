@@ -4,27 +4,27 @@
 {% load l10n %}
 {% load staticfiles %}
 {% block focpic %}
-<div id="play">     
-    <div id="play_bg"></div>   
-    <div id="play_info"></div>   
-    <div id="play_text">   
-        <ul>   
-            <li>1</li>   
-            <li>2</li>   
-            <li>3</li>   
-            <li>4</li>   
-            <li>5</li>   
-            <li>6</li>   
-        </ul>   
-    </div>   
+<div id="play">
+    <div id="play_bg"></div>
+    <div id="play_info"></div>
+    <div id="play_text">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+    </div>
     <div id="play_list">
     {% for item in focpic %}
-    <a href="{{item.get_absolute_url}}" target="_blank">   
-        <img src="media/{{ item.cover }}" title="{{ item.title }}" alt="{{item.title|truncatehanzi:14}}" />   
-    </a>   
+    <a href="{{item.get_absolute_url}}" target="_blank">
+        <img src="media/{{ item.cover }}" title="{{ item.title }}" alt="{{item.title|truncatehanzi:14}}" />
+    </a>
     {% endfor %}
-    </div>   
-</div> 
+    </div>
+</div>
 {% endblock %}
 
 {% block crsfrm %}

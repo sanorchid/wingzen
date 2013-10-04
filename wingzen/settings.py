@@ -8,15 +8,20 @@ PARENT = os.path.split(HERE)[0]
 ADMINS = (
     ('jason', 'admin@wingzen.com'),
 )
+MANAGERS = ADMINS
 
+# Akismet settings.
 AKISMET_API_KEY = 'b7f7b2ab7c8f'
 #AKISMET_IS_TEST = True
 FLUENT_COMMENTS_CLOSE_AFTER_DAYS = 90
 FLUENT_COMMENTS_AKISMET_ACTION = 'moderate'
 
-#ACCOUNT_ACTIVATION_DAYS = 7
-
-MANAGERS = ADMINS
+# Simple-captcha settings.
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
+CAPTCHA_LETTER_ROTATION = (-16,16)
+CAPTCHA_NOISE_FUNCTIONS = None
+CAPTCHA_FILTER_FUNCTIONS = ('captcha.helpers.post_smooth',)
+CAPTCHA_FONT_SIZE = 16
 
 DATABASES = {
     'default': {
