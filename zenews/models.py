@@ -9,6 +9,7 @@ from taggit.managers import TaggableManager
 
 from django.conf import settings
 
+from redactor.fields import RedactorField
 
 class LiveNewsManager(models.Manager):
     def get_query_set(self):
@@ -23,10 +24,10 @@ class Category(models.Model):
     class Meta:
         ordering = ['title']
         verbose_name_plural = 'Categories'
-    
+
     def __unicode__(self):
         return self.title
-    
+
     def live_news_set(self):
         from zenews.models import News
         return self.news_set.filter(status=News.LIVE_STATUS)
@@ -43,7 +44,7 @@ class News(models.Model):
     # Core fields.
     title = models.CharField(max_length = 250,  verbose_name='标题')
     excerpt = models.TextField(blank = True,  verbose_name='摘要')
-    body = models.TextField(verbose_name='内容')
+    body = RedactorField(verbose_name='内容')
     cover = models.ImageField(upload_to='newscover/%Y/%m/%d', blank=True, verbose_name='焦点图片(280*180)')
     pub_date = models.DateTimeField(default = datetime.now,  verbose_name='发表日期')
 
@@ -54,7 +55,7 @@ class News(models.Model):
     # Metadata.
     author = models.ForeignKey(User,  verbose_name='作者')
     enable_comments = models.BooleanField(default = True,  verbose_name='是否允许评论')
-    isfoc = models.BooleanField(default = False,  verbose_name='是否焦点新闻')        
+    isfoc = models.BooleanField(default = False,  verbose_name='是否焦点新闻')
     slug = models.SlugField(unique_for_date = 'pub_date', verbose_name='唯一标识符')
     source = models.CharField(max_length = 250, verbose_name='来源')
     status = models.IntegerField(choices = STATUS_CHOICES, default = LIVE_STATUS, verbose_name='新闻稿状态')

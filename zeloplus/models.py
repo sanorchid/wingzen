@@ -9,6 +9,8 @@ from tagging.fields import TagField
 
 from django.conf import settings
 
+from redactor.fields import RedactorField
+
 class LiveEntryManager(models.Manager):
     def get_query_set(self):
         return super(LiveEntryManager, self).get_query_set().filter(status=self.model.LIVE_STATUS)
@@ -46,7 +48,7 @@ class Entry(models.Model):
     # Core fields.
     title = models.CharField(max_length = 250)
     excerpt = models.TextField(blank = True)
-    body = models.TextField()
+    body = RedactorField()
     pub_date = models.DateTimeField(default = datetime.now)
 
     # Fields to store generated HTML.

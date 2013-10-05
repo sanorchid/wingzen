@@ -1,4 +1,5 @@
 # Django settings for wingzen_new project.
+#coding=utf-8
 import os.path
 
 DEBUG = True
@@ -10,18 +11,7 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-# Akismet settings.
-AKISMET_API_KEY = 'b7f7b2ab7c8f'
-#AKISMET_IS_TEST = True
-FLUENT_COMMENTS_CLOSE_AFTER_DAYS = 90
-FLUENT_COMMENTS_AKISMET_ACTION = 'moderate'
 
-# Simple-captcha settings.
-CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
-CAPTCHA_LETTER_ROTATION = (-16,16)
-CAPTCHA_NOISE_FUNCTIONS = None
-CAPTCHA_FILTER_FUNCTIONS = ('captcha.helpers.post_smooth',)
-CAPTCHA_FONT_SIZE = 16
 
 DATABASES = {
     'default': {
@@ -142,12 +132,12 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.markup',
     'captcha',
+    'redactor',
     'fluent_comments',
     'crispy_forms',
     'django.contrib.comments',
     'django.contrib.flatpages',
     'akismet',
-    'chunks',
     'mailer',
     'markdown',
     'registration',
@@ -187,3 +177,25 @@ LOGGING = {
         },
     }
 }
+
+# Akismet settings.
+AKISMET_API_KEY = 'b7f7b2ab7c8f'
+#AKISMET_IS_TEST = True
+FLUENT_COMMENTS_CLOSE_AFTER_DAYS = 90
+FLUENT_COMMENTS_AKISMET_ACTION = 'moderate'
+
+# Simple-captcha settings.
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
+CAPTCHA_LETTER_ROTATION = (-16,16)
+CAPTCHA_NOISE_FUNCTIONS = None
+CAPTCHA_FILTER_FUNCTIONS = ('captcha.helpers.post_smooth',)
+CAPTCHA_FONT_SIZE = 16
+
+# redactor(WYSIWYG editor) options.
+REDACTOR_OPTIONS = {
+    'lang': 'zh_cn',
+    'toolbar': 'default',
+}
+REDACTOR_UPLOAD = 'redactor_upload/'
+
+

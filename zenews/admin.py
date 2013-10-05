@@ -1,17 +1,18 @@
 from django.contrib import admin
 from zenews.models import Category, News
 
-from django.contrib.flatpages.models import FlatPage
-from django.contrib.flatpages.admin import FlatPageAdmin as FlatPageAdminOld
+#from django.contrib.flatpages.models import FlatPage
+#from django.contrib.flatpages.admin import FlatPageAdmin as FlatPageAdminOld
 
-class FlatPageAdmin(FlatPageAdminOld):
-    class Media:
-        js = ('/static/js/tinymce/jscripts/tiny_mce/tiny_mce.js',
-              '/static/js/textareas.js',)
+#add tiny_mce support to flatpage.
+#class FlatPageAdmin(FlatPageAdminOld):
+    #class Media:
+        #js = ('/static/js/tinymce/jscripts/tiny_mce/tiny_mce.js',
+              #'/static/js/textareas.js',)
 
 # We have to unregister it, and then reregister
-admin.site.unregister(FlatPage)
-admin.site.register(FlatPage, FlatPageAdmin)
+#admin.site.unregister(FlatPage)
+#admin.site.register(FlatPage, FlatPageAdmin)
 
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['title']}
@@ -26,12 +27,6 @@ class NewsAdmin(admin.ModelAdmin):
     def the_tags(self, obj):
         return "%s" %(obj.tags.all(), )
     the_tags.short_description = 'tags'
-    
-    class Media:
-        js = (
-            '/static/js/tinymce/jscripts/tiny_mce/tiny_mce.js',
-            '/static/js/textareas.js',
-        )
 
 admin.site.register(News, NewsAdmin)
 
