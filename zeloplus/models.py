@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 from markdown import markdown
-from tagging.fields import TagField
+from taggit.managers import TaggableManager
 
 from django.conf import settings
 
@@ -92,28 +92,11 @@ class Entry(models.Model):
 
 
 # The comment moderate with akismet.
-from akismet import Akismet
-from django.conf import settings
-from django.contrib.comments.moderation import CommentModerator, moderator
-from django.contrib.sites.models import Site
-from django.utils.encoding import smart_str
+from fluent_comments.moderation import moderate_model
+from zeloplus.models import Entry
 
-class EntryModerator(CommentModerator):
-    auto_moderate_field = 'pub_date'
-    moderate_after = 30
-    email_notification = False
-
-    def moderate(self, comment, content_object, request):
-        already_moderated = super(EntryModerator, self).moderate(self, comment. content_object, request)
-        if already_moderated:
-            return True
-        akismet_api = Akismet(key=settings.AKISMET_API_KEY,blog_url="http:/%s/"%Site.objects.get_current().domain)
-        if akismet_api.verify_key():
-            akismet_data = { 'comment_type': 'comment',
-                             'referrer': request.META['HTTP_REFERER'],
-                             'user_ip': comment.ip_address,
-                             'user-agent': request.META['HTTP_USER_AGENT'] }
-            return akismet_api.comment_check(smart_str(comment.comment), akismet_data, build_data=True)
-        return False
-moderator.register(Entry, EntryModerator)
+moderate_model(Entry,
+    publication_date_field='pub_date',
+    enable_comments_field='enable_comments',
+)
 
