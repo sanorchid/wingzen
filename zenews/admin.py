@@ -20,10 +20,32 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 
 class NewsAdmin(admin.ModelAdmin):
+    exclude = ('author',)
     list_display = ('title', 'the_tags', 'pub_date', 'source', 'author')
     date_hierarchy = 'pub_date'
     prepopulated_fields = {'slug': ['title']}
 
+    def has_change_permission(self, request, obj=None):
+        has_class_permission = super(NewsAdmin, self).has_change_permission(request, obj)
+        if not has_class_permission:
+            return False
+        if obj is not None and not request.user.is_superuser and request.user.id != obj.author.id:
+            return False
+        return True
+
+    def queryset(self, request):
+        if request.user.is_superuser:
+            return News.objects.all()
+        return News.objects.filter(author=request.user)
+
+    def save_model(self, request, obj, form, change):
+        if not change:
+            obj.author = request.user
+        obj.save()
+    #def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        #if db_field.name == 'author':
+            #kwargs['initial'] = request.user.id
+        #return super(NewsAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
     def the_tags(self, obj):
         return "%s" %(obj.tags.all(), )
     the_tags.short_description = 'tags'

@@ -1,0 +1,46 @@
+<!DOCTYPE html> <html>
+<head>
+<title>Bootstrap Table</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% load staticfiles %}
+<!-- Bootstrap -->
+<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+<!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="{% static 'HTML5shiv/html5shiv.js' %}"></script>
+<script src="{% static 'respond/respond.min.js' %}"></script>
+<![endif]-->
+</head>
+<body>
+<h1>Hello, world!</h1>
+<table class="table table-condensed">
+  <caption>学生成绩表00000000000</caption>
+  <thead>
+    <tr class="success">
+      <th>姓名</th>
+      <th>成绩</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="warning">
+      <td>程程kkkkkkkkkk</td>
+      <td>98</td>
+    </tr>
+    <tr>
+      <td>旺旺kkkkkkkkkkkk</td>
+      <td>91</td>
+    </tr>
+    <tr>
+      <td>旺旺kkkkkkkkkkkk</td>
+      <td>91</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

@@ -13,4 +13,5 @@ def index(request):
                             {'navitem': navitem, 'focpic': focpic,'recrs': recrs, 'prs_month': prs_month, }
     )
 
-
+def test(request):
+	return render_to_response('test.html',)

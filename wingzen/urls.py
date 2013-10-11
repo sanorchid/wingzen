@@ -7,6 +7,9 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 admin.autodiscover()
 
 urlpatterns = patterns('',
+	# url for bootstrap test.
+	url(r'^test/', 'wingzen.views.test'),
+
     url(r'^$', 'wingzen.views.index'),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^admin/', include(admin.site.urls)),
