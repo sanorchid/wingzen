@@ -11,6 +11,9 @@ from django.conf import settings
 
 from redactor.fields import RedactorField
 
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
+
 class LiveNewsManager(models.Manager):
     def get_query_set(self):
         return super(LiveNewsManager, self).get_query_set().filter(status=self.model.LIVE_STATUS)
@@ -46,6 +49,10 @@ class News(models.Model):
     excerpt = models.TextField(blank = True,  verbose_name='摘要')
     body = RedactorField(verbose_name='内容')
     cover = models.ImageField(upload_to='newscover/%Y/%m/%d', blank=True, verbose_name='焦点图片(280*180)')
+    cover_thumbnail = ImageSpecField(source='cover',
+                                     processors=[ResizeToFill(280,180)],
+                                     format='JPEG',
+                                     options={'quality':60})
     pub_date = models.DateTimeField(default = datetime.now,  verbose_name='发表日期')
 
     # Fields to store generated HTML.

@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     'redactor',
     'fluent_comments',
     'crispy_forms',
+    'imagekit',
     'django.contrib.comments',
     'django.contrib.flatpages',
     'akismet',
