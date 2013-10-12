@@ -73,7 +73,7 @@ MEDIA_URL = '/media/'
 # Development STATIC_ROOT
 STATIC_ROOT = os.path.join(PARENT, 'static').replace('\\', '/')
 # Production STATIC_ROOT
-#MEDIA_ROOT = '/home/newdust/webapps/static/'
+#STATIC_ROOT = '/home/newdust/webapps/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
