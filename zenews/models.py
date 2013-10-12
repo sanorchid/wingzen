@@ -48,11 +48,11 @@ class News(models.Model):
     title = models.CharField(max_length = 250,  verbose_name='标题')
     excerpt = models.TextField(blank = True,  verbose_name='摘要')
     body = RedactorField(verbose_name='内容')
-    cover = models.ImageField(upload_to='newscover/%Y/%m/%d', blank=True, verbose_name='焦点图片(280*180)')
+    cover = models.ImageField(upload_to='newscover/%Y/%m/%d', blank=True, verbose_name='焦点图片')
     cover_thumbnail = ImageSpecField(source='cover',
-                                     processors=[ResizeToFill(280,180)],
+                                     processors=[ResizeToFill(285,180)],
                                      format='JPEG',
-                                     options={'quality':60})
+                                     options={'quality':80})
     pub_date = models.DateTimeField(default = datetime.now,  verbose_name='发表日期')
 
     # Fields to store generated HTML.

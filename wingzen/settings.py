@@ -56,7 +56,10 @@ USE_TZ = False
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
+# Development MEDIA_ROOT
 MEDIA_ROOT = os.path.join(HERE, 'media').replace('\\', '/')
+# Production MEDIA_ROOT
+#MEDIA_ROOT = '/home/newdust/webapps/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -67,7 +70,10 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
+# Development STATIC_ROOT
 STATIC_ROOT = os.path.join(PARENT, 'static').replace('\\', '/')
+# Production STATIC_ROOT
+#MEDIA_ROOT = '/home/newdust/webapps/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -190,7 +196,7 @@ CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
 CAPTCHA_LETTER_ROTATION = (-16,16)
 CAPTCHA_NOISE_FUNCTIONS = None
 CAPTCHA_FILTER_FUNCTIONS = ('captcha.helpers.post_smooth',)
-CAPTCHA_FONT_SIZE = 16
+CAPTCHA_FONT_SIZE = 20
 
 # redactor(WYSIWYG editor) options.
 REDACTOR_OPTIONS = {
