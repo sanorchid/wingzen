@@ -3,7 +3,7 @@
 <div class="container">
 <div class="col-a" id="focpic">{% block focpic %}{% endblock %}</div>
 <div class="frm-f">{% block crsfrm %}{% endblock %}</div>
-</div><!container>
+</div>
 
 <div class="container">
 <div class="main">
@@ -12,18 +12,30 @@
     <div class="lst-a"><h2>暑假班专题</h2>{% block lst_sjbzt %}{% endblock %}</div>
     {% endif %}
     <div class="lst-a"><h2>家长课堂</h2>{% block lst_jzkt %}{% endblock %}</div>
-    </div><!col-a>
+    <div class="lst-a"><h2>升学指南</h2>{% block lst_sxzn %}{% endblock %}</div>
+
+    </div>
     <div class="col-b">
-    <div class="lst-b"><h2>小学 奥数</h2>{% block lst_xxzl %}{% endblock %}</div>
-    <div class="lst-b"><h2>初中 中考</h2>{% block lst_czzl %}{% endblock %}</div>
-    <div class="lst-b"><h2>高中 高考</h2>{% block lst_gzzl %}{% endblock %}</div>
-    </div><!col-b>
-</div><!main>
+    <div class="lst-b"><h2>教育资讯</h2>{% block lst_jyzx %}{% endblock %}</div>
+    <div class="lst-b"><h2>教学探讨</h2>{% block lst_jxtt %}{% endblock %}</div>
+    </div>
+</div>
 <div class="side">
     <div class="lst-c"><h2>东新园校区 »</h2>{% block lst_dxyxq %}{% endblock %}</div>
     <div class="lst-c"><h2>拱宸桥校区 »</h2>{% block lst_gcqxq %}{% endblock %}</div>
-</div><! side>
-</div><!container>
+</div>
+</div>
+
+<div class="container">
+<div class="lst-h left"><h2>小学 奥数</h2>{% block lst_xxas %}{% endblock %}</div>
+<div class="lst-h right"><h2>小学 作文</h2>{% block lst_xxzw %}{% endblock %}</div>
+<div class="lst-h left clr_prv_flt"><h2>初中 物理</h2>{% block lst_czwl %}{% endblock %}</div>
+<div class="lst-h right"><h2>初中 化学</h2>{% block lst_czhx %}{% endblock %}</div>
+<div class="lst-h left clr_prv_flt"><h2>初中 英语</h2>{% block lst_czyy %}{% endblock %}</div>
+<div class="lst-h right"><h2>初中 数学</h2>{% block lst_czsx %}{% endblock %}</div>
+
+</div>
+
 {% endblock %}
 
 

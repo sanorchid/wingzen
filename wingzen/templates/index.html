@@ -108,15 +108,6 @@
 </ul>
 {% endblock %}
 
-{% block lst_xxzl %}
-<ul class="nlist">
-    {% get_category_content zenews.news 'xxzl' 5 as latest_xxzl %}
-    {% for item in latest_xxzl %}
-	<li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
-    {% endfor %}
-</ul>
-{% endblock %}
-
 {% block lst_gcqxq %}
 <ul class="nlist">
     {% get_category_content zenews.news 'gcqxq' 5 as latest_gcqxq %}
@@ -126,19 +117,73 @@
 </ul>
 {% endblock %}
 
-{% block lst_czzl %}
+{% block lst_czwl %}
 <ul class="nlist">
-    {% get_category_content zenews.news 'czzl' 5 as latest_czzl %}
-    {% for item in latest_czzl %}
+    {% get_category_content zenews.news 'czwl' 5 as latest_czwl %}
+    {% for item in latest_czwl %}
 	<li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
 
-{% block lst_gzzl %}
+{% block lst_czhx %}
 <ul class="nlist">
-    {% get_category_content zenews.news 'gzzl' 5 as latest_gzzl %}
-    {% for item in latest_gzzl %}
+    {% get_category_content zenews.news 'czhx' 5 as latest_czhx %}
+    {% for item in latest_czhx %}
+    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block lst_czyy %}
+<ul class="nlist">
+    {% get_category_content zenews.news 'czyy' 5 as latest_czyy %}
+    {% for item in latest_czyy %}
+    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block lst_czsx %}
+<ul class="nlist">
+    {% get_category_content zenews.news 'czsx' 5 as latest_czsx %}
+    {% for item in latest_czsx %}
+    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block lst_jyzx %}
+<ul class="nlist">
+    {% get_category_content zenews.news 'jyzx' 5 as latest_jyzx %}
+    {% for item in latest_jyzx %}
+    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block lst_jxtt %}
+<ul class="nlist">
+    {% get_category_content zenews.news 'jxtt' 5 as latest_jxtt %}
+    {% for item in latest_jxtt %}
+    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block lst_xxas %}
+<ul class="nlist">
+    {% get_category_content zenews.news 'xxas' 5 as latest_xxas %}
+    {% for item in latest_xxas %}
+    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block lst_xxzw %}
+<ul class="nlist">
+    {% get_category_content zenews.news 'xxzw' 5 as latest_xxzw %}
+    {% for item in latest_xxzw %}
     <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
 </ul>
