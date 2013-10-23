@@ -3,12 +3,14 @@
 {% block main %}
 <div class="clist">
 {% for item in object_list %}
-<h2 class="title"><span class="float_r">上课时间：{{ item.cdate}}</span>{{ item.name }}</h2>
+<h2 class="title">{{ item.name }}</h2>
+<div class="cd_night"><span>晚辅上课时间：{{item.cd_night}}{{ item.ctbgn_night }}~{{ item.ctend_night }}</span></div>
+<div class="cd_day"><span>周末上课时间：{{item.cd_day}}{{ item.ctbgn_day }}~{{ item.ctend_day }}</span></div>
+<div class=" "><span class="align_l">机构：{{ item.cinst}}</span></div>
 <div class="details"><p>{{ item.details }}</p></div>
-<div class="meta"><span class="align_l">科目：{{ item.subject }}</span><span class="grade">年级：{{ item.grade }}</span></div>
-<div class="meta"><span class="float_r">学费：{{ item.tuition }}，{{ item.ctimes }}</span><span class="align_l">类别：{{ item.csort }}</span><span class="align_l">机构：{{ item.cinst}}</span></div>
+
 {% endfor %}
-</div><!clist>
+</div>
 {% endblock %}
 
 {% block side %}

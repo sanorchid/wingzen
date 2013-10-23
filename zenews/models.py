@@ -25,8 +25,9 @@ class Category(models.Model):
     description = models.CharField(blank=True, null=True, max_length=80, verbose_name='描述')
 
     class Meta:
+        verbose_name = '类目'
+        verbose_name_plural = '类目'
         ordering = ['title']
-        verbose_name_plural = 'Categories'
 
     def __unicode__(self):
         return self.title
@@ -75,8 +76,9 @@ class News(models.Model):
     live = LiveNewsManager()
 
     class Meta:
+        verbose_name = '新闻'
+        verbose_name_plural = '新闻'
         ordering = ['-pub_date']
-        verbose_name_plural = "news"
 
     def __unicode__(self):
         return self.title

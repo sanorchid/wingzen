@@ -109,8 +109,8 @@ input, textarea, select{color:#333;}
 #wrap .frm-f {font-size:0.9em;}
 #wrap .frm-f form input{padding:1px;}
 #wrap table{line-height:20px;table-layout:fixed;border-collapse:collapse;}
-#wrap table caption{padding-bottom:2px;font-weight:bold;text-align:right;color:#E24812}
-#wrap table td, #wrap table th{text-align:center;vertical-align:middle;border:1px solid #B5D98F;padding:2px;}
+#wrap table caption{padding-bottom:2px;font-weight:bold;text-align:right;color:#ABADB3}
+#wrap table td, #wrap table th{text-align:center;vertical-align:middle;border:1px solid #ABADB3;padding:2px;}
 #wrap .frm-f table .name{width:160px}
 #wrap .frm-f table .cinst, #wrap .frm-f table .csort, #wrap .frm-f table .grade, #wrap .frm-f table .subject, #wrap .frm-f table .cdate, #wrap .frm-f table .ctimes{width:78px}
 

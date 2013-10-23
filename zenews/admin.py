@@ -21,6 +21,8 @@ admin.site.register(Category, CategoryAdmin)
 
 class NewsAdmin(admin.ModelAdmin):
     exclude = ('author',)
+    list_select_related = True
+    list_filter =("categories__title", 'pub_date', 'tags__name')
     list_display = ('title', 'the_tags', 'pub_date', 'source', 'author')
     date_hierarchy = 'pub_date'
     prepopulated_fields = {'slug': ['title']}

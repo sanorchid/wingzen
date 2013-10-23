@@ -41,7 +41,7 @@
     <option value="{{item.id}}" selected="selected">{{item.name}}</option>
     {% endfor %}
 </select>
-{% get_all_tuples eduzen.grade as grade %}
+{% get_all_tuples curriculum.grade as grade %}
 <select name="grade">
     {% for item in grade %}
     <option value="{{item.id}}">{{item.name}}</option>
@@ -61,21 +61,15 @@
 <tr class="row">
     <th class="name">名称</th>
     <th class="cinst">机构</th>
-    <th class="csort">类别</th>
-    <th class="grade">年级</th>
-    <th class="subject">科目</th>
-    <th class="cdate">时间</th>
-    <th class="ctimes">次数</th>
+    <th class="ct_night">晚辅上课时间</th>
+    <th class="ct_day">周末上课时间</th>
 </tr>
 <tr>
     {% for item in recrs %}
     <td class="name"><a href="/curriculum/list/" target="_blank">{{ item.name }}</a></td>
     <td class="cinst">{{ item.cinst }}</td>
-    <td class="csort">{{ item.csort }}</td>
-    <td class="grade">{{ item.grade }}</td>
-    <td class="subject">{{ item.subject }}</td>
-    <td class="cdate">{{ item.cdate }}</td>
-    <td class="ctimes">{{ item.ctimes }}</td>
+    <td class="ct_night">{{item.cd_night}}{{ item.ctbgn_night }}~{{ item.ctend_night }}</td>
+    <td class="ct_day">{{item.cd_day}}{{ item.ctbgn_day }}~{{ item.ctend_day }}</td>
     {% endfor %}
 </tr>
 </table>
