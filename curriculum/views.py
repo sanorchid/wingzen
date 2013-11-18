@@ -1,6 +1,10 @@
+#coding=utf-8
+from django.http import HttpResponse
+from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404, render_to_response
+from django.contrib.auth.decorators import login_required
 from django.views.generic import ArchiveIndexView, TemplateView, RedirectView, DateDetailView, ListView
-from curriculum.models import Course
+from curriculum.models import Course, Student
 
 class CurriIndexView(ArchiveIndexView):
     queryset = Course.objects.filter(recommend=True).all()
@@ -17,6 +21,12 @@ class CurriListView(ListView):
     def get_queryset(self):
         currilist = Course.objects.order_by('-pub_date')
         return currilist
+
+@login_required
+def studentList(request):
+    stulist = Student.objects.filter(grade_id__name=u'七年级').order_by('spell')
+    return render_to_response('curriculum/stumanage.html', {'stulist':stulist,}
+    )
 
 
 

@@ -205,4 +205,11 @@ REDACTOR_OPTIONS = {
 }
 REDACTOR_UPLOAD = 'redactor_upload/'
 
-
+# registration settings.
+ACCOUNT_ACTIVATION_DAYS = 7
+LOGIN_REDIRECT_URL = '/'
+EMAIL_HOST= 'smtp.gmail.com'
+EMAIL_PORT= 25
+EMAIL_HOST_USER = 'zouyaoxin@gmail.com'
+EMAIL_HOST_PASSWORD = 'iyuelcaynbzfmrwd'
+EMAIL_USE_TLS = True

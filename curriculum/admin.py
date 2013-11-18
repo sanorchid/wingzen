@@ -1,6 +1,6 @@
 #coding=utf-8
 from django.contrib import admin
-from curriculum.models import Course, CourseTuition, Csort, Cinst, Subject, Grade, KlassWiz, Student, Score, StuTuition, Teacher
+from curriculum.models import Course, CourseTuition, Csort, Cinst, Subject, Grade, KlassWiz, Student, Score, StuTuition, StuRecord, Teacher
 
 class CourseAdmin(admin.ModelAdmin):
     fieldsets=(
@@ -62,6 +62,11 @@ class StuTuitionAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(StuTuition, StuTuitionAdmin)
+
+class StuRecordAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(StuRecord, StuRecordAdmin)
 
 class TeacherAdmin(admin.ModelAdmin):
     pass

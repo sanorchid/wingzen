@@ -84,6 +84,15 @@
 </ul>
 {% endblock %}
 
+{% block lst_sxzn %}
+<ul class="nlist">
+    {% get_category_content zenews.news 'sxzn' 5 as latest_sxzn %}
+    {% for item in latest_sxzn %}
+    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href="{{ item.get_absolute_url }}" title="{{ item.title}}">{{ item.title|truncatehanzi:14 }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
 {% block lst_sjbzt %}
 <ul class="nlist">
     {% get_category_content zenews.news 'sjbzt' 5 as latest_sjbzt %}

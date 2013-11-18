@@ -11,6 +11,7 @@ urlpatterns = patterns('',
 	url(r'^test/', 'wingzen.views.test'),
 
     url(r'^$', 'wingzen.views.index'),
+    #url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^curriculum/', include('curriculum.urls')),
