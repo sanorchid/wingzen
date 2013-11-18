@@ -63,6 +63,8 @@ class Student(models.Model):
     school = models.CharField(max_length=60, verbose_name=u'所在学校')
     telephone = models.CharField(max_length=20, verbose_name=u'联系电话')
     address = models.CharField(max_length=60, verbose_name=u'家庭住址')
+    status = models.CharField(max_length=5, choices=STATUS_CHOICES, verbose_name=u'学员状态')
+
     class Meta:
         verbose_name = u'学生'
         verbose_name_plural = u'学生'
