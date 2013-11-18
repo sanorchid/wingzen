@@ -50,12 +50,7 @@ class Student(models.Model):
         (u'M', u'男'),
         (u'F', u'女'),
     )
-    GRADE_CHOICES = (
-        (u'prs6', u'小学六年级'),
-        (u'jns1', u'初中一年级'),
-        (u'jns2', u'初中二年级'),
-        (u'jns3', u'初中三年级'),
-    )
+
     STATUS_CHOICES = (
         (u'on', u'当前学员'),
         (u'off', u'往期学员'),
