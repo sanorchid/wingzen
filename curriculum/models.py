@@ -58,7 +58,7 @@ class Student(models.Model):
     name = models.CharField(max_length=20, verbose_name=u'学生姓名')
     spell = models.CharField(max_length=20, verbose_name=u'姓名拼音')
     sex = models.CharField(max_length=2, choices=GENDER_CHOICES, verbose_name=u'学生性别')
-    grade = models.ForeignKey(Grade)
+    grade = models.ForeignKey(Grade,verbose_name=u'所在年级')
     klass = models.CharField(max_length=30, verbose_name=u'学校班级')
     school = models.CharField(max_length=60, verbose_name=u'所在学校')
     telephone = models.CharField(max_length=20, verbose_name=u'联系电话')
