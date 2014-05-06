@@ -1,0 +1,79 @@
+{% extends "wingoa/base_oa.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% load bootstrap_calendar %}
+{% block cssfiles %}
+<link href="{% static 'assets/css/login-oa.css' %}" rel="stylesheet">
+{% bootstrap_calendar_css %}
+{% endblock %}
+
+{% block msg_nav %}
+{% if msg_logout %}
+<p class="navbar-text text-align-below">{{ msg_logout }}</p>
+{% else %}
+<p class="navbar-text text-align-below">欢迎使用。</p>
+{% endif %}
+{% endblock %}
+{% block wrap %}
+<div class="container">
+<div class="row">
+<div class="col-md-8">
+<div class="page-header">
+<h3></h3>
+{% bootstrap_controls 'pull-right form-inline' %}
+</div>
+{% bootstrap_calendar '' %}
+</div>
+<div class="col-md-4">
+
+<form action="{% url 'login_oa' %}" method="post" id="login-form" class="form-signin" role="form">{% csrf_token %}
+<h2 class="form-signin-heading">请登录</h2>
+{% if form.errors and not form.non_field_errors and not form.this_is_the_login_form.errors %}
+<p class="errornote">
+{% if form.errors.items|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+</p>
+{% endif %}
+
+{% if form.non_field_errors or form.this_is_the_login_form.errors %}
+{% for error in form.non_field_errors|add:form.this_is_the_login_form.errors %}
+<p class="errornote">
+    {{ error }}
+</p>
+{% endfor %}
+{% endif %}
+
+<div class="form-row">
+    {% if not form.this_is_the_login_form.errors %}{{ form.username.errors }}{% endif %}
+    <input id="id_username" class="form-control" placeholder="用户名" maxlength="254" name="username" type="text" required autofucus />
+</div>
+<div class="form-row">
+    {% if not form.this_is_the_login_form.errors %}{{ form.password.errors }}{% endif %}
+    <input id="id_password" class="form-control" placeholder="密码" name="password" type="password" required />
+    <input type="hidden" name="this_is_the_login_form" value="1" />
+    <input type="hidden" name="next" value="/oa/" />
+</div>
+  {% url 'admin_password_reset' as password_reset_url %}
+  {% if password_reset_url %}
+  <div class="password-reset-link">
+    <a href="{{ password_reset_url }}">{% trans 'Forgotten your password or username?' %}</a>
+  </div>
+  {% endif %}
+  <div class="submit-row">
+    <label>&nbsp;</label><input class="btn btn-lg btn-primary btn-block" type="submit" value="{% trans 'Log in' %}" />
+  </div>
+</form>
+
+<script type="text/javascript">
+document.getElementById('id_username').focus()
+</script>
+
+
+</div>
+</div>
+</div>
+{% endblock %}
+{% block jsfiles %}
+{% bootstrap_calendar_js language="zh-CN" %}
+{% bootstrap_calendar_init language="zh-CN" %}
+
+{% endblock %}

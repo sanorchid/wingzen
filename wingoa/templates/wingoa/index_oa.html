@@ -1,0 +1,105 @@
+{% extends "wingoa/base_oa.html" %}
+{% load staticfiles %}
+{% load bootstrap_calendar %}
+{% block cssfiles %}
+<link href="{% static 'assets/css/dashboard-oa.css' %}" rel="stylesheet">
+{% bootstrap_calendar_css %}
+{% endblock %}
+{% block msg_nav %}<p class="navbar-text navbar-right">欢迎，{{user.staff.name}}。<a href="/admin/" class="navbar-link">数据录入</a> / <a href="/admin/password_change" class="navbar-link">修改密码</a> / <a href="{% url 'logout_oa' %}" class="navbar-link">注销</a></p>{% endblock %}
+
+{% block wrap %}
+<div class="container">
+
+<div class="row">
+<div class="col-md-2 sidebar">
+<ul class="nav nav-sidebar">
+  <li id="address-list"><a href="#"><span class="glyphicon glyphicon-book"></span> 教师通讯 </a></li>
+  <li id="student-list">
+  <a href="#"><span class="glyphicon glyphicon-user"></span> 学生名单 
+  </a>
+  <ul class="sub-menu hide">
+    <li id="trial-stulist"><a href="#">试读学生名单</a></li>
+    <li id="present-stulist"><a href="#">当前学生名单</a></li>
+  </ul>
+</li>
+  <li id="score-stat"><a href="#"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span> 成绩统计</a></li>
+  <li id="learn-record"><a href="#"><span class="glyphicon glyphicon-record"></span> 学习记录</a></li>
+  <li id="zen-kls"><a href="#"><span class="glyphicon glyphicon-map-marker"></span> 文臻班级</a></li>
+  {% if coursetuition %}
+  <li id="course-tuition"><a href="#"><span class="glyphicon glyphicon-list"></span> 课程费用</a></li>
+  {% endif %}
+  {% if stutuition %}
+  <li id="stu-tuition"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> 学生费用</a></li>
+  {% endif %}
+</ul>
+</div>
+<div class="main col-md-10 col-md-offset-2">
+<div class="row">
+<div class="col-md-12 reminder-today">
+<h3>
+{% if num_reminder %}
+<a href="#" class="zen-red" title="点击显示或隐藏">今日提醒</a> <span class="badge">{{num_reminder}}</span>
+{% else %}
+今日无提醒
+{% endif %}
+</h3>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12 reminder-content">
+{% if reminder_bday_countdown %}
+{% for reminder in reminder_bday_countdown %}
+<p><span class="glyphicon glyphicon-time zen-blue"></span> #生日#  <span class="focus">{{reminder.this_birthday|date:"Y-m-d"}}</span> 是{{reminder.name}}的生日，还有 <span class="focus">{{reminder.days}}</span> 天。</p>
+{% endfor %}
+{% endif %}
+{% if reminder_birthday %}
+{% for reminder in reminder_birthday %}
+<p><span class="glyphicon glyphicon-gift zen-blue"></span> #生日# 今天是<span class="focus">{{reminder.name}}</span>的生日，给Ta准备了什么礼物呢？</p>
+{% endfor %}
+{% endif %}
+
+{% if reminder_tuition_deadline %}
+{% for reminder in reminder_tuition_deadline %}
+<p><span class="glyphicon glyphicon-usd zen-blue"></span> #财务# <span class="focus">{{reminder.student.name}}</span>的学费还有<span class="focus">{{reminder.days}}</span> 天就要到期，请及时通知家长 <span class="glyphicon glyphicon-phone-alt zzen-orange"></span> <span class="focus zen-red">{{reminder.student.telephone}}</span> 续费！{{reminder.dateto|date:"Y-m-d"}}</p>
+{% endfor %}
+{% endif %}
+
+{% if reminder_tuition_expire %}
+{% for reminder in reminder_tuition_expire %}
+<p><span class="glyphicon glyphicon-flag zen-blue"></span> #财务# <span class="focus">{{reminder.student.name}}</span>的学费今天已到期，请马上通知家长 <span class="glyphicon glyphicon-phone-alt zen-orange"></span> <span class="focus zen-red">{{reminder.student.telephone}}</span> 续费或者通知教学老师停课！</p>
+{% endfor %}
+{% endif %}
+
+{% if reminder_calendar_event_deadline %}
+{% for reminder in reminder_calendar_event_deadline %}
+<p><span class="glyphicon glyphicon-bullhorn zen-blue"></span> #日历#  事件：{{reminder.title}}(<span class="focus">{{reminder.end|date:"Y-m-d"}}</span>)还有 <span class="focus">{{reminder.days}}</span> 天到期，请合理安排时间。</p>
+{% endfor %}
+{% endif %}
+
+{% if reminder_calendar_event_expire %}
+{% for reminder in reminder_calendar_event_expire %}
+<p><span class="glyphicon glyphicon-exclamation-sign zen-blue"></span>  #日历# 今天是日历事件：{{reminder.title}}截止日，请确认工作完成情况。</p>
+{% endfor %}
+{% endif %}
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="table-responsive">
+</div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block jsfiles %}
+{% bootstrap_calendar_js language="zh-CN" %}
+{% bootstrap_calendar_init language="zh-CN" %}
+<script src="{% static 'assets/js/dashboard.js' %}"></script>
+{% endblock %}
