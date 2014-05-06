@@ -7,7 +7,7 @@ from django.views.generic import ArchiveIndexView, TemplateView, RedirectView, D
 from curriculum.models import Course, Student
 
 class CurriIndexView(ArchiveIndexView):
-    queryset = Course.objects.filter(recommend=True).all()
+    queryset = Course.objects.filter(is_recommended=True).all()
     date_field =  'pub_date'
     context_object_name = 'object_list'
 

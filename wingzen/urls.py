@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.conf.urls.static import static
@@ -20,6 +22,8 @@ urlpatterns = patterns('',
     url(r'^captcha/', include('captcha.urls')),
     url(r'^news/', include('zenews.urls')),
     url(r'^redactor/', include('redactor.urls')),
+    url(r'^oa/', include('wingoa.urls')),
+    url(r'^calendar/', include('django_bootstrap_calendar.urls')),
 ) + static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()

@@ -29,9 +29,9 @@
 
 {% block crsfrm %}
 <form  method=post action="">
-{% get_all_tuples curriculum.cinst as cinst %}
-<select name="cinst">
-    {% for item in cinst %}
+{% get_all_tuples wingoa.inst as inst %}
+<select name="inst">
+    {% for item in inst %}
     <option value="{{item.id}}" selected="selected">{{item.name}}</option>
     {% endfor %}
 </select>
@@ -41,16 +41,14 @@
     <option value="{{item.id}}" selected="selected">{{item.name}}</option>
     {% endfor %}
 </select>
-{% get_all_tuples curriculum.grade as grade %}
 <select name="grade">
-    {% for item in grade %}
-    <option value="{{item.id}}">{{item.name}}</option>
+    {% for grd_eng, grd_chs in grade %}
+    <option value="{{grd_eng}}">{{grd_chs}}</option>
     {% endfor %}
 </select>
-{% get_all_tuples curriculum.subject as subject %}
 <select name="subject">
-    {% for item in subject %}
-    <option value="{{item.id}}">{{item.name}}</option>
+    {% for sub_eng, sub_chs in subject %}
+    <option value="{{sub_eng}}">{{sub_chs}}</option>
     {% endfor %}
 </select>
 <input type="text" name="keywords" />
@@ -79,7 +77,7 @@
 <ul class="nlist">
     {% get_category_content zenews.news 'jzkt' 5 as latest_jzkt %}
     {% for item in latest_jzkt %}
-	<li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href="{{ item.get_absolute_url }}" title="{{ item.title}}">{{ item.title|truncatehanzi:14 }}</a></li>
+	<li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'assets/img/li_orange4.gif' %}"><a href="{{ item.get_absolute_url }}" title="{{ item.title}}">{{ item.title|truncatehanzi:14 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -88,7 +86,7 @@
 <ul class="nlist">
     {% get_category_content zenews.news 'sxzn' 5 as latest_sxzn %}
     {% for item in latest_sxzn %}
-    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href="{{ item.get_absolute_url }}" title="{{ item.title}}">{{ item.title|truncatehanzi:14 }}</a></li>
+    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'assets/img/li_orange4.gif' %}"><a href="{{ item.get_absolute_url }}" title="{{ item.title}}">{{ item.title|truncatehanzi:14 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -97,7 +95,7 @@
 <ul class="nlist">
     {% get_category_content zenews.news 'sjbzt' 5 as latest_sjbzt %}
     {% for item in latest_sjbzt %}
-	<li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href="{{ item.get_absolute_url }}" title="{{ item.title}}">{{ item.title|truncatehanzi:14 }}</a></li>
+	<li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'assets/img/li_orange4.gif' %}"><a href="{{ item.get_absolute_url }}" title="{{ item.title}}">{{ item.title|truncatehanzi:14 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -106,7 +104,7 @@
 <ul class="nlist">
     {% get_category_content zenews.news 'dxyxq' 5 as latest_dxyxq %}
     {% for item in latest_dxyxq %}
-    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href="{{ item.get_absolute_url }}" title="{{ item.title}}">{{ item.title|truncatehanzi:14 }}</a></li>
+    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'assets/img/li_orange4.gif' %}"><a href="{{ item.get_absolute_url }}" title="{{ item.title}}">{{ item.title|truncatehanzi:14 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -115,7 +113,7 @@
 <ul class="nlist">
     {% get_category_content zenews.news 'gcqxq' 5 as latest_gcqxq %}
     {% for item in latest_gcqxq %}
-	<li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+	<li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'assets/img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -124,7 +122,7 @@
 <ul class="nlist">
     {% get_category_content zenews.news 'czwl' 5 as latest_czwl %}
     {% for item in latest_czwl %}
-	<li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+	<li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'assets/img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -133,7 +131,7 @@
 <ul class="nlist">
     {% get_category_content zenews.news 'czhx' 5 as latest_czhx %}
     {% for item in latest_czhx %}
-    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'assets/img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -142,7 +140,7 @@
 <ul class="nlist">
     {% get_category_content zenews.news 'czyy' 5 as latest_czyy %}
     {% for item in latest_czyy %}
-    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'assets/img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -151,7 +149,7 @@
 <ul class="nlist">
     {% get_category_content zenews.news 'czsx' 5 as latest_czsx %}
     {% for item in latest_czsx %}
-    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'assets/img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -160,7 +158,7 @@
 <ul class="nlist">
     {% get_category_content zenews.news 'jyzx' 5 as latest_jyzx %}
     {% for item in latest_jyzx %}
-    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'assets/img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -169,7 +167,7 @@
 <ul class="nlist">
     {% get_category_content zenews.news 'jxtt' 5 as latest_jxtt %}
     {% for item in latest_jxtt %}
-    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'assets/img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -178,7 +176,7 @@
 <ul class="nlist">
     {% get_category_content zenews.news 'xxas' 5 as latest_xxas %}
     {% for item in latest_xxas %}
-    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'assets/img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -187,7 +185,7 @@
 <ul class="nlist">
     {% get_category_content zenews.news 'xxzw' 5 as latest_xxzw %}
     {% for item in latest_xxzw %}
-    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="float_r">[{{ item.pub_date.date|unlocalize }}]</span><IMG SRC="{% static 'assets/img/li_orange4.gif' %}"><a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}

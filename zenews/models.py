@@ -61,7 +61,7 @@ class News(models.Model):
     body_html = models.TextField(editable = False, blank = True)
 
     # Metadata.
-    author = models.ForeignKey(User,  verbose_name='作者')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,  verbose_name='作者')
     enable_comments = models.BooleanField(default = True,  verbose_name='是否允许评论')
     isfoc = models.BooleanField(default = False,  verbose_name='是否焦点新闻')
     slug = models.SlugField(unique_for_date = 'pub_date', verbose_name='唯一标识符')

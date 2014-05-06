@@ -4,7 +4,7 @@
 <title>文臻教育 | 每一个孩子都可以是优秀生 {% block title %}{% endblock %}</title>
 {% block csslink %}
 {% load staticfiles %}
-<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="screen" />
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css" media="screen" />
 {% endblock %}
 </head>
 <body>
@@ -37,8 +37,8 @@
 <p class="info right">Powered by <a href="http://djangoproject.com/" target="_blank">DJANGO</a>.</p>
 </div>
 {% block jslink %}
-<script type="text/javascript" src="{% static 'js/jquery-1.4.3.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/play.js' %}"></script>
+<script type="text/javascript" src="{% static 'jquery/jquery-1.10.2.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/play.js' %}"></script>
 {% endblock %}
 </body>
 </html>

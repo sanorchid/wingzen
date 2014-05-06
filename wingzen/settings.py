@@ -1,5 +1,5 @@
-# Django settings for wingzen_new project.
-#coding=utf-8
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import os.path
 
 DEBUG = True
@@ -118,6 +118,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'wingzen.urls'
@@ -137,7 +138,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'django.contrib.markup',
+    #'django.contrib.markup',
     'captcha',
     'redactor',
     'fluent_comments',
@@ -150,10 +151,15 @@ INSTALLED_APPS = (
     #'markdown',
     'registration',
     'taggit',
-    'testbank',
+    #'testbank',
     'curriculum',
     'guestbook',
     'zenews',
+    'wingoa',
+    'django_bootstrap_calendar',
+    #'debug_toolbar',
+    #'guardian',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -213,3 +219,16 @@ EMAIL_PORT= 25
 EMAIL_HOST_USER = 'zouyaoxin@gmail.com'
 EMAIL_HOST_PASSWORD = 'iyuelcaynbzfmrwd'
 EMAIL_USE_TLS = True
+
+# For custom user model.
+#AUTH_USER_MODEL = 'wingoa.staff'
+
+# For debug_toobal settings
+#INTERNAL_IPS = ('127.0.0.1',)
+
+# For Authentication backends.
+#AUTHENTICATION_BACKENDS = (
+#    'django.contrib.auth.backends.ModelBackend',
+#    'guardian.backends.ObjectPermissionBackend',
+#)
+#ANONYMOUS_USER_ID = False
