@@ -221,3 +221,7 @@ pip-log.txt
 wingzen/static
 */static
 wingzen/media
+
+############
+## Django South's migrations folders
+*/migrations
