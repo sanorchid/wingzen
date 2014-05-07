@@ -77,6 +77,7 @@ class Csort(models.Model):
 
 class Teacher(models.Model):
     staff = models.OneToOneField(Staff, verbose_name=u'教师姓名')
+    name = models.CharField(max_length=10)
     grade = models.CharField(max_length=5, blank=True, null=True, choices=GRADE_CHOICES, verbose_name=u'所教年级')
     subject = models.CharField(max_length=15, blank=True, null=True, choices=SUBJECT_CHOICES, verbose_name=u'所教科目')
     is_teamleader = models.BooleanField(default=False, verbose_name=u'是否教学组长')
