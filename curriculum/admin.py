@@ -67,9 +67,9 @@ class StudentAdmin(admin.ModelAdmin):
     #list_select_related = True
     list_display = ('name', 'sex','datentry','telephone','csort')
     filter_horizontal = ('course',)
-    radio_fields = {'sex': admin.HORIZONTAL, 'grade': admin.HORIZONTAL, 'klass': admin.HORIZONTAL,'status': admin.HORIZONTAL}
-    raw_id_fields = ('csort',)
-    
+    radio_fields = {'sex': admin.HORIZONTAL, 'grade': admin.HORIZONTAL, 'klass': admin.HORIZONTAL,'status': admin.HORIZONTAL, 'csort': admin.HORIZONTAL}
+    #raw_id_fields = ('csort',)
+
     #readonly_fields=('name',)
     #def grade_report(self, instance):
     #    return instance.grade
@@ -83,7 +83,8 @@ class StudentAdmin(admin.ModelAdmin):
     #    self.list_display_links = (None, )
 
     def has_add_permission(self, request):
-        if request.user.has_perm('add_student'):
+        in_education_group = request.user.groups.filter(name='education_grd07')
+        if request.user.has_perm('add_student') or in_education_group:
             return True
         self.actions=None
         self.list_display_links = (None, )
@@ -94,10 +95,10 @@ class StudentAdmin(admin.ModelAdmin):
         #    return False
         return True
 
-    def get_model_perms(self, request):
-        if request.user.is_superuser:
-            return {'view': True, 'change': True, 'add': True}
-        return {'view': True, 'change': True, 'add': False, }
+    #def get_model_perms(self, request):
+        #if request.user.is_superuser:
+            #return {'view': True, 'change': True, 'add': True}
+        #return {'view': True, 'change': True, 'add': False, }
     
     #def get_readonly_fields(self, request, obj=None):
      #   if not obj :

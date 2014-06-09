@@ -36,17 +36,24 @@ class StaffAdmin(admin.ModelAdmin):
 	#	return "%s%s" % (obj.user.last_name, obj.user.first_name)
 	#show_name.short_description=u'姓名显示'
 	#show_name.allow_tags = True
-	
+
 	#def has_add_permission(self, request):
 	#	if request.user.is_superuser:
 	#		return True
 	#	return False
-	
+
 	#def has_delete_permission(self, request):
 	#	if request.user.is_superuser:
 	#		return True
 	#	return False
-	
+
+	def get_readonly_fields(self, request, obj=None):
+		if not request.user.is_superuser:
+			self.readonly_fields = ('is_quit',)
+		else:
+			self.readonly_field = ()
+		return self.readonly_fields
+
 	def get_queryset(self, request):
 		qs = super(StaffAdmin, self).get_queryset(request)
 		if request.user.is_superuser:
