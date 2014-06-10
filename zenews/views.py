@@ -31,3 +31,7 @@ class TagListView(ListView):
 class TagView(ListView):
     def get_queryset(self):
         return News.objects.filter(tags__slug__iexact=self.kwargs['slug']).order_by('-pub_date')
+
+def xkjl(request):
+    return render_to_response('zenews/news_xkjl.html',)
+

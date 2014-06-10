@@ -6,7 +6,7 @@
 
 {% block cform %}
 <form  method=post action="">
-  <span class="glyphicon glyphicon-calendar"></span>
+  <span class="fa fa-calendar"></span>
   <label>校区:</label>
   {% get_all_tuples wingoa.inst as inst %}
   <select name="inst">
@@ -66,7 +66,7 @@
 <ul>
     {% get_category_content zenews.news 'bxcj' 5 as latest_bxcj %}
     {% for item in latest_bxcj %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><span class="glyphicon glyphicon-thumbs-up"></span> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-thumbs-o-up "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -75,7 +75,7 @@
 <ul>
     {% get_category_content zenews.news 'jzkt' 5 as latest_jzkt %}
     {% for item in latest_jzkt %}
-	<li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><span class="glyphicon glyphicon-paperclip"></span> <a href="{{ item.get_absolute_url }}" title="{{ item.title}}">{{ item.title|truncatehanzi:14 }}</a></li>
+	<li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-book "></i> <a href="{{ item.get_absolute_url }}" title="{{ item.title}}">{{ item.title|truncatehanzi:14 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -84,7 +84,16 @@
 <ul>
     {% get_category_content zenews.news 'wzdt' 5 as latest_wzdt %}
     {% for item in latest_wzdt %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><span class="glyphicon glyphicon-bullhorn"></span> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-bullhorn "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block lst_zfb %}
+<ul>
+    {% get_category_content zenews.news 'zfb' 5 as latest_zfb %}
+    {% for item in latest_zfb %}
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-history "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -93,7 +102,7 @@
 <ul>
     {% get_category_content zenews.news 'jyzx' 5 as latest_jyzx %}
     {% for item in latest_jyzx %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><span class="glyphicon glyphicon-info-sign"></span> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-lightbulb-o "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -102,7 +111,7 @@
 <ul>
     {% get_category_content zenews.news 'xsfm' 5 as latest_xsfm %}
     {% for item in latest_xsfm %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><span class="glyphicon glyphicon-list"></span> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-group "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -111,7 +120,7 @@
 <ul>
     {% get_category_content zenews.news 'kszc' 5 as latest_kszc %}
     {% for item in latest_kszc %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><span class="glyphicon glyphicon-list"></span> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -120,7 +129,7 @@
 <ul>
     {% get_category_content zenews.news 'jypx' 5 as latest_jypx %}
     {% for item in latest_jypx %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><span class="glyphicon glyphicon-list"></span> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -132,7 +141,7 @@
     <ul>
     {% get_category_content zenews.news 'czkx' 5 as latest_czkx %}
     {% for item in latest_czkx %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><span class="glyphicon glyphicon-list"></span> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
     </ul>
     {% endblock %}
@@ -142,7 +151,7 @@
     <ul>
     {% get_category_content zenews.news 'xxkx' 5 as latest_xxkx %}
     {% for item in latest_xxkx %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><span class="glyphicon glyphicon-list"></span> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
     </ul>
     {% endblock %}
@@ -156,7 +165,7 @@
     <ul>
     {% get_category_content zenews.news 'czsx' 5 as latest_czsx %}
     {% for item in latest_czsx %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><span class="glyphicon glyphicon-list"></span> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
     </ul>
     {% endblock %}
@@ -166,7 +175,7 @@
     <ul>
     {% get_category_content zenews.news 'xxsx' 5 as latest_xxsx %}
     {% for item in latest_xxsx %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><span class="glyphicon glyphicon-list"></span> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
     </ul>
     {% endblock %}
@@ -180,7 +189,7 @@
     <ul>
     {% get_category_content zenews.news 'czyw' 5 as latest_czyw %}
     {% for item in latest_czyw %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><span class="glyphicon glyphicon-list"></span> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
     </ul>
     {% endblock %}
@@ -190,7 +199,7 @@
     <ul>
     {% get_category_content zenews.news 'xxyw' 5 as latest_xxyw %}
     {% for item in latest_xxyw %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><span class="glyphicon glyphicon-list"></span> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
     </ul>
     {% endblock %}
@@ -204,7 +213,7 @@
     <ul>
     {% get_category_content zenews.news 'czyy' 5 as latest_czyy %}
     {% for item in latest_czyy %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><span class="glyphicon glyphicon-list"></span> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
     </ul>
     {% endblock %}  </div>
@@ -213,7 +222,7 @@
     <ul>
     {% get_category_content zenews.news 'xxyy' 5 as latest_xxyy %}
     {% for item in latest_xxyy %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><span class="glyphicon glyphicon-list"></span> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
     </ul>
     {% endblock %}

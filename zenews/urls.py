@@ -4,6 +4,7 @@ from zenews.views import  NewsIndexView, NewsDetailView, CategoryListView, NewsL
 
 urlpatterns = patterns('',
         #url(r'^tags/(?P<slug>[-\w]+)/$', 'taggit.views.tagged_object_list', {'queryset': News.live.all(), 'template_name': 'zenews/news_by_tag.html'}, name='zenews_news_by_tag'),
+        url(r'^xkjl/$', 'zenews.views.xkjl',),
         url(r'^tags/(?P<slug>[-\w]+)/$', TagView.as_view(), name='zenews_news_by_tag'),
         url(r'^tags/$', TagListView.as_view(), name='zenews_tag_list'),
         url(r'^categories/$', CategoryListView.as_view(), name='zenews_category_list'),
