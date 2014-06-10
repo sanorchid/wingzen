@@ -1,16 +1,20 @@
 {% extends "base.html" %}
 {% block title %} | {{ flatpage.title }}{% endblock %}
 {% block wrap %}
-<div class="navi">
-<ul>
-  <li><a href="/aboutus/">关于我们</a></li>
-  <li><a href="/advice/">意见建议</a></li>
-  <li><a href="/joinus/">加入文臻</a></li>
-  <li><a href="/cooperate/">业务合作</a></li>
-</ul>
-</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+	<div class="navi">
+	<ul>
+  	<li><a href="/aboutus/">关于我们</a></li>
+  	<li><a href="/advice/">意见建议</a></li>
+  	<li><a href="/joinus/">加入文臻</a></li>
+  	<li><a href="/cooperate/">业务合作</a></li>
+	</ul>
+	</div>
 <div class="content">
 <h2 class="title">{{ flatpage.title }}</h2>
 <div class="post">{{ flatpage.content }}</div>
+</div>
+  </div>
 </div>
 {% endblock %}
