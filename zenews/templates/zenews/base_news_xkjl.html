@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load zenews_filters %}
+
+{% block wrap %}
+<div class="row">
+<div class="col-md-5 col-md-offset-1 col-info">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">初中语文</h3>
+      </div>
+      <div class="panel-body">{% block lst_czyw %}{% endblock %}</div>
+  </div>
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">初中英语</h3>
+      </div>
+      <div class="panel-body">{% block lst_czyy %}{% endblock %}</div>
+  </div></div>
+<div class="col-md-5 col-info">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">初中数学</h3>
+      </div>
+      <div class="panel-body">{% block lst_czsx %}{% endblock %}</div>
+  </div>
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">初中科学</h3>
+      </div>
+      <div class="panel-body">{% block lst_czkx %}{% endblock %}</div>
+  </div></div>
+</div>
+<div class="row">
+<div class="col-md-5 col-md-offset-1 col-info">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">小学语文</h3>
+      </div>
+      <div class="panel-body">{% block lst_xxyw %}{% endblock %}</div>
+  </div>
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">小学英语</h3>
+      </div>
+      <div class="panel-body">{% block lst_xxyy %}{% endblock %}</div>
+  </div></div>
+<div class="col-md-5 col-info">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">小学数学</h3>
+      </div>
+      <div class="panel-body">{% block lst_xxsx %}{% endblock %}</div>
+  </div>
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">小学科学</h3>
+      </div>
+      <div class="panel-body">{% block lst_xxkx %}{% endblock %}</div>
+  </div></div>
+</div>
+{% endblock %}

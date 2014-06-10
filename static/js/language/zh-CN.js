@@ -11,7 +11,7 @@ window.calendar_languages['zh-CN'] = {
 
 	no_events_in_day: '今天没有事件。',
 
-	title_year:       '{0}',
+	title_year:       '{0}年',
 	title_month:      '{1} 年 {0}',
 	title_week:       '{1} 年 第 {0} 周 ',
 	title_day:        '{3} 年 {2} {1} 日， {0} ',

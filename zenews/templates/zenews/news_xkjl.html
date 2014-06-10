@@ -1,0 +1,68 @@
+{% extends "zenews/base_news_xkjl.html" %}
+{% load zenews_filters %}
+{% load zenews_tags %}
+{% load l10n %}
+    {% block lst_czkx %}
+    <ul>
+    {% get_category_content zenews.news 'czkx' 5 as latest_czkx %}
+    {% for item in latest_czkx %}
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    {% endfor %}
+    </ul>
+    {% endblock %}
+    {% block lst_xxkx %}
+    <ul>
+    {% get_category_content zenews.news 'xxkx' 5 as latest_xxkx %}
+    {% for item in latest_xxkx %}
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    {% endfor %}
+    </ul>
+    {% endblock %}
+       {% block lst_czsx %}
+    <ul>
+    {% get_category_content zenews.news 'czsx' 5 as latest_czsx %}
+    {% for item in latest_czsx %}
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    {% endfor %}
+    </ul>
+    {% endblock %}
+     {% block lst_xxsx %}
+    <ul>
+    {% get_category_content zenews.news 'xxsx' 5 as latest_xxsx %}
+    {% for item in latest_xxsx %}
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    {% endfor %}
+    </ul>
+    {% endblock %}
+    {% block lst_czyw %}
+    <ul>
+    {% get_category_content zenews.news 'czyw' 5 as latest_czyw %}
+    {% for item in latest_czyw %}
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    {% endfor %}
+    </ul>
+    {% endblock %}
+    {% block lst_xxyw %}
+    <ul>
+    {% get_category_content zenews.news 'xxyw' 5 as latest_xxyw %}
+    {% for item in latest_xxyw %}
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    {% endfor %}
+    </ul>
+    {% endblock %}
+    {% block lst_czyy %}
+    <ul>
+    {% get_category_content zenews.news 'czyy' 5 as latest_czyy %}
+    {% for item in latest_czyy %}
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    {% endfor %}
+    </ul>
+    {% endblock %}
+    {% block lst_xxyy %}
+    <ul>
+    {% get_category_content zenews.news 'xxyy' 5 as latest_xxyy %}
+    {% for item in latest_xxyy %}
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    {% endfor %}
+    </ul>
+    {% endblock %}

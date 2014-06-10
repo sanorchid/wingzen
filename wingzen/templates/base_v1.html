@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>文臻教育 | 每一个孩子都可以是优秀生 {% block title %}{% endblock %}</title>
+{% block csslink %}
+{% load staticfiles %}
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css" media="screen" />
+{% endblock %}
+</head>
+<body>
+<div id="header">
+<div id="logo"></div>
+</div>
+<div id="menu">
+<ul>
+<li><a href="/" title="文臻教育">首页</a></li>
+{% for item in navitem %}
+<li id="{{item.slug}}"><a title="{{item.description}}" href="/news/categories/{{item.slug}}">{{item.title}}</a></li>
+{% endfor %}
+<li id="msg"><a title="留言板" href="/guestbook">留言板</a></li>
+</div>
+<div id="wrap">
+{% block wrap %}
+<div class="main">
+{% block main %}{% endblock %}
+</div>
+<div class="side">
+{% block side %}{% endblock %}
+</div>
+{% endblock %}
+</div>
+<div id="footer">
+<p class="navi right"><a href="/aboutus/">关于我们</a>|<a href="/advice/">意见建议</a>|<a href="/joinus/">加入文臻</a>|<a href="/cooperate/">业务合作</a>|<a href="http://mail.wingzen.com/">邮箱登陆</a>|<a href="/admin/">管理入口</a></p>
+<p class="info left">拱宸桥校区：永庆路135号（拱宸中学附近）定海西园15幢1号 电话：0571-88333000</p><p class="info left">东新园校区：东新园小区（北门）新湖苑9幢2号商铺 电话：0571-88333600</p>
+<p class="info left">总部招生处电话：13735519093 (周老师)</p>
+<p class="info right">&copy; {% now "Y" %} 杭州文臻教育 版权所有</p>
+<p class="info right">Powered by <a href="http://djangoproject.com/" target="_blank">DJANGO</a>.</p>
+</div>
+{% block jslink %}
+<script type="text/javascript" src="{% static 'jquery/jquery-1.10.2.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/play.js' %}"></script>
+{% endblock %}
+</body>
+</html>

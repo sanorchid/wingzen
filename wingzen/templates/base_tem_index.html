@@ -1,0 +1,125 @@
+{% extends "base_tem.html" %}
+{% block wrap %}
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-3 col-md-offset-1">
+{% block focpic %}{% endblock %}
+</div>
+<div class="col-md-7">
+{% block headline %}{% endblock %}
+{% block crsfrm %}{% endblock %}
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-3 col-md-offset-1">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title"><span class="glyphicon glyphicon-global"></span> 家长课堂</h3>
+      </div>
+      <div class="panel-body">{% block lst_jzkt %}{% endblock %}</div>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">办学成绩</h3>
+      </div>
+      <div class="panel-body">{% block lst_sxzn %}{% endblock %}</div>
+  </div>
+</div>
+<div class="col-md-3">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">师资力量</h3>
+      </div>
+      <div class="panel-body">{% block lst_jxtt %}{% endblock %}</div>
+  </div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-3 col-md-offset-1">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">教育资讯</h3>
+      </div>
+      <div class="panel-body">{% block lst_jyzx %}{% endblock %}</div>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">文臻动态</h3>
+      </div>
+      <div class="panel-body">{% block lst_wzdt %}{% endblock %}</div>
+  </div>
+</div>
+<div class="col-md-3">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">教研培训</h3>
+      </div>
+      <div class="panel-body">{% block lst_jypx %}{% endblock %}</div>
+  </div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-7 col-md-offset-1">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">学科交流</h3>
+      </div>
+      <div class="panel-body">
+      <ul class="nav nav-tabs">
+          <li class="active"><a href="#tab_a" data-toggle="tab">科学</a></li>
+          <li><a href="#tab_b" data-toggle="tab">数学</a></li>
+          <li><a href="#tab_c" data-toggle="tab">语文</a></li>
+          <li><a href="#tab_d" data-toggle="tab">英语</a></li>
+      </ul>
+      <div class="tab-content">
+          <div class="tab-pane active" id="tab_a">
+              <p>这是一个段落1</p>
+          </div>
+          <div class="tab-pane" id="tab_b">
+              <p>这是一个段落2</p>
+          </div>
+          <div class="tab-pane" id="tab_c">
+              <p>这是一个段落3</p>
+          </div>
+          <div class="tab-pane" id="tab_d">
+              <p>这是一个段落4</p>
+          </div>
+      </div>
+      </div>
+  </div>
+</div>
+<div class="col-md-3">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">学习风貌</h3>
+      </div>
+      <div class="panel-body">{% block lst_xxfm %}{% endblock %}</div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
+{% load staticfiles %}
+{% block jsfiles %}
+<script src="{% static 'assets/js/wing.js' %}"></script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

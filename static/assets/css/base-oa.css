@@ -28,7 +28,7 @@ body {
 }
 
 .navbar-brand {
-  background: #fff url(/static/assets/img/logo.png) no-repeat 10px 10px;
+  background: #fff ;
   padding-left:45px;
 }
 .navbar-brand a {
