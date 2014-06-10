@@ -203,7 +203,7 @@
     {% endfor %}
     </ul>
     {% endblock %}
-  </div>  </div>
+  </div>
 </div>
 {% endblock %}
 {% block lst_yyjx %}
@@ -216,7 +216,8 @@
     <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
     {% endfor %}
     </ul>
-    {% endblock %}  </div>
+    {% endblock %}
+  </div>
   <div class="col-md-5">
     {% block lst_xxyy %}
     <ul>
@@ -226,7 +227,8 @@
     {% endfor %}
     </ul>
     {% endblock %}
-  </div>  </div>
+  </div>
+</div>
 </div>
 {% endblock %}
 

@@ -200,8 +200,10 @@ a, a:hover {text-decoration: none;}
   border-right: 1px solid #ddd;
 }
 
-.tab-content > .active {
-  padding: 12px;
+.tab-content > .active .row ul {
+  padding-top: 12px;
+  padding-left: 12px;
+  margin-left: 0;
 }
 .tab-content > .active {
   border: 1px solid #ddd;
