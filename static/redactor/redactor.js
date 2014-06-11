@@ -1,11 +1,11 @@
 /*
     Redactor v7.6.3
-    
+
     http://redactorjs.com/
-        
+
     Copyright (c) 2009-2012, Imperavi Ltd.
-    Licensed under Creative Commons Attribution-NonCommercial 3.0 license. 
-    
+    Licensed under Creative Commons Attribution-NonCommercial 3.0 license.
+
     Usage: $('#content').redactor();
 
     With some improvements
@@ -14,34 +14,34 @@
 var RTOOLBAR = {};
 
 (function($){
-    
+
     // Plugin
     jQuery.fn.redactor = function(option)
     {
-        return this.each(function() 
+        return this.each(function()
         {
             var $this = $(this);
-            
+
             var data = $this.data('redactor');
             if (!data) $this.data('redactor', (data = new Redactor(this, option)));
         });
     };
-    
-    
+
+
     // Initialization
     var Redactor = function(element, options)
     {
         // Element
         this.$el = $(element);
-    
+
         // Options
         this.opts = $.extend({
-    
+
             lang: 'en',
             toolbar: 'default',
 
             load: true,
-        
+
             path: false,
             css: 'style.css',
             extra_script: false, //false or url
@@ -49,19 +49,19 @@ var RTOOLBAR = {};
             resize: true,
             autoresize: false,
             fixed: false,
-    
+
             autoformat: true,
             cleanUp: true,
             convertDivs: true,
             removeClasses: true,
             removeStyles: false,
             convertLinks: true,
-            
+
             handler: false, // false or url
-            
+
             autosave: false, // false or url
             interval: 60, // seconds
-    
+
             imageGetJson: false, // url (ex. /folder/images.json ) or false
 
             imageUpload: false, // url
@@ -91,9 +91,9 @@ var RTOOLBAR = {};
 
             modal_image: '' +
                 '<div id="redactor_tabs">' +
-                   '<a href="javascript:void(null);" class="redactor_tabs_act">%__.upload%</a>' +   
+                   '<a href="javascript:void(null);" class="redactor_tabs_act">%__.upload%</a>' +
                    '<a href="javascript:void(null);">%__.choose%</a> '+
-                   '<a href="javascript:void(null);">%__.link%</a> '+ 
+                   '<a href="javascript:void(null);">%__.link%</a> '+
                 '</div>' +
                 '<form id="redactorInsertImageForm" method="post" action="" enctype="multipart/form-data">' +
                    '<div id="redactor_tab1" class="redactor_tab">' +
@@ -272,9 +272,9 @@ var RTOOLBAR = {};
                 '<div style="clear: both;"></div>'
 
         }, options, this.$el.data());
-    
+
         this.dropdowns = [];
-    
+
         // Init
         this.init();
     };
@@ -291,7 +291,7 @@ var RTOOLBAR = {};
             var callback;
             if (typeof(item) == 'function') callback = item;
             else callback = $.proxy(function() { this._loadFile(item, array); }, this);
-        
+
             this.dynamicallyLoad(file, callback);
         },
         loadFiles: function(array)
@@ -318,7 +318,7 @@ var RTOOLBAR = {};
                     script.onload = script.onreadystatechange = null;
                 }
             };
-            
+
             head.appendChild(script);
 
         },
@@ -360,7 +360,7 @@ var RTOOLBAR = {};
 
             // preformatter
             html = this.preformater(html);
-            
+
             // conver newlines to p
             if (this.opts.autoformat) html = this.paragraphy(html);
 
@@ -369,12 +369,12 @@ var RTOOLBAR = {};
 
             // focus always on page
             $(this.doc).click($.proxy(function(e) { this.$editor.focus(); }, this));
-    
+
             // cleanup
             if (this.opts.cleanUp === true)
             {
                 $(this.doc).bind('paste', $.proxy(function(e)
-                { 
+                {
                     setTimeout($.proxy(function ()
                     {
                         var marker = Math.floor(Math.random() * 99999);
@@ -382,11 +382,11 @@ var RTOOLBAR = {};
                         if ($.browser.mozilla) marker_text = '&nbsp;';
                         var node = $('<span rel="pastemarkerend" id="pastemarkerend_' + marker + '">' + marker_text + '</span>');
                         this.insertNodeAtCaret(node.get(0));
-                        
+
                         this.pasteCleanUp(marker);
-        
+
                     }, this), 100);
-    
+
                 }, this));
             }
 
@@ -404,7 +404,7 @@ var RTOOLBAR = {};
             .keyup($.proxy(function(e)
             {
                 var key = e.keyCode || e.which;
-                
+
                 if (this.opts.autoformat)
                 {
                     // if empty
@@ -417,10 +417,10 @@ var RTOOLBAR = {};
                 this.syncCode();
 
             }, this));
-            
+
             // toolbar
             this.buildToolbar();
-            
+
             // resizer
             if (this.opts.autoresize === false) this.buildResizer();
             else this.observeAutoResize();
@@ -433,14 +433,14 @@ var RTOOLBAR = {};
 
             // observers
             this.observeImages();
-    
+
             // fullscreen on start
-            if (this.opts.fullscreen) 
+            if (this.opts.fullscreen)
             {
                 this.opts.fullscreen = false;
                 this.fullscreen();
             }
-                
+
             // focus
             if (this.opts.focus) this.focus();
 
@@ -456,8 +456,8 @@ var RTOOLBAR = {};
             $(this.doc).keydown($.proxy(function(e)
             {
                 var key = e.keyCode || e.which;
-    
-                if (e.ctrlKey) 
+
+                if (e.ctrlKey)
                 {
                     if (key == 90) this._shortcuts(e, 'undo'); // Ctrl + z
                     else if (key == 90 && e.shiftKey) this._shortcuts(e, 'redo');   // Ctrl + Shift + z
@@ -468,7 +468,7 @@ var RTOOLBAR = {};
                     else if (key == 75) this._shortcuts(e, 'insertorderedlist'); // Ctrl + k
                     else if (key == 76) this._shortcuts(e, 'superscript'); // Ctrl + l
                 }
-    
+
                 if (!e.shiftKey && key == 9) this._shortcuts(e, 'indent'); // Tab
                 else if (e.shiftKey && key == 9 ) this._shortcuts(e, 'outdent'); // Shift + tab
 
@@ -488,7 +488,7 @@ var RTOOLBAR = {};
             {
                 if (s.src)
                 {
-                    // Match redactor.js or redactor.min.js, followed by an optional querystring (often used for cache purposes) 
+                    // Match redactor.js or redactor.min.js, followed by an optional querystring (often used for cache purposes)
                     var regexp = new RegExp(/\/redactor(\.min)?\.js(\?.*)?/);
                     if (s.src.match(regexp)) this.opts.path = s.src.replace(regexp, '');
                 }
@@ -499,7 +499,7 @@ var RTOOLBAR = {};
         {
             // container
             this.$box = $('<div class="redactor_box"></div>');
-    
+
             // frame
             this.$frame = $('<iframe frameborder="0" scrolling="auto" style="height: ' + this.height + ';" class="redactor_frame"></iframe>');
 
@@ -536,7 +536,7 @@ var RTOOLBAR = {};
             frameHtml += html;
             frameHtml += '</div></body></html>';
             return frameHtml;
-        },      
+        },
         getDoc: function(frame)
         {
             if (frame.contentDocument) return frame.contentDocument;
@@ -551,9 +551,9 @@ var RTOOLBAR = {};
         syncCode: function()
         {
             var html = this.formating(this.$editor.html());
-            this.$el.val(html);         
+            this.$el.val(html);
         },
-        
+
         // API functions
         setCode: function(html)
         {
@@ -577,11 +577,11 @@ var RTOOLBAR = {};
         destroy: function()
         {
             var html = this.getCode();
-            
+
             this.$box.after(this.$el);
             this.$box.remove();
             this.$el.val(html).show();
-            
+
             this.dropdowns.forEach(function(dropdown, i)
             {
                 dropdown.remove();
@@ -609,19 +609,19 @@ var RTOOLBAR = {};
         observeImages: function()
         {
             if ($.browser.mozilla) this.doc.execCommand("enableObjectResizing", false, "false");
-            
+
             $(this.doc).find('img').attr('unselectable', 'on').each($.proxy(function(i,s)
             {
                 this.resizeImage(s);
-                
+
             }, this));
-        
+
         },
         observeScroll: function()
         {
             var scrolltop = $(document).scrollTop();
             var boxtop = this.$box.offset().top;
-        
+
             if (scrolltop > boxtop)
             {
                 this.fixed = true;
@@ -644,8 +644,8 @@ var RTOOLBAR = {};
         {
             this.$frame.height(this.$editor.outerHeight(true)+30);
         },
-        
-        
+
+
         // EXECCOMMAND
         execCommand: function(cmd, param)
         {
@@ -661,7 +661,7 @@ var RTOOLBAR = {};
                     {
                         this.doc.execCommand(cmd, false, param);
                     }
-                    
+
                     this.syncCode();
                     this.focus();
                 }
@@ -669,7 +669,7 @@ var RTOOLBAR = {};
 
             }
         },
-        
+
         // FORMAT NEW LINE
         formatNewLine: function(e)
         {
@@ -677,7 +677,7 @@ var RTOOLBAR = {};
             if (parent.nodeName == 'DIV' && parent.id == 'page')
             {
                 if (e.preventDefault) e.preventDefault();
-                
+
                 element = $(this.getCurrentNode());
                 if (element.get(0).tagName == 'DIV' && (element.html() == '' || element.html() == '<br>'))
                 {
@@ -694,9 +694,9 @@ var RTOOLBAR = {};
                 // convert links
                 if (this.opts.convertLinks) this.$editor.linkify();
             }
-            else 
+            else
             {
-                this.syncCode();                
+                this.syncCode();
                 return true;
             }
         },
@@ -707,7 +707,7 @@ var RTOOLBAR = {};
             if (e.shiftKey && key == 13)
             {
                 if (e.preventDefault) e.preventDefault();
-            
+
                 var node1 = $('<span><br /></span>');
                 this.insertNodeAtCaret(node1.get(0));
                 this.setFocusNode(node1.get(0));
@@ -716,26 +716,26 @@ var RTOOLBAR = {};
                 return false;
             }
         },
-        
+
         // FORMAT EMPTY
         formatEmpty: function(e)
         {
             var html = $.trim(this.$editor.html());
-            
+
             if ($.browser.mozilla) html = html.replace(/<br>/gi, '');
-            
+
             if (html === '')
             {
                 if (e.preventDefault) e.preventDefault();
-                
+
                 var nodehtml = this.opts.allEmptyHtml;
                 if ($.browser.mozilla) nodehtml = this.opts.mozillaEmptyHtml;
-                
+
                 var node = $(nodehtml).get(0);
                 this.$editor.html(node);
                 this.setFocusNode(node);
-    
-                this.syncCode();                
+
+                this.syncCode();
                 return false;
             }
             else this.syncCode();
@@ -750,7 +750,7 @@ var RTOOLBAR = {};
                 if (!$.browser.mozilla) return this.opts.allEmptyHtml;
                 else return this.opts.mozillaEmptyHtml;
             }
-            
+
             // convert div to p
             if (this.opts.convertDivs) str = str.replace(/<div(.*?)>([\w\W]*?)<\/div>/gi, '<p>$2</p>');
 
@@ -760,7 +760,7 @@ var RTOOLBAR = {};
 
             // block elements
             var blocks = '(table|thead|tfoot|caption|colgroup|tbody|tr|td|th|div|dl|dd|dt|ul|ol|li|pre|select|form|blockquote|address|math|style|script|object|input|param|p|h[1-6])';
-        
+
             str += '\n';
 
             R('<br />\\s*<br />', '\n\n');
@@ -857,7 +857,7 @@ var RTOOLBAR = {};
         {
             // clean comments
             html = html.replace(/(<\!\-\-([\w\W]*?)\-\->)/ig, "");
-        
+
             if (this.opts.convertDivs)
             {
                 html = html.replace(/<div(.*?)>([\w\W]*?)<\/div>/gi, '<p$1>$2</p>');
@@ -877,14 +877,14 @@ var RTOOLBAR = {};
             // spans
             html = html.replace(/<span>&nbsp;<\/span>/gi, '');
             html = html.replace(/<span>([\w\W]*?)<\/span>/gi, '$1');
-            
+
             return html;
         },
         removeTags: function(html)
         {
             return html.replace(/<(?!\s*\/?(code|span|div|label|a|br|p|b|i|del|strike|img|video|audio|iframe|object|embed|param|blockquote|mark|cite|small|ul|ol|li|hr|dl|dt|dd|sup|sub|big|pre|code|figure|figcaption|strong|em|table|tr|td|th|tbody|thead|tfoot|h1|h2|h3|h4|h5|h6)\b)[^>]+>/gi,"");
         },
-        
+
         // PASTE CLEANUP
         pasteCleanUp: function(marker)
         {
@@ -892,16 +892,16 @@ var RTOOLBAR = {};
 
             html = this.formating(html);
             html = this.cleanUp(html);
-    
+
             if (this.opts.removeClasses) html = html.replace(/ class="([\w\W]*?)"/gi, '');
             else html = this.cleanUpClasses(html);
-            
+
             if (this.opts.removeStyles) html = html.replace(/ style="([\w\W]*?)"/gi, '');
             else html = this.cleanUpStyles(html);
 
             html = this.cleanUp(html);
             html = this.formating(html);
-            
+
             html = html.replace(/<b(.*?)id="internal-source-marker(.*?)">([\w\W]*?)<\/b>/gi, "$3");
 
             this.$editor.html(html);
@@ -913,7 +913,7 @@ var RTOOLBAR = {};
             this.syncCode();
             this.observeImages();
         },
-        
+
         // TEXTAREA CODE FORMATTING
         formating: function (html)
         {
@@ -955,8 +955,8 @@ var RTOOLBAR = {};
                 var bbb = etags[i];
                 html = html.replace(new RegExp(bbb,'gi'), "");
             }
-            
-            
+
+
             // add formatting before
             var lb = '\r\n';
             var btags = ["<form","<fieldset","<legend","<object","<embed","<select","<option","<input","<textarea","<pre","<blockquote","<ul","<ol","<li","<dl","<dt","<dd","<table", "<thead","<tbody","<caption","</caption>","<th","<tr","<td","<figure"];
@@ -965,7 +965,7 @@ var RTOOLBAR = {};
                 var eee = btags[i];
                 html = html.replace(new RegExp(eee,'gi'),lb+eee);
             }
-            
+
             // add formatting after
             var atags = ['</p>', '</div>', '</ul>', '</ol>', '</h1>', '</h2>', '</h3>', '</h4>', '</h5>', '</h6>', '<br>', '<br />', '</dl>', '</dt>', '</dd>', '</form>', '</blockquote>', '</pre>', '</legend>', '</fieldset>', '</object>', '</embed>', '</textarea>', '</select>', '</option>', '</table>', '</thead>', '</tbody>', '</tr>', '</td>', '</th>', '</figure>'];
             for (var i = 0; i < atags.length; ++i)
@@ -987,23 +987,23 @@ var RTOOLBAR = {};
         toggle: function()
         {
             var html;
-        
+
             if (this.opts.visual)
             {
                 this.$frame.hide();
-                
+
                 html = this.$editor.html();
                 html = $.trim(this.formating(html));
-                
+
                 this.$el.val(html).show().focus();
-                
+
                 this.setBtnActive('html');
                 this.opts.visual = false;
             }
             else
             {
                 this.$el.hide();
-                
+
                 this.$editor.html(this.$el.val());
 
                 this.$frame.show();
@@ -1017,7 +1017,7 @@ var RTOOLBAR = {};
                 }
 
                 this.focus();
-                
+
                 this.setBtnInactive('html');
                 this.opts.visual = true;
                 this.observeImages();
@@ -1028,7 +1028,7 @@ var RTOOLBAR = {};
         autoSave: function()
         {
             if (this.opts.autosave === false) return false;
-    
+
             setInterval($.proxy(function()
             {
                 $.post(this.opts.autosave, { data: this.getCode() });
@@ -1040,16 +1040,16 @@ var RTOOLBAR = {};
         buildToolbar: function()
         {
             if (this.opts.toolbar === false) return false;
-        
+
             this.$toolbar = $('<ul>').addClass('redactor_toolbar');
             this.$box.prepend(this.$toolbar);
-            
+
             $.each(RTOOLBAR[this.opts.toolbar], $.proxy(function(key,s)
             {
                 if (this.opts.fileUpload === false && key == 'file') return true;
-            
+
                 var li = $('<li>');
-                
+
                 if (key == 'fullscreen') $(li).addClass('redactor_toolbar_right');
 
                 var a = this.buildButton(key, s);
@@ -1058,7 +1058,7 @@ var RTOOLBAR = {};
                 if (key == 'backcolor' || key == 'fontcolor' || typeof(s.dropdown) != 'undefined')
                 {
                     var dropdown = $('<div class="redactor_dropdown" style="display: none;">');
-                    
+
                     if (key == 'backcolor' || key == 'fontcolor') dropdown = this.buildColorPicker(dropdown, key);
                     else dropdown = this.buildDropdown(dropdown, s.dropdown);
 
@@ -1094,7 +1094,7 @@ var RTOOLBAR = {};
                 function (x, d)
                 {
                     if (typeof(d.style) == 'undefined') d.style = '';
-                    
+
                     var drop_a;
                     if (d.name == 'separator') drop_a = $('<a class="redactor_separator_drop">');
                     else
@@ -1106,7 +1106,7 @@ var RTOOLBAR = {};
                     }
 
                     $(dropdown).append(drop_a);
-                    
+
                 }, this)
             );
 
@@ -1122,7 +1122,7 @@ var RTOOLBAR = {};
                 else mode = 'hilitecolor';
             }
             else mode = 'forecolor';
-            
+
             $(dropdown).width(210);
 
             var len = this.opts.colors.length;
@@ -1156,7 +1156,7 @@ var RTOOLBAR = {};
             $(this.getParentNode()).attr('color', '').css('color', '');
             this.syncCode();
         },
-        
+
         // DROPDOWNS
         showDropDown: function(e, dropdown, key)
         {
@@ -1166,18 +1166,18 @@ var RTOOLBAR = {};
             this.getBtn(key).addClass('dropact');
 
             var left = this.getBtn(key).offset().left;
-            
-            
+
+
             if (this.opts.fixed && this.fixed)
             {
                 $(dropdown).css({ position: 'fixed', left: left + 'px', top: '30px' }).show();
             }
-            else 
+            else
             {
                 var top = this.$toolbar.offset().top + 30;
                 $(dropdown).css({ position: 'absolute', left: left + 'px', top: top + 'px' }).show();
             }
-            
+
         },
         hideAllDropDown: function()
         {
@@ -1193,7 +1193,7 @@ var RTOOLBAR = {};
                 this.hideAllDropDown();
             }
         },
-        
+
         // SELECTION AND NODE MANIPULATION
         getSelection: function ()
         {
@@ -1216,7 +1216,7 @@ var RTOOLBAR = {};
 
             var selection = this.getSelection();
             toStart = toStart ? 0 : 1;
-    
+
             if (selection !== null)
             {
                 range.selectNodeContents(node);
@@ -1231,7 +1231,7 @@ var RTOOLBAR = {};
             if (typeof window.getSelection != "undefined")
             {
                 var sel = this.getSelection();
-                if (sel.rangeCount) 
+                if (sel.rangeCount)
                 {
                     var range = sel.getRangeAt(0);
                     range.collapse(false);
@@ -1287,34 +1287,34 @@ var RTOOLBAR = {};
         {
             this.$toolbar.append($('<li>').append(this.buildButton(key, obj)));
         },
-        
+
         // FULLSCREEN
         fullscreen: function()
         {
             var html;
-        
+
             if (this.opts.fullscreen === false)
             {
                 this.changeBtnIcon('fullscreen', 'normalscreen');
                 this.setBtnActive('fullscreen');
                 this.opts.fullscreen = true;
-                
+
                 this.height = this.$frame.css('height');
                 this.width = (this.$box.width() - 2) + 'px';
-                
+
                 html = this.getCode();
-    
+
                 this.tmpspan = $('<span></span>');
                 this.$box.addClass('redactor_box_fullscreen').after(this.tmpspan);
-                
+
                 $(document.body).prepend(this.$box).css('overflow', 'hidden');
-    
-                this.$editor = this.enable(html);               
-                
+
+                this.$editor = this.enable(html);
+
                 $(this.doc).click($.proxy(this.hideAllDropDown, this));
                 // focus always on page
                 $(this.doc).click($.proxy(function(e) { this.$editor.focus(); }, this));
-                
+
                 this.observeImages();
                 this.$box.find('.redactor_resizer').hide();
 
@@ -1322,35 +1322,35 @@ var RTOOLBAR = {};
                 $(window).resize($.proxy(this.fullScreenResize, this));
                 $(document).scrollTop(0,0);
                 this.focus();
-        
+
             }
             else
             {
                 this.removeBtnIcon('fullscreen', 'normalscreen');
                 this.setBtnInactive('fullscreen');
                 this.opts.fullscreen = false;
-    
+
                 $(window).unbind('resize', $.proxy(this.fullScreenResize, this));
                 $(document.body).css('overflow', '');
-                
+
                 html = this.getCode();
-                
+
                 this.$box.removeClass('redactor_box_fullscreen').css('width', 'auto');
-                
+
                 this.tmpspan.after(this.$box).remove();
-            
+
                 this.$editor = this.enable(html);
-                
+
                 this.observeImages();
                 this.observeAutoResize();
                 this.$box.find('.redactor_resizer').show();
-                
+
                 $(this.doc).click($.proxy(this.hideAllDropDown, this));
                 // focus always on page
                 $(this.doc).click($.proxy(function(e) { this.$editor.focus(); }, this));
-                
+
                 this.syncCode();
-                
+
                 this.$frame.css('height', this.height);
                 this.$el.css('height', this.height);
                 this.focus();
@@ -1359,12 +1359,12 @@ var RTOOLBAR = {};
         fullScreenResize: function()
         {
             if (this.opts.fullscreen === false) return;
-            
+
             var hfix = 42;
             if (this.opts.air) hfix = 2;
-            
-            var height = $(window).height() - hfix;     
-            
+
+            var height = $(window).height() - hfix;
+
             this.$box.width($(window).width() - 2);
             this.$frame.height(height);
             this.$el.height(height);
@@ -1374,10 +1374,10 @@ var RTOOLBAR = {};
         buildResizer: function()
         {
             if (this.opts.resize === false) return false;
-            
+
             this.$resizer = $('<div class="redactor_resizer">&mdash;</div>');
             this.$box.append(this.$resizer);
-    
+
             this.$resizer.mousedown($.proxy(this.initResize, this));
 
         },
@@ -1422,11 +1422,11 @@ var RTOOLBAR = {};
             var y = e.pageY;
             if (this.null_point === false) this.null_point = y;
             if (this.h_new === false) this.h_new = this.element_resize.height();
-    
+
             var s_new = (this.h_new + y - this.null_point) - 10;
-    
+
             if (s_new <= 30) return true;
-    
+
             if (s_new >= 0)
             {
                 this.element_resize.get(0).style.height = s_new + 'px';
@@ -1439,10 +1439,10 @@ var RTOOLBAR = {};
             $(document).unbind('mousedown', this.startResizeHdl);
             $(document).unbind('mouseup', this.stopResizeHdl);
             $(this.splitter).unbind('mouseup', this.stopResizeHdl);
-            
+
             this.element_resize.get(0).style.visibility = 'visible';
         },
-        
+
         // RESIZE IMAGES
         resizeImage: function(resize)
         {
@@ -1467,17 +1467,17 @@ var RTOOLBAR = {};
                 start_x = Math.round(e.pageX - $(resize).eq(0).offset().left);
                 start_y = Math.round(e.pageY - $(resize).eq(0).offset().top);
             });
-            
+
             $(resize).mouseup($.proxy(function(e)
             {
                 clicked = false;
                 this.syncCode();
             }, this));
-            
+
             $(resize).click($.proxy(function(e)
             {
                 if (clicker) this.imageEdit(e);
-    
+
             }, this));
 
             $(resize).mousemove(function(e)
@@ -1485,17 +1485,17 @@ var RTOOLBAR = {};
                 if (clicked)
                 {
                     clicker = false;
-                
+
                     var mouse_x = Math.round(e.pageX - $(this).eq(0).offset().left) - start_x;
                     var mouse_y = Math.round(e.pageY - $(this).eq(0).offset().top) - start_y;
-                    
+
                     var div_h = $(resize).height();
-                    
+
                     var new_h = parseInt(div_h)+mouse_y;
                     var new_w = new_h*ratio;
-                    
-                    
-                    
+
+
+
                     if(x==1 || (typeof(x) == "number" && new_w < x && new_w > min_w) ){ $(resize).width(new_w); }
                     if(y==1 || (typeof(y) == "number" && new_h < y && new_h > min_h) ){ $(resize).height(new_h); }
                     start_x = Math.round(e.pageX - $(this).eq(0).offset().left);
@@ -1518,12 +1518,12 @@ var RTOOLBAR = {};
         {
             var rows = $('#redactor_table_rows').val();
             var columns = $('#redactor_table_columns').val();
-            
+
             var table_box = $('<div></div>');
-            
+
             var tableid = Math.floor(Math.random() * 99999);
             var table = $('<table id="table' + tableid + '"><tbody></tbody></table>');
-            
+
             for (var i = 0; i < rows; i++)
             {
                 var row = $('<tr></tr>');
@@ -1534,16 +1534,16 @@ var RTOOLBAR = {};
                 }
                 $(table).append(row);
             }
-            
+
             $(table_box).append(table);
             var html = $(table_box).html();
-            
+
             if ($.browser.msie) html += '<p></p>';
             else html += '<p>&nbsp;</p>';
 
             this.execCommand('inserthtml', html);
             this.modalClose();
-            
+
             this.$table = $(this.doc).find('body').find('#table' + tableid);
             this.$table.click($.proxy(this.tableObserver, this));
         },
@@ -1553,15 +1553,15 @@ var RTOOLBAR = {};
 
             this.$table_tr = this.$table.find('tr');
             this.$table_td = this.$table.find('td');
-    
+
             this.$table_td.removeClass('current');
-    
+
             this.$tbody = $(e.target).parents('tbody');
             this.$thead = $(this.$table).find('thead');
-    
+
             this.$current_td = $(e.target);
             this.$current_td.addClass('current');
-            
+
             this.$current_tr = $(e.target).parents('tr');
         },
         deleteTable: function()
@@ -1578,12 +1578,12 @@ var RTOOLBAR = {};
         deleteColumn: function()
         {
             var index = $(this.$current_td).get(0).cellIndex;
-            
+
             $(this.$table).find('tr').each(function()
             {
                 $(this).find('td').eq(index).remove();
             });
-            
+
             this.syncCode();
         },
         addHead: function()
@@ -1644,10 +1644,10 @@ var RTOOLBAR = {};
             this.$table_tr.each(function(i,s)
             {
                 var current = $(s).find('td').eq(index);
-                
+
                 var td = current.clone();
                 td.html('&nbsp;');
-                
+
                 if (type == 'after') $(current).after(td);
                 else $(current).before(td);
 
@@ -1715,13 +1715,13 @@ var RTOOLBAR = {};
             var parent = $(el).parent();
 
             $(el).attr('alt', $('#redactor_file_alt').val());
-    
+
             var floating = $('#redactor_form_image_align').val();
-        
+
             if (floating == 'left') $(el).css({ 'float': 'left', margin: '0 10px 10px 0' });
             else if (floating == 'right') $(el).css({ 'float': 'right', margin: '0 0 10px 10px' });
             else $(el).css({ 'float': 'none', margin: '0' });
-            
+
             // as link
             var link = $.trim($('#redactor_file_link').val());
             if (link !== '')
@@ -1739,7 +1739,7 @@ var RTOOLBAR = {};
             this.modalClose();
             this.observeImages();
             this.syncCode();
-            
+
         },
         showImage: function()
         {
@@ -1751,13 +1751,13 @@ var RTOOLBAR = {};
                 if (this.opts.imageGetJson !== false)
                 {
                     $.getJSON(this.opts.imageGetJson, $.proxy(function(data) {
-                        
+
                         $.each(data, $.proxy(function(key, val)
                         {
                             var img = $('<img src="' + val.thumb + '" rel="' + val.image + '" />');
                             $('#redactor_image_box').append(img);
                             $(img).click($.proxy(this.imageSetThumb, this));
-                            
+
                         }, this));
 
                     }, this));
@@ -1766,7 +1766,7 @@ var RTOOLBAR = {};
                 {
                     $('#redactor_tabs a').eq(1).remove();
                 }
-                
+
                 if (this.opts.imageUpload !== false)
                 {
                     // dragupload
@@ -1785,16 +1785,16 @@ var RTOOLBAR = {};
                 else
                 {
                     $('.redactor_tab').hide();
-                    if (this.opts.imageGetJson === false) 
+                    if (this.opts.imageGetJson === false)
                     {
                         $('#redactor_tabs').remove();
                         $('#redactor_tab3').show();
                     }
-                    else 
+                    else
                     {
                         var tabs = $('#redactor_tabs a');
                         tabs.eq(0).remove();
-                        tabs.eq(1).addClass('redactor_tabs_act');                       
+                        tabs.eq(1).addClass('redactor_tabs_act');
                         $('#redactor_tab2').show();
                     }
                 }
@@ -1802,7 +1802,7 @@ var RTOOLBAR = {};
                 $('#redactor_upload_btn').click($.proxy(this.imageUploadCallbackLink, this));
 
             }, this);
-    
+
             this.modalInit(RLANG.image, 'image', 570, handler, true);
 
         },
@@ -1815,21 +1815,21 @@ var RTOOLBAR = {};
             if ($('#redactor_file_link').val() !== '')
             {
                 var data = '<img src="' + $('#redactor_file_link').val() + '" />';
-                
+
                 this._imageSet(data);
             }
             else this.modalClose();
         },
         imageUploadCallback: function(data)
-        {        
+        {
             this._imageSet(data);
         },
         _imageSet: function(html)
         {
             html = '<p>' + html + '</p>';
-        
+
             this.focus();
-            
+
             if ($.browser.msie)
             {
                 $(this.doc.getElementById('span' + this.spanid)).after(html).remove();
@@ -1839,18 +1839,18 @@ var RTOOLBAR = {};
             {
                 this.execCommand('inserthtml', html);
             }
-        
+
             this.modalClose();
             this.observeImages();
         },
-    
+
         // INSERT LINK
         showLink: function()
         {
             var handler = $.proxy(function()
             {
                 var sel = this.getSelection();
-                
+
                 if ($.browser.msie)
                 {
                     var parent = this.getParentNode();
@@ -1864,11 +1864,11 @@ var RTOOLBAR = {};
                     {
                         if (this.oldIE()) var text = sel.text;
                         else var text = sel.toString();
-                        
+
                         var url = '';
 
                         this.spanid = Math.floor(Math.random() * 99999);
-        
+
                         var html = '<span id="span' + this.spanid + '">' + text + '</span>';
                         if (text != '') html = '<span id="span' + this.spanid + '">' + text + '</span>';
                         this.execCommand('inserthtml', html);
@@ -1888,12 +1888,12 @@ var RTOOLBAR = {};
                         var url = '';
                     }
                 }
-                
+
                 $('.redactor_link_text').val(text);
                 $('#redactor_link_url').val(url).focus();
-                
+
                 $('#redactor_insert_link_btn').click($.proxy(this.insertLink, this));
-                
+
                 if (this.opts.linkFileUpload === false)
                 {
                     $('#redactor_tabs a').eq(3).remove();
@@ -1901,7 +1901,7 @@ var RTOOLBAR = {};
                 else
                 {
                     // dragupload
-                    if ($('#redactor_file').size() != 0) 
+                    if ($('#redactor_file').size() != 0)
                     {
                         $('#redactor_file').dragupload(
                         {
@@ -1909,22 +1909,22 @@ var RTOOLBAR = {};
                             success: $.proxy(this.insertLinkFile, this)
                         });
                     }
-    
+
                     // ajax upload
                     this.uploadInit('redactor_file', { auto: true, url: this.opts.linkFileUpload, success: $.proxy(this.insertLinkFile, this)  });
                 }
 
             }, this);
-            
+
             this.modalInit(RLANG.link, 'link', 460, handler);
 
         },
         insertLink: function()
         {
             var tab_selected = $('#redactor_tab_selected').val();
-            
+
             var link = '', text = '', target = '';
-            
+
             if (tab_selected == 1) // url
             {
                 link = $('#redactor_link_url').val();
@@ -1940,7 +1940,7 @@ var RTOOLBAR = {};
                 link = '#' + $('#redactor_link_anchor').val();
                 text = $('#redactor_link_anchor_text').val();
             }
-            
+
             target = $('#redactor_link_target').val();
 
             this._insertLink('<a href="' + link + '" target="' + target + '">' +  text + '</a> ', $.trim(text), link);
@@ -1985,7 +1985,7 @@ var RTOOLBAR = {};
             {
                 $('#redactor_file').dragupload(
                 {
-                    url: this.opts.fileUpload, 
+                    url: this.opts.fileUpload,
                     success: $.proxy(function(data)
                     {
                         this.fileUploadCallback(data);
@@ -2004,9 +2004,9 @@ var RTOOLBAR = {};
         fileUploadCallback: function(data)
         {
             // chrome fix
-            if ($.browser.webkit && !!window.chrome) data = data + '&nbsp;'; 
+            if ($.browser.webkit && !!window.chrome) data = data + '&nbsp;';
 
-            if ($.browser.msie) 
+            if ($.browser.msie)
             {
                 $(this.doc.getElementById('span' + this.spanid)).after(data).remove();
                 this.syncCode();
@@ -2014,10 +2014,10 @@ var RTOOLBAR = {};
             else this.execCommand('inserthtml', data);
 
             this.modalClose();
-        },  
-    
-        
-        
+        },
+
+
+
         // MODAL
         modalInit: function(title, modal_name, width, handler, scroll)
         {
@@ -2043,7 +2043,7 @@ var RTOOLBAR = {};
             $('#redactor_modal_close').click($.proxy(this.modalClose, this));
 
             this.hdlModalClose = $.proxy(function(e) { if( e.keyCode == 27) this.modalClose(); }, this);
-            
+
             $(document).keyup(this.hdlModalClose);
             $(this.doc).keyup(this.hdlModalClose);
 
@@ -2057,7 +2057,7 @@ var RTOOLBAR = {};
 
                 $('#redactor_modal_inner').html(data);
                 $('#redactor_modal_header').html(title);
-                
+
                 // tabs
                 if ($('#redactor_tabs').size() != 0)
                 {
@@ -2071,7 +2071,7 @@ var RTOOLBAR = {};
                             $('.redactor_tab').hide();
                             $('#redactor_tab' + i).show();
                             $('#redactor_tab_selected').val(i);
-                            
+
                             var height = $('#redactor_modal').outerHeight();
                             $('#redactor_modal').css('margin-top', '-' + (height+10)/2 + 'px');
                         });
@@ -2079,13 +2079,13 @@ var RTOOLBAR = {};
                 }
 
                 $('#redactor_btn_modal_close').click($.proxy(this.modalClose, this));
-                
+
                 // callback
                 if (typeof(handler) == 'function') handler();
-                
+
                 // setup
                 var height = $('#redactor_modal').outerHeight();
-                                
+
                 $('#redactor_modal').css({ width: width + 'px', height: 'auto', marginTop: '-' + (height+10)/2 + 'px', marginLeft: '-' + (width+60)/2 + 'px' }).fadeIn('fast');
 
                 if (scroll === true)
@@ -2095,7 +2095,7 @@ var RTOOLBAR = {};
         },
         modalClose: function()
         {
-    
+
             $('#redactor_modal_close').unbind('click', this.modalClose);
             $('#redactor_modal').fadeOut('fast', $.proxy(function()
             {
@@ -2106,7 +2106,7 @@ var RTOOLBAR = {};
                     $('#redactor_modal_overlay').hide();
                     $('#redactor_modal_overlay').unbind('click', this.modalClose);
                 }
-                
+
                 $(document).unbind('keyup', this.hdlModalClose);
                 $(this.doc).unbind('keyup', this.hdlModalClose);
 
@@ -2128,7 +2128,7 @@ var RTOOLBAR = {};
             };
 
             $.extend(this.uploadOptions, options);
-    
+
             // Test input or form
             if ($('#' + element).size() != 0 && $('#' + element).get(0).tagName == 'INPUT')
             {
@@ -2139,9 +2139,9 @@ var RTOOLBAR = {};
             {
                 this.element = $('#' + element);
             }
-            
+
             this.element_action = this.element.attr('action');
-            
+
             // Auto or trigger
             if (this.uploadOptions.auto)
             {
@@ -2150,7 +2150,7 @@ var RTOOLBAR = {};
                     this.element.submit(function(e) { return false; });
                     this.uploadSubmit();
                 }, this));
-    
+
             }
             else if (this.uploadOptions.trigger)
             {
@@ -2164,17 +2164,17 @@ var RTOOLBAR = {};
         uploadFrame : function()
         {
             this.id = 'f' + Math.floor(Math.random() * 99999);
-        
+
             var d = document.createElement('div');
             var iframe = '<iframe style="display:none" src="about:blank" id="'+this.id+'" name="'+this.id+'"></iframe>';
             d.innerHTML = iframe;
             document.body.appendChild(d);
-        
+
             // Start
             if (this.uploadOptions.start) this.uploadOptions.start();
-        
+
             $('#' + this.id).load($.proxy(this.uploadLoaded, this));
-        
+
             return this.id;
         },
         uploadForm : function(f, name)
@@ -2184,7 +2184,7 @@ var RTOOLBAR = {};
                 var formId = 'redactorUploadForm' + this.id;
                 var fileId = 'redactorUploadFile' + this.id;
                 this.form = $('<form  action="' + this.uploadOptions.url + '" method="POST" target="' + name + '" name="' + formId + '" id="' + formId + '" enctype="multipart/form-data"></form>');
-                
+
                 var oldElement = this.uploadOptions.input;
                 var newElement = $(oldElement).clone();
                 $(oldElement).attr('id', fileId);
@@ -2193,8 +2193,8 @@ var RTOOLBAR = {};
                 $(this.form).css('position', 'absolute');
                 $(this.form).css('top', '-2000px');
                 $(this.form).css('left', '-2000px');
-                $(this.form).appendTo('body');  
-                
+                $(this.form).appendTo('body');
+
                 this.form.submit();
             }
             else
@@ -2203,10 +2203,10 @@ var RTOOLBAR = {};
                 f.attr('method', 'POST');
                 f.attr('enctype', 'multipart/form-data');
                 f.attr('action', this.uploadOptions.url);
-        
+
                 this.element.submit();
             }
-        
+
         },
         uploadLoaded : function()
         {
@@ -2215,17 +2215,17 @@ var RTOOLBAR = {};
             if (i.contentDocument) var d = i.contentDocument;
             else if (i.contentWindow) var d = i.contentWindow.document;
             else var d = window.frames[this.id].document;
-            
+
             if (d.location.href == "about:blank") return true;
-            
+
             // Success
             if (this.uploadOptions.success) this.uploadOptions.success(d.body.innerHTML);
-        
+
             this.element.attr('action', this.element_action);
             this.element.attr('target', '');
-        
+
         },
-        
+
         // UTILITY
         markerIE: function()
         {
@@ -2237,7 +2237,7 @@ var RTOOLBAR = {};
             if ($.browser.msie && parseInt($.browser.version, 10) < 9) return true;
             return false;
         },
-        outerHTML: function(s) 
+        outerHTML: function(s)
         {
             return $("<p>").append($(s).eq(0).clone()).html();
         },
@@ -2247,50 +2247,50 @@ var RTOOLBAR = {};
         }
 
     };
-    
-    
+
+
     // API
-    $.fn.getDoc = function() 
+    $.fn.getDoc = function()
     {
         return $(this.data('redactor').doc);
     };
-    
-    $.fn.getFrame = function() 
+
+    $.fn.getFrame = function()
     {
         return this.data('redactor').$frame;
     };
-    
-    $.fn.getEditor = function() 
+
+    $.fn.getEditor = function()
     {
         return this.data('redactor').$editor;
     };
-    
-    $.fn.getCode = function() 
+
+    $.fn.getCode = function()
     {
         return this.data('redactor').getCode();
     };
-    
+
     $.fn.setCode = function(html)
     {
         this.data('redactor').setCode(html);
     };
-    
+
     $.fn.insertHtml = function(html)
     {
         this.data('redactor').insertHtml(html);
     };
-    
+
     $.fn.destroyEditor = function()
     {
         this.data('redactor').destroy();
         this.removeData('redactor');
     };
-    
+
     $.fn.setFocus = function()
     {
         this.data('redactor').focus();
     };
-    
+
     $.fn.execCommand = function(cmd, param)
     {
         this.data('redactor').execCommand(cmd, param);
@@ -2310,66 +2310,66 @@ var RTOOLBAR = {};
 
 /*
     Plugin Drag and drop Upload v1.0.1
-    http://imperavi.com/ 
+    http://imperavi.com/
     Copyright 2012, Imperavi Ltd.
 */
 (function($){
-    
-    // Initialization   
+
+    // Initialization
     $.fn.dragupload = function(options)
-    {       
+    {
         return this.each(function() {
             var obj = new Construct(this, options);
             obj.init();
         });
     };
-    
-    // Options and variables    
+
+    // Options and variables
     function Construct(el, options) {
 
         this.opts = $.extend({
-        
+
             url: false,
             success: false,
             preview: false,
-            
+
             text: RLANG.drop_file_here,
             atext: RLANG.or_choose
-            
+
         }, options);
-        
+
         this.$el = $(el);
     }
 
     // Functionality
     Construct.prototype = {
         init: function()
-        {   
-            if (!$.browser.opera && !$.browser.msie) 
-            {   
+        {
+            if (!$.browser.opera && !$.browser.msie)
+            {
 
                 this.droparea = $('<div class="redactor_droparea"></div>');
-                this.dropareabox = $('<div class="redactor_dropareabox">' + this.opts.text + '</div>'); 
+                this.dropareabox = $('<div class="redactor_dropareabox">' + this.opts.text + '</div>');
                 this.dropalternative = $('<div class="redactor_dropalternative">' + this.opts.atext + '</div>');
-                
+
                 this.droparea.append(this.dropareabox);
-                
+
                 this.$el.before(this.droparea);
                 this.$el.before(this.dropalternative);
 
                 // drag over
                 this.dropareabox.bind('dragover', $.proxy(function() { return this.ondrag(); }, this));
-                
+
                 // drag leave
                 this.dropareabox.bind('dragleave', $.proxy(function() { return this.ondragleave(); }, this));
-        
+
                 // drop
                 this.dropareabox.get(0).ondrop = $.proxy(function(event)
                 {
                     event.preventDefault();
-                    
+
                     this.dropareabox.removeClass('hover').addClass('drop');
-                    
+
                     var file = event.dataTransfer.files[0];
 
                     var fd = new FormData();
@@ -2415,14 +2415,14 @@ var RTOOLBAR = {};
     var url1 = /(^|&lt;|\s)(www\..+?\..+?)(\s|&gt;|$)/g,
     url2 = /(^|&lt;|\s)(((https?|ftp):\/\/|mailto:).+?)(\s|&gt;|$)/g,
 
-        linkifyThis = function () 
+        linkifyThis = function ()
         {
             var childNodes = this.childNodes,
             i = childNodes.length;
             while(i--)
             {
                 var n = childNodes[i];
-                if (n.nodeType == 3) 
+                if (n.nodeType == 3)
                 {
                     var html = n.nodeValue;
                     if (html)
@@ -2442,7 +2442,7 @@ var RTOOLBAR = {};
                 }
             }
         };
-    
+
     $.fn.linkify = function ()
     {
         this.each(linkifyThis);

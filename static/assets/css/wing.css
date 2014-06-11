@@ -201,13 +201,14 @@ a, a:hover {text-decoration: none;}
 }
 
 .tab-content > .active .row ul {
-  padding-top: 12px;
-  padding-left: 12px;
+  padding: 12px;
   margin-left: 0;
 }
+
 .tab-content > .active {
   border: 1px solid #ddd;
   border-top: 0;
+  padding: 6px;
 }
 .nav-tabs li a {
   color: #333;

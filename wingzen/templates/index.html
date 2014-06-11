@@ -66,16 +66,7 @@
 <ul>
     {% get_category_content zenews.news 'bxcj' 5 as latest_bxcj %}
     {% for item in latest_bxcj %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-thumbs-o-up "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
-    {% endfor %}
-</ul>
-{% endblock %}
-
-{% block lst_jzkt %}
-<ul>
-    {% get_category_content zenews.news 'jzkt' 5 as latest_jzkt %}
-    {% for item in latest_jzkt %}
-	<li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-book "></i> <a href="{{ item.get_absolute_url }}" title="{{ item.title}}">{{ item.title|truncatehanzi:14 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-thumbs-o-up "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:32 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -84,7 +75,7 @@
 <ul>
     {% get_category_content zenews.news 'wzdt' 5 as latest_wzdt %}
     {% for item in latest_wzdt %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-bullhorn "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-bullhorn "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:20 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -93,7 +84,16 @@
 <ul>
     {% get_category_content zenews.news 'zfb' 5 as latest_zfb %}
     {% for item in latest_zfb %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-history "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-history "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:20 }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block lst_jzkt %}
+<ul>
+    {% get_category_content zenews.news 'jzkt' 5 as latest_jzkt %}
+    {% for item in latest_jzkt %}
+  <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-book "></i> <a href="{{ item.get_absolute_url }}" title="{{ item.title}}">{{ item.title|truncatehanzi:12 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -102,7 +102,7 @@
 <ul>
     {% get_category_content zenews.news 'jyzx' 5 as latest_jyzx %}
     {% for item in latest_jyzx %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-lightbulb-o "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-lightbulb-o "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:12 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -111,7 +111,7 @@
 <ul>
     {% get_category_content zenews.news 'xsfm' 5 as latest_xsfm %}
     {% for item in latest_xsfm %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-group "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-group "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:20 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -120,7 +120,7 @@
 <ul>
     {% get_category_content zenews.news 'kszc' 5 as latest_kszc %}
     {% for item in latest_kszc %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:12 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
@@ -129,29 +129,29 @@
 <ul>
     {% get_category_content zenews.news 'jypx' 5 as latest_jypx %}
     {% for item in latest_jypx %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:12 }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
 
 {% block lst_kxjx %}
 <div class="row">
-  <div class="col-md-5">
+  <div class="col-md-6">
     {% block lst_czkx %}
     <ul>
     {% get_category_content zenews.news 'czkx' 5 as latest_czkx %}
     {% for item in latest_czkx %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:23 }}</a></li>
     {% endfor %}
     </ul>
     {% endblock %}
   </div>
-  <div class="col-md-5">
+  <div class="col-md-6">
     {% block lst_xxkx %}
     <ul>
     {% get_category_content zenews.news 'xxkx' 5 as latest_xxkx %}
     {% for item in latest_xxkx %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:23 }}</a></li>
     {% endfor %}
     </ul>
     {% endblock %}
@@ -160,22 +160,22 @@
 {% endblock %}
 {% block lst_sxjx %}
 <div class="row">
-  <div class="col-md-5">
+  <div class="col-md-6">
     {% block lst_czsx %}
     <ul>
     {% get_category_content zenews.news 'czsx' 5 as latest_czsx %}
     {% for item in latest_czsx %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:23 }}</a></li>
     {% endfor %}
     </ul>
     {% endblock %}
   </div>
-  <div class="col-md-5">
+  <div class="col-md-6">
     {% block lst_xxsx %}
     <ul>
     {% get_category_content zenews.news 'xxsx' 5 as latest_xxsx %}
     {% for item in latest_xxsx %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:23 }}</a></li>
     {% endfor %}
     </ul>
     {% endblock %}
@@ -184,22 +184,22 @@
 {% endblock %}
 {% block lst_ywjx %}
 <div class="row">
-  <div class="col-md-5">
+  <div class="col-md-6">
     {% block lst_czyw %}
     <ul>
     {% get_category_content zenews.news 'czyw' 5 as latest_czyw %}
     {% for item in latest_czyw %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:23 }}</a></li>
     {% endfor %}
     </ul>
     {% endblock %}
     </div>
-  <div class="col-md-5">
+  <div class="col-md-6">
     {% block lst_xxyw %}
     <ul>
     {% get_category_content zenews.news 'xxyw' 5 as latest_xxyw %}
     {% for item in latest_xxyw %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:23 }}</a></li>
     {% endfor %}
     </ul>
     {% endblock %}
@@ -208,22 +208,22 @@
 {% endblock %}
 {% block lst_yyjx %}
 <div class="row">
-  <div class="col-md-5">
+  <div class="col-md-6">
     {% block lst_czyy %}
     <ul>
     {% get_category_content zenews.news 'czyy' 5 as latest_czyy %}
     {% for item in latest_czyy %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:23 }}</a></li>
     {% endfor %}
     </ul>
     {% endblock %}
   </div>
-  <div class="col-md-5">
+  <div class="col-md-6">
     {% block lst_xxyy %}
     <ul>
     {% get_category_content zenews.news 'xxyy' 5 as latest_xxyy %}
     {% for item in latest_xxyy %}
-    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:10 }}</a></li>
+    <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-list"></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:23 }}</a></li>
     {% endfor %}
     </ul>
     {% endblock %}
