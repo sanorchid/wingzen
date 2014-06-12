@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-import re
+#import re
 from django.utils.encoding import force_unicode
 from django.utils.functional import allow_lazy
 
@@ -12,17 +12,17 @@ from django.utils.functional import allow_lazy
 # \u3000-\ufaff: CJK characters and punctuation
 #re_hanzi = re.compile(ur'[\u3000-\ufaff]+', re.U)
 
-def len_hanzi(s):
-    s = force_unicode(s)
+#def len_hanzi(s):
+    #s = force_unicode(s)
     #length = 0
     # Length of alphanumeric characters
     #length += len(re_alnum.findall(s))
     # Length of CJK characters
     #for h in re_hanzi.findall(s):
         #length += len(h)
-    return len(s)
+    #return len(s)
 
-len_hanzi = allow_lazy(len_hanzi, unicode)
+#len_hanzi = allow_lazy(len_hanzi, unicode)
 
 def truncate_hanzi(s, num):
     s = force_unicode(s)
@@ -32,7 +32,6 @@ def truncate_hanzi(s, num):
     else:
         hanzi = "%s..." % s[0:trulen]
     return hanzi
-
 truncate_hanzi = allow_lazy(truncate_hanzi, unicode)
 
 def demo():
