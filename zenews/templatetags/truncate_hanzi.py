@@ -27,7 +27,7 @@ len_hanzi = allow_lazy(len_hanzi, unicode)
 def truncate_hanzi(s, num):
     s = force_unicode(s)
     trulen = int(num)
-    if trulen >= len_hanzi:
+    if trulen >= len(s):
         hanzi = s
     else:
         hanzi = "%s..." % s[0:trulen]
