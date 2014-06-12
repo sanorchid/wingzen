@@ -189,7 +189,7 @@ a, a:hover {text-decoration: none;}
 
 .cform form select, .cform form input {border: 1px solid #0099cc;}
 
-/* THE NAV-TABS */
+/* THE NAV-TABS and PANELS */
 .nav-tabs, .tab-content {
   background: rgba(255,255,255, 1);
 }
@@ -200,16 +200,6 @@ a, a:hover {text-decoration: none;}
   border-right: 1px solid #ddd;
 }
 
-.tab-content > .active .row ul {
-  padding: 12px;
-  margin-left: 0;
-}
-
-.tab-content > .active {
-  border: 1px solid #ddd;
-  border-top: 0;
-  padding: 6px;
-}
 .nav-tabs li a {
   color: #333;
 }
@@ -220,18 +210,30 @@ a, a:hover {text-decoration: none;}
   color:#2b2b2b;
 }
 
-/* Panel news list */
-.panel ul {
-	padding:0;
-	margin:0;
+.panel ul,
+.tab-content > .active .row ul {
+  margin: 0;
+  padding:0;
 }
 
-.panel ul li {color: #60B410;}
-
-.panel ul li a, .panel ul li span.r-date {font-size:90%;}
+.tab-content > .active {
+  border: 1px solid #ddd;
+  border-top: 0;
+  padding: 6px;
+}
 
 .panel ul li,
-.panel ul li a {
+.tab-content > .active li {color: #60B410;}
+
+.panel ul li a,
+.panel ul li span.r-date,
+.tab-content > .active li a,
+.tab-content > .active li span.r-date {font-size:90%;}
+
+.panel ul li,
+.panel ul li a,
+.tab-content > .active li,
+.tab-content > .active li a {
 	padding:6px;
 	margin:0;
 	border:0;
