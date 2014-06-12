@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 from django.template import Library
 from django.template.defaultfilters import stringfilter
+from django.utils.encoding import force_unicode
 
 register = Library()
 
@@ -13,14 +14,16 @@ def truncatehanzi(value, arg):
 
     Argument: Number of words to truncate after.
     """
-    from truncate_hanzi import truncate_hanzi
+    string = force_unicode(value)
     try:
-        length = int(arg)
+        truclen = int(arg)
     except ValueError: # Invalid literal for int().
         return value # Fail silently.
-    return truncate_hanzi(value, length)
 
-#truncatehanzi.is_safe = True
+    if truclen >= len(string):
+        hanzi = string
+    else:
+        hanzi = "%s..." % string[0:truclen]
+    return hanzi
 
-#register.filter('truncatehanzi', truncatehanzi)
 
