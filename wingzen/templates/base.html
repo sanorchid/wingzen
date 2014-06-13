@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>文臻教育--每一个孩子都可以成为优秀生</title>
+    {% load chunks %}
+    <title>{% chunk "page-title" %}</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     {% load staticfiles %}
@@ -21,7 +22,6 @@
     <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
   </head>
-
 <body>
 <!-- Fixed navbar -->
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -30,18 +30,17 @@
 <div class="col-md-10 col-md-offset-1">
 <div class="navbar-collapse collapse">
  <ul class="nav navbar-nav">
-    <li class="active"><a href="/">首页</a></li>
-    <li><a href="/news/categories/jyzx">教育资讯</a></li>
-    <li><a href="/news/categories/wzdt">文臻动态</a></li>
-    <li><a href="/news/categories/wzzfb">中复班</a></li>
-    <li><a href="/news/categories/bxcj">办学成绩</a></li>
-    <li><a href="/news/categories/jzkt">家长课堂</a></li>
-    <li><a href="/news/categories/jypx">教研培训</a></li>
-   <li><a href="/news/categories/xsfm">学生风貌</a></li>
-    <li><a href="/news/xkjl">学科交流</a></li>
-    <li><a href="/guestbook/">留言板</a></li>
-</ul>
-</div><!--/.nav-collapse -->
+  <li class="active"><a href="/">首页</a></li>
+  <li><a href="{% url 'zenews_news_list' 'jyzx' %}">教育资讯</a></li>
+  <li><a href="{% url 'zenews_news_list' 'wzdt' %}">文臻动态</a></li>
+  <li><a href="{% url 'zenews_news_list' 'zfb' %}">中复班</a></li>
+  <li><a href="{% url 'zenews_news_list' 'bxcj' %}">办学成绩</a></li>
+  <li><a href="{% url 'zenews_news_list' 'jzkt' %}">家长课堂</a></li>
+  <li><a href="{% url 'zenews_news_list' 'jypx' %}">教研培训</a></li>
+  <li><a href="{% url 'zenews_news_list' 'xsfm' %}">学生风貌</a></li>
+  <li><a href="{% url 'zenews_subjcomm_index' %}">学科交流</a></li>
+  <li><a href="{% url 'guestbook_index' %}">留言板</a></li>
+ </ul></div><!--/.nav-collapse -->
 </div>
 </div>
 </div>
@@ -64,24 +63,16 @@
 <div class="container-fluid">
 <div class="row">
 <div class="col-md-5 col-md-offset-1">
-<p>&copy; {% now "Y" %} 杭州文臻教育 版权所有</p>
+<p>&copy; {% now "Y" %} {% chunk "copyright" %}</p>
 </div>
-<div class="col-md-5 right">
-<p><a href="/aboutus/">关于我们</a>|<a href="/business/">业务体系</a>|<a href="/teachers/">师资力量</a>|<a href="/joinus/">加入文臻</a>|<a href="/advice/">意见建议</a>|<a href="http://mail.wingzen.com/">邮箱登陆</a>|<a href="/admin/">管理入口</a></p>
-</div>
+<div class="col-md-5 right">{% chunk "foot-nav" %}</div>
 </div>
 <div class="row">
-<div class="col-md-10 col-md-offset-1">
-<p>拱宸桥校区：永庆路135号（拱宸中学附近）定海西园15幢1号 电话：0571-88333000</p>
-<p>东新园校区：东新园小区（北门）新湖苑9幢2号商铺 电话：0571-88333600</p>
-<p>总部招生处电话：13735519093 (周老师)</p>
-</div>
+<div class="col-md-10 col-md-offset-1">{% chunk "contact-info" %}</div>
 </div>
 </div>
 {% endblock %}
 </div>
-
-
 
 <!-- Bootstrap core JavaScript
     ================================================== -->

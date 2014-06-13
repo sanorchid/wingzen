@@ -140,6 +140,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     #'django.contrib.markup',
     'captcha',
+    'chunks',
     'redactor',
     'fluent_comments',
     'crispy_forms',

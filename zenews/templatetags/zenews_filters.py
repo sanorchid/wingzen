@@ -4,7 +4,6 @@ from django.template.defaultfilters import stringfilter
 from django.utils.encoding import force_unicode
 
 register = Library()
-
 @register.filter(name='truncatehanzi', is_safe=True)
 @stringfilter
 def truncatehanzi(value, arg):
