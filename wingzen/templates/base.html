@@ -30,16 +30,17 @@
 <div class="col-md-10 col-md-offset-1">
 <div class="navbar-collapse collapse">
  <ul class="nav navbar-nav">
-  <li class="active"><a href="/">首页</a></li>
-  <li><a href="{% url 'zenews_news_list' 'jyzx' %}">教育资讯</a></li>
-  <li><a href="{% url 'zenews_news_list' 'wzdt' %}">文臻动态</a></li>
-  <li><a href="{% url 'zenews_news_list' 'zfb' %}">中复班</a></li>
-  <li><a href="{% url 'zenews_news_list' 'bxcj' %}">办学成绩</a></li>
-  <li><a href="{% url 'zenews_news_list' 'jzkt' %}">家长课堂</a></li>
-  <li><a href="{% url 'zenews_news_list' 'jypx' %}">教研培训</a></li>
-  <li><a href="{% url 'zenews_news_list' 'xsfm' %}">学生风貌</a></li>
-  <li><a href="{% url 'zenews_subjcomm_index' %}">学科交流</a></li>
-  <li><a href="{% url 'guestbook_index' %}">留言板</a></li>
+  <li class="active">{% chunk "href-home" %}</li>
+   <li>{% chunk "href-jyzx" %}</li>
+   <li>{% chunk "href-wzdt" %}</li>
+   <li>{% chunk "href-zfb" %}</li>
+   <li>{% chunk "href-bxcj" %}</li>
+   <li>{% chunk "href-kszc" %}</li>
+   <li>{% chunk "href-jzkt" %}</li>
+   <li>{% chunk "href-jypx" %}</li>
+   <li>{% chunk "href-xsfm" %}</li>
+   <li>{% chunk "href-xkjl" %}</li>
+   <li>{% chunk "href-guestbook" %}</li>
  </ul></div><!--/.nav-collapse -->
 </div>
 </div>
