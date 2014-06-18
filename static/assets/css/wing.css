@@ -282,7 +282,13 @@ table caption {
   color: #ff0000;
 }
 
-
+.post table th,
+.post table td {
+  /*overflow: hidden;
+  word-break:keep-all;*/
+  border: 1px solid #0099cc;
+  text-align: left;
+}
 /* Flatpages layout */
 #wrap .navi{
     float:left;
