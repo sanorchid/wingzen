@@ -175,6 +175,11 @@ a, a:hover {text-decoration: none;}
   margin: 8px;
 }
 
+.banner .ad {
+  width:594px;
+  margin-left:6px;
+  border:1px solid #60B410;
+}
 .r-date {
   float: right;
   color: #555;
