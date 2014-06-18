@@ -69,7 +69,7 @@
     <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-thumbs-o-up "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:32 }}</a></li>
     {% endfor %}
 </ul>
-<div class="ad"><img src="{% static 'assets/img/ads11.gif' %}"></div>
+<div class="ad"><a href="news/2014/06/18/2014sjbrzz/"><img src="{% static 'assets/img/ads11.gif' %}"></a></div>
 {% endblock %}
 
 {% block lst_wzdt %}
