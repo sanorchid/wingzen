@@ -55,7 +55,7 @@
   <div id="play_list">
     {% for item in focpic %}
     <a href="{{item.get_absolute_url}}" target="_blank">
-      <img src="{{ item.cover_thumbnail.url }}" title="{{ item.title }}" alt="{{item.title|truncatehanzi:14}}" />
+      <img src="{{ item.cover_thumbnail.url }}" title="{{ item.title }}" alt="{{item.title|truncatehanzi:22}}" />
     </a>
     {% endfor %}
   </div>
