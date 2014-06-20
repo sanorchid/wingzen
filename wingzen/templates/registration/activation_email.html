@@ -6,21 +6,19 @@ https://github.com/huseyinyilmaz/django-registration-extended-backend
 {% endcomment %}
 {% url 'registration_activate' activation_key as activation_key_url %}
 {% blocktrans with sitename=site.name sitedomain=site.domain%}<body>
-<h3>Account registration for {{ sitename }}</h3>
+<h3>{{ sitename }}的账号注册</h3>
 <p>
-You (or someone pretending to be you) have asked to register an account at
-<b>{{ sitename }}</b>.<br/>
-If this wasn't you, please ignore this email and your address will be removed
-from our records.
+你曾经要求注册（或某人冒名）<b>{{ sitename }}</b>.<br/>
+如果不是你本人的请求，请忽略这封邮件，你的信息我们会及时删除。
 </p>
 <p>
-To activate this account, please click the following link within the next 
-<b>{{ expiration_days }}</b> days:<br/>
+想要激活你的账号, 请在
+<b>{{ expiration_days }}</b> 天内点击以下链接进行激活<br/>
 <a href="http://{{ sitedomain }}{{ activation_key_url }}">http://{{ sitedomain }}{{  activation_key_url }}</a>
 </p>
 <p>
-Sincerely,<br/>
-{{ sitename }} Management
+此致,<br/>
+{{ sitename }} 管理组
 </p>
 </body>
 {% endblocktrans %}

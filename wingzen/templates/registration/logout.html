@@ -1,6 +1,9 @@
 {% extends "registration/registration_base.html" %}
 {% load i18n %}
-{% block title %}{% trans "Logged out" %}{% endblock %}
+{% block title %}{% trans "注销" %}{% endblock %}
 {% block wrap %}
-{% trans "Successfully logged out!" %}
+<div class="row">
+  <div class="col-md-4 col-md-offset-1">
+<h3>{% trans "成功注销" %}</h3>
+</div></div>
 {% endblock %}

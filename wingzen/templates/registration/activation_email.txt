@@ -1,15 +1,11 @@
 {% load i18n %}
 {% url 'registration_activate' activation_key as activation_key_url%}
 {% blocktrans with sitename=site.name siteurl=site.domain %}
-You (or someone pretending to be you) have asked to register an account at
-{{ sitename }}.  If this wasn't you, please ignore this email
-and your address will be removed from our records.
-
-To activate this account, please click the following link within the next 
-{{ expiration_days }} days:
-
+你曾经要求注册（或某人冒名）{{ sitename }}
+如果不是你本人的请求，请忽略这封邮件，你的信息我们会及时删除。
+想要激活你的账号, 请在{{ expiration_days }}天内点击以下链接进行激活
 http://{{ siteurl }}{{ activation_key_url }}
 
-Sincerely,
-{{ sitename }} Management
+此致,
+{{ sitename }} 管理组
 {% endblocktrans %}
