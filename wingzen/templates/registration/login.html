@@ -9,7 +9,7 @@
 
 
 <form method="post" action="{% url 'auth_login' %}">{% csrf_token %}
- <h2 class="margin-base-vertical">请登录</h1>
+ <h2 class="margin-base-vertical">请登录</h2>
 {% if form.errors %}
 <p>{% blocktrans %}你的用户名和密码不匹配。 请重新输入。{% endblocktrans %}</p>
 {% endif %}
