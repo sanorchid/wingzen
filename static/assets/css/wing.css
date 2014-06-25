@@ -245,8 +245,18 @@ a, a:hover {text-decoration: none;}
 }
 
 /* THE TABLE */
+table.left th,
+table.left td {
+  text-align: left;
+}
+
+table.center th,
+table.center td {
+  text-align: center;
+}
+
 .table-responsive table,
-table {
+.post table {
   width: 100%;
   font-size: 90%;
   border-collapse: collapse;
@@ -269,7 +279,6 @@ table th,
 table td {
   /*overflow: hidden;
   word-break:keep-all;*/
-  text-align: center;
   white-space: nowrap;
 }
 
@@ -287,8 +296,9 @@ table caption {
   /*overflow: hidden;
   word-break:keep-all;*/
   border: 1px solid #0099cc;
-  text-align: left;
+  padding: 6px;
 }
+
 /* Flatpages layout */
 #wrap .navi{
     float:left;
