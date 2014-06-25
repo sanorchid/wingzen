@@ -255,10 +255,16 @@ table.center td {
   text-align: center;
 }
 
+table.fullwidth {
+  width: 100%;
+}
+
+table.font-sm {
+  font-size: 90%;
+}
+
 .table-responsive table,
 .post table {
-  width: 100%;
-  font-size: 90%;
   border-collapse: collapse;
   border-spacing: 0;
 }
