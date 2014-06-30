@@ -25,7 +25,7 @@ class CourseAdmin(admin.ModelAdmin):
     	}),    )
     filter_horizontal = ('teachers',)
     #raw_id_fields = ('teachers',)
-
+    radio_fields = {'grade': admin.HORIZONTAL, 'klass': admin.HORIZONTAL, 'subject': admin.HORIZONTAL, 'inst': admin.HORIZONTAL, 'csort': admin.HORIZONTAL}
     list_display = ('name', 'teachers_list','inst', 'ctbgn_night', 'ctend_night', 'cd_night', 'ctbgn_day', 'ctend_day', 'cd_day', )
     # Define a custom method "teachers_list" to show the ManyToManyField "teachers" in the list_display.
     def teachers_list(self, obj):

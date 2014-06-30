@@ -94,12 +94,12 @@ class Teacher(models.Model):
 class Course(models.Model):
     name = models.CharField(max_length=50, verbose_name=u'课程名称')
     teachers = models.ManyToManyField(Teacher, verbose_name=u'授课教师')
-    pub_date = models.DateTimeField(default = datetime.now)
+    pub_date = models.DateTimeField(default = datetime.now, verbose_name=u'录入日期')
     grade = models.CharField(max_length=5, choices=GRADE_CHOICES, verbose_name=u'年级')
-    klass = models.ForeignKey(KlsWing)
+    klass = models.ForeignKey(KlsWing, verbose_name=u'班级')
     subject = models.CharField(max_length=12, choices=SUBJECT_CHOICES, verbose_name=u'科目')
     inst = models.ForeignKey(Inst, verbose_name=u'所在校区')
-    csort = models.ForeignKey(Csort)
+    csort = models.ForeignKey(Csort, verbose_name=u'课程类别')
     ctbgn_night = models.TimeField(blank=True, null=True, auto_now=False, auto_now_add=False, verbose_name=u'上课起始时间')
     ctend_night = models.TimeField(blank=True, null=True, auto_now=False, auto_now_add=False, verbose_name=u'上课结束时间')
     cd_night = models.CharField(blank=True, null=True, max_length=100, verbose_name=u'上课日期')
@@ -122,7 +122,7 @@ class Course(models.Model):
         return self.name
 
 class CourseTuition(models.Model):
-    course = models.ForeignKey(Course)
+    course = models.ForeignKey(Course, verbose_name=u'课程')
     tuition = models.CharField(max_length=100, verbose_name=u'授课费用')
     ctimes = models.CharField(max_length=20, verbose_name=u'授课次数')
 
