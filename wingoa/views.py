@@ -192,7 +192,7 @@ def aget_dbsc(request):
 	in_personnel_division = request.user.groups.filter(name='personnel_division')
 	in_student_division = request.user.groups.filter(name='student_division')
 	if sid == 'address-list':
-		teacher = Teacher.objects.filter(staff__is_quit=False)
+		teacher = Teacher.objects.filter(staff__is_quit=False).order_by('staff__wid')
 		for item in teacher:
 			field = {}
 			if in_personnel_division:
