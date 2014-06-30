@@ -29,8 +29,15 @@ POSITION_CHOICES = (
 	(u'director_recrt_division', u'招宣处处长'),
 	(u'director_finc_division', u'财务处处长'),
 	(u'director_supt_division', u'后勤处处长'),
-	(u'leader_team', u'教学组组长'),
-	(u'education_teacher', u'教学老师')
+	(u'leader_01-06', u'小学教学主管'),
+	(u'leader_07-09', u'初中教学主管'),
+	(u'leader_10-12', u'高中教学主管'),
+	(u'personnel_teacher', u'人事老师'),
+	(u'education_teacher', u'教学老师'),
+	(u'recruitment_teacher', u'招宣老师'),
+	(u'financial_teacher', u'财务老师'),
+	(u'information_teacher', u'信息老师'),
+	(u'administration_teacher', u'行政老师'),
 	)
 
 RANK_CHOICES = (
@@ -69,17 +76,27 @@ class Staff(models.Model):
 	birthday = models.DateField(editable=True, verbose_name=u'生日')
 	graduate = models.CharField(max_length=40, verbose_name=u'毕业学校')
 	major = models.CharField(max_length=20, verbose_name=u'所学专业')
-	wid = models.CharField(max_length=5, verbose_name=u'职员工号')
 	datentry = models.DateField(editable=True,verbose_name=u'入职日期')
+	wid = models.CharField(max_length=4, verbose_name=u'职员工号')
 	datexpire = models.DateField(editable=True,verbose_name=u'合同到期日')
 	inst = models.ForeignKey(Inst, verbose_name=u'所在校区')
 	department = models.CharField(max_length=15, choices=DEPT_CHOICES,verbose_name=u'所属部门')
-	position = models.CharField(max_length=30, choices=POSITION_CHOICES, verbose_name=u'所属职位')
+	position = models.CharField(default=u'education_teacher', max_length=30, choices=POSITION_CHOICES, verbose_name=u'所属职位')
 	rank = models.CharField(max_length=15, choices=RANK_CHOICES, verbose_name=u'所属级别')
 	telephone = models.CharField(max_length=20, verbose_name=u'联系电话')
 	is_quit = models.BooleanField(default=False, verbose_name=u'是否离职')
 
 	def save(self, force_insert=False, force_update = False):
+		if not self.wid:
+			stf_odb_wid = Staff.objects.order_by('-wid')
+			if not stf_odb_wid:
+				lgwid = 1
+			else:
+				lgwid = int(stf_odb_wid[0].wid) + 1
+			if lgwid < 10:
+				self.wid = "000%s" %lgwid
+			else:
+				self.wid = "00%s" %lgwid
 		super(Staff, self).save(force_insert=False, force_update=False)
 		self.user.first_name = self.name
 		self.user.save()
@@ -93,3 +110,5 @@ class Staff(models.Model):
 
 	def __unicode__(self):
 		return u'%s: %s, %s, %s' % (self.name, self.datentry, self.get_position_display(), self.get_rank_display())
+
+

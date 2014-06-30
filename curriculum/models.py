@@ -12,12 +12,15 @@ GRADE_CHOICES = (
     (u'grd04', u'四年'),
     (u'grd05', u'五年'),
     (u'grd06', u'六年'),
+    (u'grd01-06', u'小学'),
     (u'grd07', u'七年'),
     (u'grd08', u'八年'),
     (u'grd09', u'九年'),
+    (u'grd07-09', u'初中'),
     (u'grd10', u'高一'),
     (u'grd11', u'高二'),
     (u'grd12', u'高三'),
+    (u'grd10-12', u'高中'),
     )
 
 KLASS_CHOICES = (
@@ -79,7 +82,6 @@ class Teacher(models.Model):
     staff = models.OneToOneField(Staff, verbose_name=u'教师姓名')
     grade = models.CharField(max_length=5, blank=True, null=True, choices=GRADE_CHOICES, verbose_name=u'所教年级')
     subject = models.CharField(max_length=15, blank=True, null=True, choices=SUBJECT_CHOICES, verbose_name=u'所教科目')
-    is_teamleader = models.BooleanField(default=False, verbose_name=u'是否教学组长')
 
     class Meta:
         ordering = ['grade']

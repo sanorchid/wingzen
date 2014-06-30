@@ -24,7 +24,7 @@ admin.site.register(KlsWing, KlsWingAdmin)
 
 class StaffAdmin(admin.ModelAdmin):
 	list_display = ('name', 'sex', 'wid', 'sid', 'birthday', 'position', 'telephone')
-
+	radio_fields = {'sex': admin.HORIZONTAL, 'department': admin.HORIZONTAL, 'rank': admin.HORIZONTAL,}
 	search_fields = ['name', ]
 
 	#def staff_name(self, obj):
@@ -46,12 +46,17 @@ class StaffAdmin(admin.ModelAdmin):
 	#	if request.user.is_superuser:
 	#		return True
 	#	return False
+	def get_form(self, request, obj=None, **kwargs):
+		self.exclude = []
+		if not request.user.is_superuser:
+			self.exclude= ['wid', 'is_quit']
+		return super(StaffAdmin, self).get_form(request, obj, **kwargs)
 
 	def get_readonly_fields(self, request, obj=None):
 		if not request.user.is_superuser:
-			self.readonly_fields = ('is_quit',)
+			self.readonly_fields = ('position',)
 		else:
-			self.readonly_field = ()
+			self.readonly_fields = ()
 		return self.readonly_fields
 
 	def get_queryset(self, request):
@@ -67,7 +72,5 @@ class StaffAdmin(admin.ModelAdmin):
 		return super(StaffAdmin,self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 
-
 admin.site.register(Staff,StaffAdmin)
-
 
