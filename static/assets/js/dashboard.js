@@ -44,7 +44,6 @@ $(function() {
 								$thName = $("<th/>").text("姓名");
 								$thSex = $("<th/>").text("性别");
 								$thWid = $("<th/>").text("员工号");
-								$thIs_teamleader = $("<th/>").text("组长");
 								$thInst = $("<th/>").text("校区");
 								$thDepartment = $("<th/>").text("部门");
 								$thRank= $("<th/>").text("级别");
@@ -52,13 +51,12 @@ $(function() {
 								$thSubject = $("<th/>").text("科目");
 								$thBirthday = $("<th/>").text("生日");
 								$thTelephone = $("<th/>").text("电话");
-								$th = $("<tr/>").append($thName, $thSex, $thWid, $thIs_teamleader, $thInst, $thDepartment, $thRank, $thGrade, $thSubject, $thBirthday, $thTelephone);
+								$th = $("<tr/>").append($thName, $thSex, $thWid, $thInst, $thDepartment, $thRank, $thGrade, $thSubject, $thBirthday, $thTelephone);
 								thn = 1;
 							}
 							$tdName = $("<td/>").text(json.result[i].name);
 							$tdSex = $("<td/>").text(json.result[i].sex);
  							$tdWid = $("<td/>").text(json.result[i].wid);
-							$tdIs_teamleader = $("<td/>").text(json.result[i].is_teamleader);
 							$tdInst = $("<td/>").text(json.result[i].inst);
 							$tdDepartment = $("<td/>").text(json.result[i].department);
 							$tdRank = $("<td/>").text(json.result[i].rank);
@@ -66,7 +64,7 @@ $(function() {
 							$tdSubject = $("<td/>").text(json.result[i].subject);
 							$tdBirthday = $("<td/>").text(json.result[i].birthday);
 							$tdTelephone = $("<td/>").text(json.result[i].telephone);
-							$tr = $("<tr/>").append($tdName,$tdSex, $tdWid, $tdIs_teamleader, $tdInst, $tdDepartment, $tdRank, $tdGrade, $tdSubject, $tdBirthday, $tdTelephone);
+							$tr = $("<tr/>").append($tdName,$tdSex, $tdWid, $tdInst, $tdDepartment, $tdRank, $tdGrade, $tdSubject, $tdBirthday, $tdTelephone);
 
 							if (json.result[i].pd) {
 								if (!thm) {

@@ -213,7 +213,6 @@ def aget_dbsc(request):
 			field['telephone'] = item.staff.telephone
 			field['grade'] = item.get_grade_display()
 			field['subject'] = item.subject
-			field['is_teamleader'] = u'是' if item.is_teamleader else u'否'
 
 			objects_body.append(field)
 	elif sid == 'present-stulist' or sid == 'trial-stulist':
