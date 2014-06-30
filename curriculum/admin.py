@@ -23,8 +23,8 @@ class CourseAdmin(admin.ModelAdmin):
     	(None, {
     		'fields': ('details', 'is_recommended', )
     	}),    )
-    #filter_horizontal = ('teachers',)
-    raw_id_fields = ('teachers',)
+    filter_horizontal = ('teachers',)
+    #raw_id_fields = ('teachers',)
 
     list_display = ('name', 'teachers_list','inst', 'ctbgn_night', 'ctend_night', 'cd_night', 'ctbgn_day', 'ctend_day', 'cd_day', )
     # Define a custom method "teachers_list" to show the ManyToManyField "teachers" in the list_display.
