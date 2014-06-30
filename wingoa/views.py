@@ -212,7 +212,7 @@ def aget_dbsc(request):
 			field['rank'] = item.staff.get_rank_display()
 			field['telephone'] = item.staff.telephone
 			field['grade'] = item.get_grade_display()
-			field['subject'] = item.subject
+			field['subject'] = item.get_subject_display()
 
 			objects_body.append(field)
 	elif sid == 'present-stulist' or sid == 'trial-stulist':
@@ -233,7 +233,7 @@ def aget_dbsc(request):
 						'sex': item.get_sex_display(),
 						'school': item.school,
 						'grade': grd[1],
-						'klass': item.klass,
+						'klass': item.get_klass_display(),
 						'telephone': item.telephone,
 						'address': item.address,
 						'initchs': item.initchs,
