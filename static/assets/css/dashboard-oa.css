@@ -129,6 +129,11 @@ body {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+.table-responsive table thead {
+  cursor: pointer;
+}
+
 .table-responsive table th {
   background-color: #5CB85C;
   color: #fff;
@@ -152,6 +157,25 @@ body {
   font-family: Georgia, serif;
   color:#ff0000;
 }
+
+
+
+table.sortable tbody tr:nth-child(2n) td {
+  background: #eee;
+}
+
+.paging {
+  text-align: right;
+}
+
+.paging a, .paging a:visited {
+  color: #333;
+}
+
+.paging a:hover {
+  color: #ff0000;
+}
+
 #prompt-box {
   display: block;
   position: fixed;

@@ -33,9 +33,10 @@ $(function() {
 				},
 				success: function(json) {
 					$(".table-responsive").children().remove();
-					var thm = 0; thn = 0;
+					var thm = 0; thn = 0; tbd = 0
 					var $table = $("<table/>");
-					$table.addClass("table table-condensed");
+					$table.attr("id", "table-oa");
+					$table.addClass("table table-condensed sortable");
 					jlen = json.result.length;
 					$table.append($("<caption/>").text("共 "+jlen+" 条记录"));
 					if (sid == 'address-list') {
@@ -75,7 +76,8 @@ $(function() {
 									$thGraduate = $("<th/>").text("毕业学校");
 									$thMajor = $("<th/>").text("专业");
 									$th.append($thUser, $thSid, $thDatentry, $thDatexpire, $thGraduate, $thMajor);
-									$table.append($th);
+									$thead = $("<thead/>").append($th);
+									$table.append($thead);
 									thm = 1;
 								}
 								$tdUser = $("<td/>").text(json.result[i].user);
@@ -85,12 +87,20 @@ $(function() {
 								$tdGraduate = $("<td/>").text(json.result[i].graduate);
 								$tdMajor = $("<td/>").text(json.result[i].major);
 								$tr.append($tdUser, $tdSid, $tdDatentry, $tdDatexpire, $tdGraduate, $tdMajor);
-								$table.append($tr);
 							}
 							else {
-								$table.append($th);
-								$table.append($tr);
+								$thead = $("<thead/>").append($th);
+								$table.append($thead);
 							}
+
+							if (!tbd) {
+								$tbody = $("<tbody/>").append($tr);
+								tbd  = 1;
+							}
+							else {
+								$tbody.append($tr);
+							}
+							$table.append($tbody);
 						}
 						$table.appendTo(".table-responsive");
 
@@ -288,11 +298,11 @@ $(function() {
 					else {
 						$table.appendTo(".table-responsive");
 					}
-
+					sorttable.makeSortable($("#table-oa")[0]);
+					$("#table-oa").tablePaging({pageSize:10});
 				},
 			});
 		}
-
 	});
 
 	$("a.zen-red").on("click", function(){
