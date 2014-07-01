@@ -4,7 +4,7 @@
 {% block cssfiles %}
 <link href="{% static 'assets/css/dashboard-oa.css' %}" rel="stylesheet">
 <!-- DataTables CSS -->
-<link rel="stylesheet" type="text/css" href="{% static 'data-tables/css/jquery.dataTables.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'data-tables/css/dataTables.bootstrap.css' %}">
 
 {% bootstrap_calendar_css %}
 {% endblock %}
@@ -107,5 +107,5 @@
 <script src="{% static 'assets/js/dashboard.js' %}"></script>
 <!-- DataTables -->
 <script type="text/javascript" charset="utf8" src="{% static 'data-tables/js/jquery.dataTables.min.js' %}"></script>
-
+<script type="text/javascript" charset="utf8" src="{% static 'data-tables/js/dataTables.bootstrap.min.js' %}"></script>
 {% endblock %}
