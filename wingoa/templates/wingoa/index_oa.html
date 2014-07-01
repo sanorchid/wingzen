@@ -3,6 +3,9 @@
 {% load bootstrap_calendar %}
 {% block cssfiles %}
 <link href="{% static 'assets/css/dashboard-oa.css' %}" rel="stylesheet">
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'data-tables/css/jquery.dataTables.min.css' %}">
+
 {% bootstrap_calendar_css %}
 {% endblock %}
 {% block msg_nav %}<p class="navbar-text navbar-right">欢迎，{{user.staff.name}}。<a href="/admin/" class="navbar-link">数据录入</a> / <a href="/admin/password_change" class="navbar-link">修改密码</a> / <a href="{% url 'logout_oa' %}" class="navbar-link">注销</a></p>{% endblock %}
@@ -102,7 +105,7 @@
 {% bootstrap_calendar_js language="zh-CN" %}
 {% bootstrap_calendar_init language="zh-CN" %}
 <script src="{% static 'assets/js/dashboard.js' %}"></script>
-<script src="{% static 'assets/js/sorttable.js' %}"></script>
-<script src="{% static 'assets/js/table-paging.js' %}"></script>
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="{% static 'data-tables/js/jquery.dataTables.min.js' %}"></script>
 
 {% endblock %}

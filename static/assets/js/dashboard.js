@@ -36,9 +36,9 @@ $(function() {
 					var thm = 0; thn = 0; tbd = 0
 					var $table = $("<table/>");
 					$table.attr("id", "table-oa");
-					$table.addClass("table table-condensed sortable");
+					$table.addClass("table table-condensed sortable display");
 					jlen = json.result.length;
-					$table.append($("<caption/>").text("共 "+jlen+" 条记录"));
+					/*$table.append($("<caption/>").text("共 "+jlen+" 条记录"));*/
 					if (sid == 'address-list') {
 						for (var i=0; i<jlen; i++) {
 							if (!thn) {
@@ -298,8 +298,25 @@ $(function() {
 					else {
 						$table.appendTo(".table-responsive");
 					}
-					$("#table-oa").tablePaging({pageSize:10});
-					sorttable.makeSortable($("#table-oa")[0]);
+					$("#table-oa").DataTable( {
+						language: {
+							emptyTable: "没有可用数据",
+							info: "显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
+							infoEmpty: "显示 0 到 0 条，共0条记录",
+							lengthMenu: "显示 _MENU_ 条记录",
+							loadingRecords: "载入中……",
+							processing: "处理中……",
+							search: "搜索：",
+							zeroRecords: "没有找到数据",
+							paginate: {
+								first: "第一页",
+								last: "最后一页",
+								next: "下一页",
+								previous: "前一页",
+							},
+
+						}
+					});
 				},
 			});
 		}

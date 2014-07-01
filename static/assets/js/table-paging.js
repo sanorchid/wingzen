@@ -3,6 +3,7 @@ if (jQuery) (
 function (jQuery) {
     jQuery.extend(jQuery.fn, {
         tablePaging: function (options) {
+
             jQuery(this).each(function () {
                 settings = jQuery.extend({
                     id: jQuery(this).attr('id'), // The ID of the object being paging
@@ -17,7 +18,6 @@ function (jQuery) {
             $(this).each(function () {
                 if (settings.sorting) {
                     jQuery(this).tableSort(settings.sortSelector, settings.sortType, settings.sortDirection);
-
                 }
                 var pageSize = parseInt(settings.pageSize);
 
@@ -69,6 +69,7 @@ function (jQuery) {
                 if (jQuery.isFunction(settings.onPaged)) {
                     settings.onPaged();
                 }
+
             });
         },
     })

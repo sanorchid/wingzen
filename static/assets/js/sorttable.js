@@ -161,6 +161,8 @@ sorttable = {
 	      });
 	    }
     }
+
+
   },
 
   guessType: function(table, column) {
