@@ -303,7 +303,7 @@ $(function() {
 							emptyTable: "没有可用数据",
 							info: "显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
 							infoEmpty: "显示 0 到 0 条，共0条记录",
-							infoFiltered: "(过滤自 _MAX_ 条总记录)",
+							infoFiltered: "(从总共 _MAX_ 条记录中找到)",
 							lengthMenu: "显示 _MENU_ 条记录",
 							loadingRecords: "载入中……",
 							processing: "处理中……",
