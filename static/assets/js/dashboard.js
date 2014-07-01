@@ -312,8 +312,8 @@ $(function() {
 							paginate: {
 								first: "第一页",
 								last: "最后一页",
-								next: "下一页",
-								previous: "前一页",
+								next: "下一页 &#x25B7;",
+								previous: "&#x25C1; 上一页",
 							},
 
 						}
