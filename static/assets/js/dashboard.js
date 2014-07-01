@@ -298,8 +298,8 @@ $(function() {
 					else {
 						$table.appendTo(".table-responsive");
 					}
-					sorttable.makeSortable($("#table-oa")[0]);
 					$("#table-oa").tablePaging({pageSize:10});
+					sorttable.makeSortable($("#table-oa")[0]);
 				},
 			});
 		}
