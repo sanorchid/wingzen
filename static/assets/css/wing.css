@@ -180,11 +180,11 @@ a, a:hover {text-decoration: none;}
   margin-left:6px;
   border:1px solid #60B410;
 }
-.r-date {
+.r-date, .r-align {
   float: right;
-  color: #555;
 }
 
+.r-date { color: #555;}
 
 /* COURSE FORM (below the top-nav). */
 .cform {

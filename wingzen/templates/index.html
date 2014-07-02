@@ -5,36 +5,14 @@
 {% load staticfiles %}
 
 {% block cform %}
-<form  method=post action="">
+<form  method="post" action="{% url 'curriculum_search' %}" >{% csrf_token %}
   <span class="fa fa-calendar"></span>
-  <label>校区:</label>
-  {% get_all_tuples wingoa.inst as inst %}
-  <select name="inst">
-    {% for item in inst %}
-    <option value="{{item.id}}" selected="selected">{{item.name}}</option>
-    {% endfor %}
-  </select>
-  <label>课程类型:</label>
-  {% get_all_tuples curriculum.csort as csort %}
-  <select name="csort">
-    {% for item in csort %}
-    <option value="{{item.id}}" selected="selected">{{item.name}}</option>
-    {% endfor %}
-  </select>
-  <label>年级:</label>
-  <select name="grade">
-    {% for grd_eng, grd_chs in grade %}
-    <option value="{{grd_eng}}">{{grd_chs}}</option>
-    {% endfor %}
-  </select>
-  <label>科目:</label>
-  <select name="subject">
-    {% for sub_eng, sub_chs in subject %}
-    <option value="{{sub_eng}}">{{sub_chs}}</option>
-    {% endfor %}
-  </select>
-  <input type="text" name="keywords" />
-  <input type="button" value="搜索课程" />
+  <label for="id_inst">校区: </label> {{form.inst}}
+  <label for="id_csort">课程类型: </label> {{form.csort}}
+  <label for="id_grade">年级: </label> {{form.grade}}
+  <label for="id_subject">科目: </label> {{form.subject}}
+  <label for="id_keywords">关键词: </label> {{form.keywords}}
+  <input type="submit" value="搜索课程" />
 </form>
 {% endblock %}
 

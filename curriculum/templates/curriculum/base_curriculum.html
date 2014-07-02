@@ -1,15 +1,25 @@
 {% extends "base.html" %}
 
 {% block main %}
+{% if s %}
+<h3 class="r-align"><a href="{% url 'curriculum_list' %}">课程列表</a></h3>
+{% endif %}
 <div class="clist">
+{% if object_list %}
 {% for item in object_list %}
 <h2 class="title">{{ item.name }}</h2>
+{% if item.cd_night %}
 <div class="cd_night"><span>晚辅上课时间：{{item.cd_night}}{{ item.ctbgn_night }}~{{ item.ctend_night }}</span></div>
-<div class="cd_day"><span>周末上课时间：{{item.cd_day}}{{ item.ctbgn_day }}~{{ item.ctend_day }}</span></div>
-<div class=" "><span class="align_l">机构：{{ item.cinst}}</span></div>
+{% endif %}
+{% if item.cd_day %}
+<div class="cd_day"><span>白天上课时间：{{item.cd_day}}{{ item.ctbgn_day }}~{{ item.ctend_day }}</span></div>
+{% endif %}
+<div class=" "><span class="r-align">机构：{{ item.inst}}</span></div>
 <div class="details"><p>{{ item.details }}</p></div>
-
 {% endfor %}
+{% else %}
+<h3>课程搜索结果为空，或者搜索提交方式不正确。</h3>
+{% endif %}
 </div>
 {% endblock %}
 
