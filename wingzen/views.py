@@ -36,8 +36,8 @@ def validate(request):
         client_signature = hashlib.sha1(''.join(sort_params)).hexdigest()
 
         if client_signature == signature:
-            return echostr
-    return False
+            return HttpResponse(echostr)
+    return HttpResponse("Invalid request.")
 
 
 
