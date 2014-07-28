@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 
 from django import forms
@@ -35,4 +38,11 @@ class OaAuthenticationForm(AuthenticationForm):
 #class LoginForm(forms.Form):
 #	username = forms.CharField(max_length=30)
 #	password = forms.CharField(widget=forms.PasswordInput)
-	
+
+
+
+
+class MsgSendForm(forms.Form):
+    receivers = forms.CharField()
+    sender = forms.CharField()
+    message = forms.CharField(widget=forms.Textarea)

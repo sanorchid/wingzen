@@ -107,6 +107,13 @@ TEMPLATE_LOADERS = (
 #   'django.template.loaders.eggs.Loader',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.request',
+)
 
 
 MIDDLEWARE_CLASSES = (
@@ -117,10 +124,12 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'pagination.middleware.PaginationMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     #'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
+
 
 ROOT_URLCONF = 'wingzen.urls'
 
@@ -161,6 +170,13 @@ INSTALLED_APPS = (
     'django_bootstrap_calendar',
     #'debug_toolbar',
     #'guardian',
+    'djangohelper',
+    'BeautifulSoup',
+    'attachments',
+    'onlineuser',
+    'simpleavatar',
+    'pagination',
+    'lbforum',
     'south',
 )
 
@@ -234,3 +250,5 @@ EMAIL_USE_TLS = True
 #    'guardian.backends.ObjectPermissionBackend',
 #)
 #ANONYMOUS_USER_ID = False
+
+

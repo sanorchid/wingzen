@@ -21,6 +21,24 @@ def index(request):
                             {'navitem': navitem, 'focpic': focpic,'recrs': recrs, 'prs_month': prs_month, 'grade': GRADE_CHOICES, 'subject': SUBJECT_CHOICES, 'form': form}
     )
 
+import json, hashlib, time
+
+def validate(request):
+    TOKEN = 'wzwx'
+    signature = request.get['signature']
+    timestamp = request.get['timestamp']
+    nonce = request.get['nonce']
+    params = {'token':TOKEN, 'timestamp': timestamp, 'nonce':nonce}
+    echostr = request.get['echostr']
+
+    if params:
+        sort_params = sorted([v for k,v in params.items()])
+        client_signature = hashlib.sha1(''.join(sort_params)).hexdigest()
+
+        if client_signature = signature:
+            return echostr
+    return False
+
 
 
 

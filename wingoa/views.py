@@ -11,6 +11,7 @@ from django.contrib.auth.models import User, Group, Permission
 from django.contrib.auth.decorators import login_required
 
 from wingoa.models import Staff, Inst, KlsWing
+from wingoa.forms import MsgSendForm
 from curriculum.models import Csort, Teacher, Course, CourseTuition, Student, StuTuition, Score, StuRecord,GRADE_CHOICES
 from django_bootstrap_calendar.models import CalendarEvent
 #from wingoa.forms import OaAuthenticationForm
@@ -161,6 +162,7 @@ def index_oa(request):
 	#csort = Csort.objects.all()
 	#inst = Inst.objects.all()
 	#staff = Staff.objects.all()
+	form = MsgSendForm()
 
 	return render_to_response('wingoa/index_oa.html', {
 		"user": request.user,
@@ -178,6 +180,7 @@ def index_oa(request):
 		#"csort": csort,
 		#"inst": inst,
 		#"staff": staff,
+		'form': form,
 		},
 	)
 

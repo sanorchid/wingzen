@@ -8,14 +8,13 @@
 
 {% bootstrap_calendar_css %}
 {% endblock %}
-{% block msg_nav %}<p class="navbar-text navbar-right">欢迎，{{user.staff.name}}。<a href="/admin/" class="navbar-link">数据录入</a> / <a href="/admin/password_change" class="navbar-link">修改密码</a> / <a href="{% url 'logout_oa' %}" class="navbar-link">注销</a></p>{% endblock %}
+{% block msg_nav %}<p class="navbar-text navbar-right">欢迎，{{user.staff.name}}。<a href="#" class="navbar-link" id="btn-msgsend"> 短信发送 </a> | <a href="/admin/" class="navbar-link"> 数据录入</a> | <a href="/admin/password_change" class="navbar-link"> 修改密码 </a> | <a href="{% url 'logout_oa' %}" class="navbar-link"> 注销 </a></p>{% endblock %}
 
 {% block wrap %}
 <div class="container">
-
-<div class="row">
-<div class="col-md-2 sidebar">
-<ul class="nav nav-sidebar">
+ <div class="row">
+  <div class="col-md-2 sidebar">
+   <ul class="nav nav-sidebar">
   <li id="address-list"><a href="#"><span class="glyphicon glyphicon-book"></span> 教师通讯 </a></li>
   <li id="student-list">
   <a href="#"><span class="glyphicon glyphicon-user"></span> 学生名单 
@@ -24,7 +23,7 @@
     <li id="trial-stulist"><a href="#">试读学生名单</a></li>
     <li id="present-stulist"><a href="#">当前学生名单</a></li>
   </ul>
-</li>
+  </li>
   <li id="score-stat"><a href="#"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span> 成绩统计</a></li>
   <li id="learn-record"><a href="#"><span class="glyphicon glyphicon-record"></span> 学习记录</a></li>
   <li id="zen-kls"><a href="#"><span class="glyphicon glyphicon-map-marker"></span> 文臻班级</a></li>
@@ -34,20 +33,20 @@
   {% if stutuition %}
   <li id="stu-tuition"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> 学生费用</a></li>
   {% endif %}
-</ul>
-</div>
-<div class="main col-md-10 col-md-offset-2">
-<div class="row">
-<div class="col-md-12 reminder-today">
-<h3>
-{% if num_reminder %}
-<a href="#" class="zen-red" title="点击显示或隐藏">今日提醒</a> <span class="badge">{{num_reminder}}</span>
-{% else %}
-今日无提醒
-{% endif %}
-</h3>
-</div>
-</div>
+   </ul>
+  </div>
+ <div class="main col-md-10 col-md-offset-2">
+  <div class="row">
+   <div class="col-md-12 reminder-today">
+    <h3>
+    {% if num_reminder %}
+    <a href="#" class="zen-red" title="点击显示或隐藏">今日提醒</a> <span class="badge">{{num_reminder}}</span>
+    {% else %}
+    今日无提醒
+    {% endif %}
+    </h3>
+   </div>
+  </div>
 <div class="row">
 <div class="col-md-12 reminder-content">
 {% if reminder_bday_countdown %}
@@ -87,18 +86,42 @@
 </div>
 </div>
 
-<div class="row">
-<div class="col-md-12">
-<div class="table-responsive">
+<div class="row"><div class="col-md-12"><div class="table-responsive"></div></div></div>
+
+</div>
+<div id="popup-msgbox">
+  <div class="msg-head">
+  <div class="row">
+    <div class="col-md-6"><h4 class="l-align">发送短信</h4></div>
+    <div class="col-md-6"><h4 id="close-msgbox" class="r-align"><a><icon class="fa fa-times-circle"></icon></a></h4></div>
+  </div>
+  </div>
+  <div class="msg-content">
+    <form  method="post" action="" >{% csrf_token %}
+    <p class="input-group">
+    <span class="input-group-addon"><i class="fa fa-users"></i> 接收人</span>
+    <span>{{form.receivers}}</span>
+    </p>
+    <p class="input-group">
+    <span class="input-group-addon"><i class="fa fa-send"></i> 发送人</span>
+    {{form.sender}}
+    </p>
+    <span class="input-group-addon"><i class="fa fa-file-text"></i> 短信内容</span>
+    <p>{{form.message}}</p>
+    <p class="text-center">
+    <input class="btn btn-lg btn-success btn-block" type="submit" value="发送" />
+    </p>
+    <input type="hidden" name="next" value="{{ next }}" />    </form>
+  </div>
 </div>
 </div>
-</div>
-</div>
+
 </div>
 
 {% endblock %}
 
 {% block footer %}
+
 {% endblock %}
 
 {% block jsfiles %}
