@@ -5,6 +5,8 @@ from zenews.models import Category, News
 from curriculum.models import Course, GRADE_CHOICES, SUBJECT_CHOICES
 from curriculum.forms import CurriSearchForm
 
+from django.views.decorators.csrf import csrf_exempt
+
 def topnav():
     navitem = Category.objects.filter(isnav=True).order_by('title')
     return navitem
@@ -23,6 +25,7 @@ def index(request):
 
 import json, hashlib, time
 
+@csrf_exempt
 def validate(request):
     if request.method == 'GET':
         TOKEN = 'wzwx'
@@ -36,7 +39,7 @@ def validate(request):
         arglist.sort()
         client_signature = hashlib.sha1(''.join(arglist)).hexdigest()
         if client_signature == signature:
-            return echostr
+            return HttpResponse(echostr)
         else:
             return HttpResponse("Invalid request.")
     else:
