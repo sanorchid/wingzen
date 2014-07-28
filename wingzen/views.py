@@ -28,16 +28,14 @@ def validate(request):
     signature = request.GET['signature']
     timestamp = request.GET['timestamp']
     nonce = request.GET['nonce']
-    params = {'token':TOKEN, 'timestamp': timestamp, 'nonce':nonce}
+    args = {TOKEN, timestamp, nonce}
     echostr = request.GET['echostr']
-
-    if params:
-        sort_params = sorted([v for k,v in params.items()])
-        client_signature = hashlib.sha1(''.join(sort_params)).hexdigest()
-
-        if client_signature == signature:
-            return HttpResponse(echostr)
-    return HttpResponse("Invalid request.")
+    sort_args = args.sort()
+    client_signature = hashlib.sha1(''.join(sort_args)).hexdigest()
+    if client_signature == signature:
+        return HttpResponse(echostr)
+    else:
+        return HttpResponse("Invalid request.")
 
 
 
