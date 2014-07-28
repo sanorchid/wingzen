@@ -24,18 +24,23 @@ def index(request):
 import json, hashlib, time
 
 def validate(request):
-    TOKEN = 'wzwx'
-    signature = request.GET['signature']
-    timestamp = request.GET['timestamp']
-    nonce = request.GET['nonce']
-    args = {TOKEN, timestamp, nonce}
-    echostr = request.GET['echostr']
-    sort_args = args.sort()
-    client_signature = hashlib.sha1(''.join(sort_args)).hexdigest()
-    if client_signature == signature:
-        return HttpResponse(echostr)
+    if request.method == 'GET':
+        TOKEN = 'wzwx'
+
+        signature = request.GET.get('signature', None)
+        timestamp = request.GET.get('timestamp', None)
+        nonce = request.GET.get('nonce', None)
+        echostr = request.GET.get('echostr', None)
+
+        arglist = [TOKEN, timestamp, nonce]
+        arglist.sort()
+        client_signature = hashlib.sha1(''.join(arglist)).hexdigest()
+        if client_signature == signature:
+            return HttpResponse(echostr)
+        else:
+            return HttpResponse("Invalid request.")
     else:
-        return HttpResponse("Invalid request.")
+        return HttpResponse("hello world.")
 
 
 
