@@ -35,7 +35,7 @@ def validate(request):
         sort_params = sorted([v for k,v in params.items()])
         client_signature = hashlib.sha1(''.join(sort_params)).hexdigest()
 
-        if client_signature = signature:
+        if client_signature == signature:
             return echostr
     return False
 
