@@ -36,7 +36,7 @@ def validate(request):
         arglist.sort()
         client_signature = hashlib.sha1(''.join(arglist)).hexdigest()
         if client_signature == signature:
-            return HttpResponse(echostr)
+            return echostr
         else:
             return HttpResponse("Invalid request.")
     else:
