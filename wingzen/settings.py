@@ -177,6 +177,7 @@ INSTALLED_APPS = (
     #'simpleavatar',
     #'pagination',
     #'lbforum',
+    'microwingzen',
     'south',
 )
 
