@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.views.generic import View
+from django.views.generic.base import View
 from django.views.decorators.csrf import csrf_exempt
 
 import xml.etree.ElementTree as ET
@@ -33,9 +33,14 @@ class WeixinView(View):
 		f1 = open('/home/newdust/f1.txt', 'w')
 		f1.write("helloworld")
 		f1.close()
-		response = self.replyTextMsg(self, from_User, msgType, content)
+		xml = '<xml><ToUserName><![CDATA[%s]]></ToUserName>' % from_User
+		xml = '%s<FromUserName><![CDATA[%s]]></FromUserName>' % (xml, self.username)
+		xml = '%s<CreateTime><![CDATA[%s]]></CreateTime>' % (xml, time.time())
+		xml = '%s<MsgType><![CDATA[%s]]></MsgType>' % (xml, msgType)
+		xml = '%s<Content><![CDATA[%s]]></Content>' % (xml, content)
+		xml = '%s</xml>' % xml
 
-		return response
+		return HttpResponse(xml, content_type="application/xml")
 
 	def __validate_wx(self, signature, timestamp, nonce, echostr):
 		args = [self.token, timestamp, nonce]
@@ -47,11 +52,11 @@ class WeixinView(View):
 			return False
 
 	def replyTextMsg(self, from_User, msgType, content):
-		xml = '<xml><ToUserName>%s</ToUserName>' % from_User
-		xml = '%s<FromUserName>%s</FromUserName>' % (xml, self.username)
-		xml = '%s<CreateTime>%s</CreateTime>' % (xml, time.time())
-		xml = '%s<MsgType>%s</MsgType>' % (xml, msgType)
-		xml = '%s<Content>%s</Content>' % (xml, content)
+		xml = '<xml><ToUserName><![CDATA[%s]]></ToUserName>' % from_User
+		xml = '%s<FromUserName><![CDATA[%s]]></FromUserName>' % (xml, self.username)
+		xml = '%s<CreateTime><![CDATA[%s]]></CreateTime>' % (xml, time.time())
+		xml = '%s<MsgType><![CDATA[%s]]></MsgType>' % (xml, msgType)
+		xml = '%s<Content><![CDATA[%s]]></Content>' % (xml, content)
 		xml = '%s</xml>' % xml
 
 		return HttpResponse(xml, content_type="application/xml")
