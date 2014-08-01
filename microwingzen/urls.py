@@ -5,7 +5,7 @@ from django.conf.urls import patterns, url
 from microwingzen.views import WeixinView
 
 urlpatterns = patterns('',
-	#url(r'^$', WeixinView.as_view(), ),
-	url(r'^$', 'microwingzen.views.recdata',),
+	url(r'^$', WeixinView.as_view(), ),
+	#url(r'^$', 'microwingzen.views.recdata',),
 )
 
