@@ -30,9 +30,8 @@ class WeixinView(View):
 		msgType = xml.find("msgType").text
 		fromUser = xml.find("FromUserName").text
 		toUser = xml.find("ToUserName").text
-		ft=[content,msgType,fromUser,toUser]
-		f1 = open('f1.txt', 'w')
-		f1.write(ft)
+		f1 = open('/home/newdust/f1.txt', 'w')
+		f1.write("helloworld")
 		f1.close()
 		response = self.replyTextMsg(self, from_User, msgType, content)
 
