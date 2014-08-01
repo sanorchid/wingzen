@@ -5,6 +5,27 @@ from django.views.decorators.csrf import csrf_exempt
 import xml.etree.ElementTree as ET
 import json, hashlib, time
 
+@csrf_exempt
+def recdata(request):
+	str_xml = request.body
+	xml = ET.fromstring(str_xml)
+	msgId = xml.find("MsgId").text
+	content = xml.find("Content").text
+	msgType = xml.find("msgType").text
+	fromUser = xml.find("FromUserName").text
+	toUser = xml.find("ToUserName").text
+	f1 = open('/home/newdust/f1.txt', 'w')
+	f1.write("helloworld")
+	f1.close()
+	xml = '<xml><ToUserName><![CDATA[%s]]></ToUserName>' % from_User
+	xml = '%s<FromUserName><![CDATA[%s]]></FromUserName>' % (xml, self.username)
+	xml = '%s<CreateTime><![CDATA[%s]]></CreateTime>' % (xml, time.time())
+	xml = '%s<MsgType><![CDATA[%s]]></MsgType>' % (xml, msgType)
+	xml = '%s<Content><![CDATA[%s]]></Content>' % (xml, content)
+	xml = '%s</xml>' % xml
+
+	return HttpResponse(xml, content_type="application/xml")
+
 class WeixinView(View):
 	def __init__(self):
 		self.token = 'wzwx'
@@ -24,8 +45,10 @@ class WeixinView(View):
 		return HttpResponse(ret)
 
 	def post(self, request):
+
 		str_xml = request.body
 		xml = ET.fromstring(str_xml)
+		msgId = xml.find("MsgId").text
 		content = xml.find("Content").text
 		msgType = xml.find("msgType").text
 		fromUser = xml.find("FromUserName").text
