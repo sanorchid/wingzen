@@ -51,7 +51,7 @@ class WeixinView(View):
 		xml = ET.fromstring(str_xml)
 		msgId = xml.find("MsgId").text
 		content = xml.find("Content").text
-		msgType = xml.find("msgType").text
+		msgType = xml.find("MsgType").text
 		fromUser = xml.find("FromUserName").text
 		toUser = xml.find("ToUserName").text
 		f1 = open('/home/newdust/f1.txt', 'w')
