@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.views.generic import View
 from django.views.decorators.csrf import csrf_exempt
 
-from lxml import etree
+import xml.etree.ElementTree as ET
 import json, hashlib, time
 
 class WeixinView(View):
@@ -25,7 +25,7 @@ class WeixinView(View):
 
 	def post(self, request):
 		str_xml = request.body
-		xml = etree.fromstring(str_xml)
+		xml = ET.fromstring(str_xml)
 		content = xml.find("Content").text
 		msgType = xml.find("msgType").text
 		fromUser = xml.find("FromUserName").text
