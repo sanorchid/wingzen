@@ -15,7 +15,7 @@ def recdata(request):
 		msgType = xml.find("msgType").text
 		fromUser = xml.find("FromUserName").text
 		toUser = xml.find("ToUserName").text
-		f1 = open('/home/newdust/f1.txt', 'w')
+		f1 = open('f1.txt', 'w')
 		f1.write("helloworld")
 		f1.close()
 		xml = '<xml><ToUserName><![CDATA[%s]]></ToUserName>' % from_User
