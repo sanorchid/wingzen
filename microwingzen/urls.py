@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import patterns, url
+from microwingzen.views import WeixinView
 
 urlpatterns = patterns('',
-	url(r'^$', 'microwingzen.views.validate', name='mwzv'),
+	url(r'^$', WeixinView.as_view(), name='mwzv'),
 )
 
