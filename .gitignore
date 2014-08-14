@@ -218,8 +218,7 @@ pip-log.txt
 #############
 ## Django project's static files
 #############
-wingzen/static
-*/static
+static/
 wingzen/media
 
 ############

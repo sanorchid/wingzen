@@ -1,0 +1,54 @@
+/* Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+a {
+  background: transparent; }
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+a:active,
+a:hover {
+  outline: 0;
+  text-decoration: none;}
+
+.inline-list li,
+.tabs li,
+.admin-tabs li,
+.header-tabs li,
+.nav li,
+.comment-date li,
+.comment-actions li,
+.paginator li,
+.reply-markdown li,
+.share-actions li,
+.profile-track li, .row-info div {
+  display: inline-block;
+  *display: inline;
+  zoom: 1; }
+
+
+.header-tab-link.is-selected {
+  color: #1c1c1c; }
+.header-tab-link.is-highlighted {
+  color: #c65555; }
+@media screen and (min-width: 768px) {
+  .menu,
+  .participants-menu {
+    display: inline-block; } }
+.menu li,
+.participants-menu li {
+  background-color: #f6f6f6;
+  margin-bottom: 6px; }
+  .menu li:last-child,
+  .participants-menu li:last-child {
+    margin-bottom: 0; }
+.header-tabs-content {
+  clear: both; }
+
+.header-tab-content {
+  display: none;
+  padding-bottom: 24px;
+  border-bottom: #cecece 1px solid; }

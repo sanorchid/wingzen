@@ -1,0 +1,18 @@
+{% load spirit_tags i18n %}
+
+{% yt_paginator_autopaginate users as page %}
+
+{% include "spirit/admin/user/_tabs.html" with active_tab=active_tab %}
+
+<div class="user-list">
+
+    {% for u in page %}
+        <div class="row user-row">
+          <div class="col-md-9"><a href="{{ u.get_absolute_url }}">{{ u.username }}</a></div>
+          <div class="col-md-3 align-r"><a class="row-edit" href="{% url "spirit:admin-user-edit" user_id=u.pk %}"><i class="fa fa-cog"></i> {% trans "edit" %}</a></div>
+        </div>
+    {% endfor %}
+
+</div>
+
+{% render_yt_paginator page %}

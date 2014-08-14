@@ -24,7 +24,7 @@ urlpatterns = patterns('',
     url(r'^redactor/', include('redactor.urls')),
     url(r'^oa/', include('wingoa.urls')),
     url(r'^calendar/', include('django_bootstrap_calendar.urls')),
-    #url(r'^forum/', include('lbforum.urls')),
+    url(r'^bbs/', include('spirit.urls', namespace="spirit", app_name="spirit")),
     url(r'^weixin/', include('microwingzen.urls')),
 ) + static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

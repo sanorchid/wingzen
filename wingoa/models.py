@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
-
+from wingzen.settings import AUTH_USER_MODEL
 GENDER_CHOICES = (
     (u'M', u'男'),
     (u'F', u'女'),
@@ -69,7 +69,7 @@ class KlsWing(models.Model):
         return self.name
 
 class Staff(models.Model):
-	user = models.OneToOneField(User, verbose_name=u'用户名')
+	user = models.OneToOneField(AUTH_USER_MODEL, verbose_name=u'用户名')
 	name = models.CharField(max_length=10, verbose_name=u'职员姓名')
 	sex = models.CharField(max_length=2, choices=GENDER_CHOICES, default='F', verbose_name=u'性别')
 	sid = models.CharField(max_length=20, verbose_name=u'身份证号')

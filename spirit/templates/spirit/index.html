@@ -1,0 +1,61 @@
+{% extends "spirit/_base.html" %}
+{% load i18n %}
+{% load spirit_tags i18n %}
+{% load zenews_filters %}
+{% block title %}{% trans "讨论区首页" %}{% endblock %}
+
+{% block content %}
+    <div class="row">
+      <div class="col-md-8">
+         {% for c in categories %}
+           <div class="panel panel-green">
+           <div class="panel-heading"><a href="{{ c.get_absolute_url }}" >{{ c.title }}</a></div>
+           <div class="panel-body">
+           {% for t in topics %}
+             {% if t.category_id == c.id %}
+               <div class="row panel-topic-row">
+                 <div class="col-md-8">
+                   <a class=" panel-topic-title" href="{{ t.get_absolute_url }}" >{{t.title}}</a>
+                   <span class="row-info"><i class="fa fa-comments"></i> {{ t.comment_count }}</span>
+                 </div>
+                 <div class="col-md-4 panel-topic-info">
+                   <div class="author"><i class="fa fa-user"></i> {{t.user}}</div>
+                   <div title="{{ t.last_active|date:"Y-m-d" }}"><i class="fa fa-clock-o"></i> {{ t.last_active|shortnaturaltime }}</div>
+                 </div>
+               </div>
+             {% endif %}
+           {% endfor %}
+           </div>
+           </div>
+        {% endfor %}
+      </div>
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-12 new-topic align-r">
+            {% if category %}
+                <a class="btn btn-primary" href="{% url "spirit:topic-publish" category.pk %}">{% trans "Create Topic" %}</a>
+            {% else %}
+                <a class="btn btn-primary" href="{% url "spirit:topic-publish" %}">{% trans "Create Topic" %}</a>
+            {% endif %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="latest-reply-title">{% trans '最近回复' %}</h3>
+            {% for c in comments %}
+              <div class="latest-reply-row">
+                <div class="row">
+                  <div class="col-md-7"><i class="fa fa-comment-o"></i> <a href="{{ c.get_absolute_url }}">{{c.comment|truncatehanzi:11}}</a></div>
+                  <div class="col-md-5 align-r"><span class="author">{{c.user}}</span> | <span class="date">{{c.date|date:"Y-m-d"}}</span></div>
+                </div>
+                <div class="indent"><i class="fa fa-file-text-o"></i> {{ c.topic.title|truncatehanzi:20}}</div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
+      </div>
+    </div>
+
+{% endblock %}

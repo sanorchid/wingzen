@@ -54,9 +54,7 @@ class WeixinView(View):
 		msgType = xml.find("MsgType").text
 		fromUser = xml.find("FromUserName").text
 		toUser = xml.find("ToUserName").text
-		f1 = open('f1.txt', 'w')
-		f1.write("helloworld")
-		f1.close()
+
 		xml = '<xml><ToUserName><![CDATA[%s]]></ToUserName>' % fromUser
 		xml = '%s<FromUserName><![CDATA[%s]]></FromUserName>' % (xml, self.username)
 		xml = '%s<CreateTime><![CDATA[%s]]></CreateTime>' % (xml, time.time())
@@ -76,7 +74,7 @@ class WeixinView(View):
 			return False
 
 	def replyTextMsg(self, from_User, msgType, content):
-		xml = '<xml><ToUserName><![CDATA[%s]]></ToUserName>' % from_User
+		xml = '<xml><ToUserName><![CDATA[%s]]></ToUserName>' % fromUser
 		xml = '%s<FromUserName><![CDATA[%s]]></FromUserName>' % (xml, self.username)
 		xml = '%s<CreateTime><![CDATA[%s]]></CreateTime>' % (xml, time.time())
 		xml = '%s<MsgType><![CDATA[%s]]></MsgType>' % (xml, msgType)

@@ -1,0 +1,18 @@
+{% load spirit_tags i18n %}
+
+{% yt_paginator_autopaginate flags as page %}
+
+{% include "spirit/admin/comment_flag/_tabs.html" with active_tab=active_tab %}
+
+<div class="flag-list">
+
+    {% for f in page %}
+        <div class="row flag-row">
+          <div class="col-md-9"><a href="{{ f.comment.get_absolute_url }}">{{ f.comment.topic.title }}</a></div>
+          <div class="col-md-3 align-r"><a class="row-edit" href="{% url "spirit:admin-flag-detail" pk=f.pk %}"><i class="fa fa-cog"></i> {% trans "moderate" %}</a></div>
+        </div>
+    {% endfor %}
+
+</div>
+
+{% render_yt_paginator page %}

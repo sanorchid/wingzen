@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+from spirit.settings import *
 import os.path
 
 DEBUG = True
@@ -52,7 +53,7 @@ USE_I18N = True
 USE_L10N = True
 
 # If you set this to False, Django will not use timezone-aware datetimes.
-USE_TZ = False
+USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
@@ -101,7 +102,7 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 SECRET_KEY = '118h35r92xad==%1s^w#4r4*@thfe6jh_(vb4*v81-h&amp;kfbq4v'
 
 # List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
+TEMPLATE_LOADERS += (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 #   'django.template.loaders.eggs.Loader',
@@ -116,7 +117,7 @@ TEMPLATE_LOADERS = (
 #)
 
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE_CLASSES += (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -140,7 +141,7 @@ TEMPLATE_DIRS = (
     os.path.join(HERE, 'templates').replace('\\', '/')
 )
 
-INSTALLED_APPS = (
+INSTALLED_APPS += (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -177,8 +178,10 @@ INSTALLED_APPS = (
     #'simpleavatar',
     #'pagination',
     #'lbforum',
+    #'haystack',
     'microwingzen',
-    'south',
+    #'djangobb_forum',
+    #'south',
 )
 
 # A sample logging configuration. The only tangible logging

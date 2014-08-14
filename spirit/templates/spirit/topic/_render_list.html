@@ -1,0 +1,58 @@
+{% load spirit_tags i18n %}
+
+{% if user.is_authenticated %}
+    {% populate_bookmarks topics=page user=user  %}
+{% endif %}
+
+{# topic list #}
+      <div class="topic-list">
+        {% for t in page %}
+			<div class="row topic-row">
+              <div class="col-md-9">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row-title">
+                    {% if t.is_pinned %}
+                        <i class="fa fa-thumb-tack"></i>
+                    {% endif %}
+                    {% if t.is_closed %}
+                        <i class="fa fa-lock"></i>
+                    {% endif %}
+
+                    {% if t.bookmark %}
+                       <a class="row-link" href="{{ t.bookmark.get_absolute_url }}">{{ t.title }}</a>
+                    {% else %}
+                        <a class="row-link" href="{{ t.get_absolute_url }}">{{ t.title }}</a>
+                    {% endif %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <span class="row-info">
+                    {% if show_subcategory %}
+                        <a href="{{ t.category.get_absolute_url }}">{{ t.category.title }}</a>
+                        {% else %}
+                        {% if t.category.parent %}
+                            <a href="{{ t.category.parent.get_absolute_url }}">{{ t.category.parent.title }}</a>
+                            {% else %}
+                            <a href="{{ t.category.get_absolute_url }}">{{ t.category.title }}</a>
+                        {% endif %}
+                    {% endif %}
+                    </span>
+                    <span class="row-info"><i class="fa fa-comment"></i> {{ t.comment_count }}</span>
+                  </div>
+                </div>
+              </div>
+            <div class="col-md-3">
+              <div class="row-info align-r">
+                  <div class="author"><i class="fa fa-user"></i> {{t.user}}</div>
+                  <div title="{{ t.last_active }}"><i class="fa fa-clock-o"></i> {{ t.last_active|shortnaturaltime }}</div>
+                </div>
+            </div>
+
+            </div>
+        {% empty %}
+          <p>{% trans "There are no topics here, yet" %}</p>
+        {% endfor %}
+      </div>
