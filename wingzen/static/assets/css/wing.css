@@ -1,0 +1,474 @@
+
+/* THE GENERAL SETTINGS */
+body {
+	background: #fff;
+	/*background: #fff url('/static/assets/img/bg555.jpg') no-repeat center center fixed;
+	background-size: 100% 100%;*/
+}
+
+.left {text-align: left;}
+
+.right {text-align: right;}
+
+ul {list-style-type: none;}
+
+a:link, a:visited {color: #2b2b2b;}
+
+a:hover, a:active {color: #cc0000;}
+
+a, a:hover {text-decoration: none;}
+
+/* Change the default bootstrap rounded corner to square corner. */
+.panel,
+.panel-heading {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+
+.panel-default .panel-heading {
+  border-top: 1px solid #60B410;
+  color: #000;
+}
+.panel-body {
+  padding:6px;
+  margin:0;
+}
+/* THE TOP NAVBAR */
+.navbar {
+  padding-top: 2.5em;
+  background: rgba(255,255,255, .8) url('/static/assets/img/logo11.png') no-repeat 10% top;
+}
+
+.navbar ul.nav {
+  margin-left: 6.5em;
+  border-top: 2px solid #ff6600;
+}
+
+.navbar ul.nav li a {color: #000;}
+
+.navbar ul.nav li.active a,
+.navbar ul.nav li a:hover,
+.navbar ul.nav li.active a:hover {
+  border-bottom: 2px solid #0099cc;
+  color: #ff6600;
+  font-weight: bold;
+  background: rgba(255,255,255, 0);
+}
+
+/* THE WRAP */
+#wrap {
+  background: rgba(255,255,255, .6);
+  padding-top: 6.45em;
+  padding-bottom: 3em;
+}
+
+/* Make the margin between col-infos more narrow than the bootstrap's default. */
+.col-info {
+  padding-right:0;
+  margin-top: 8px;
+}
+
+/* Because of the modification of the col-info's right padding, the right column needs a right padding to right-align top-nav and footer. */
+.col-r {padding-right: 15px;}
+
+/* THE PLAYBOX */
+.playbox {padding-right: 0;}
+
+#play {
+  margin: 0;
+  border: 1px solid #fff;
+}
+
+#play * {
+  font-size: 100%;
+  font-family: Verdana;margin:0;padding:0;
+}
+
+#play img {border: 0;}
+
+#play {
+  width: 100%;
+  height: 15em;
+  overflow: hidden;
+}
+
+#play_info {
+  position: absolute;
+  margin-top: 12em;
+  height: 3em;
+  padding: .7em 0 0 1em;
+  width: 96%;
+  color: #fff;
+  z-index: 1001;
+  cursor: pointer;
+}
+
+#play_info b {
+  font-size: 110%;
+  display: block
+}
+
+#play_bg {
+  position: absolute;
+  background-color: #000;
+  margin-top: 11.85em;
+  height: 3em;
+  width: 96%;
+  filter: Alpha(Opacity=30);
+  opacity: .3;
+  z-index: 1000;
+}
+
+#play_text {
+  position: absolute;
+  margin: 12.1em 0 0 25em;
+  width: 4em;
+  height: 3em;
+  z-index: 1002;
+}
+
+#play_text ul {
+  width: 4em;
+  height: 4em;
+  display: block;
+  padding-top: 1px;
+  _padding-top: 0px;
+  filter: Alpha(Opacity=80);
+  opacity: .8;
+}
+
+#play_text ul li {
+  width: 1em;
+  height: 1em;
+  float: left;
+  background-color: #000;
+  display: block;
+  color: #fff;
+  text-align: center;
+  margin: 2px;
+  cursor: pointer;
+  font-family: "Courier New";
+}
+
+#play_list a {
+  display: block;
+  width: 96%;
+  height: 15em;
+  position: absolute;
+  overflow: hidden;
+}
+
+/* THE BANNER */
+.banner {padding-right: 8px;}
+.banner ul {
+  background: rgba(255,255,255, .0);
+  margin: 0;
+  padding: 0;
+}
+
+.banner ul li {
+  color:#ff6600;
+  background: rgba(121,227,20, .4);
+  border-bottom:1px dashed #60B410;
+  padding:6px;
+  margin: 8px;
+}
+
+.banner .ad {
+  width:594px;
+  margin-left:6px;
+  border:1px solid #60B410;
+}
+.r-date, .r-align {
+  float: right;
+}
+
+.r-date { color: #555;}
+
+/* COURSE FORM (below the top-nav). */
+.cform {
+  background: rgba(255,255,255, .8);
+  padding: 8px;
+}
+
+.cform form select, .cform form input {border: 1px solid #0099cc;}
+
+/* THE NAV-TABS and PANELS */
+.nav-tabs, .tab-content {
+  background: rgba(255,255,255, 1);
+}
+
+.nav-tabs {
+  border-top: 1px solid #60B410;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.nav-tabs li a {
+  color: #333;
+}
+.nav-tabs li.active a {
+  color: #000;
+}
+.nav-tabs li a:hover {
+  color:#2b2b2b;
+}
+
+.panel ul,
+.tab-content > .active .row ul {
+  margin: 0;
+  padding:0;
+}
+
+.tab-content > .active {
+  border: 1px solid #ddd;
+  border-top: 0;
+  padding: 6px;
+}
+
+.panel ul li,
+.tab-content > .active li {color: #60B410;}
+
+.panel ul li a,
+.panel ul li span.r-date,
+.tab-content > .active li a,
+.tab-content > .active li span.r-date {font-size:90%;}
+
+.panel ul li,
+.panel ul li a,
+.tab-content > .active li,
+.tab-content > .active li a {
+	padding:6px;
+	margin:0;
+	border:0;
+}
+
+/* THE TABLE */
+table.left th,
+table.left td {
+  text-align: left;
+}
+
+table.center th,
+table.center td {
+  text-align: center;
+}
+
+table.fullwidth {
+  width: 100%;
+}
+
+table.font-sm {
+  font-size: 90%;
+}
+
+.table-responsive table,
+.post table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.table-responsive table th,
+table th {
+  background-color: #0099cc;
+  color: #fff;
+  border: 1px solid #fff;
+}
+.table-responsive table td,
+table td {
+  border-bottom: 1px solid #0099cc;
+  table-layout: fixed;
+}
+.table-responsive table th,
+.table-responsive table td
+table th,
+table td {
+  /*overflow: hidden;
+  word-break:keep-all;*/
+  white-space: nowrap;
+}
+
+.table-responsive table caption,
+table caption {
+  caption-side: top;
+  text-align: right;
+  font-size: 120%;
+  font-family: Georgia, serif;
+  color: #ff0000;
+}
+
+.post table th,
+.post table td {
+  /*overflow: hidden;
+  word-break:keep-all;*/
+  border: 1px solid #0099cc;
+  padding: 6px;
+}
+
+/* Flatpages layout */
+#wrap .navi{
+    float:left;
+    width:100px;
+    margin-top:10px;
+}
+#wrap .navi ul{
+    margin:26px 8px;
+    padding:0;
+    }
+#wrap .navi ul li{
+    padding:6px;
+    }
+#wrap .navi ul li a{
+    display:block;
+    line-height:1.6em;
+    }
+#wrap .content{
+    margin-top:10px;
+    float:right;
+    width:850px;
+}
+#wrap .content .title{
+    color:#D40300;
+  line-height:2em;
+    background: url(/static/assets/img/bg_ttl_post.gif) repeat-x bottom left;
+    margin-bottom:8px;
+    }
+
+/* Post */
+.post, .clist{
+    clear:both;
+    margin-bottom:2em;
+}
+.post p, .clist p{
+    margin: 0 0 1em 0;
+    text-align: justify;
+    text-indent:2em;
+    line-height: 2em;
+}
+.post .post-tags{text-indent:0;}
+.post .title, .clist .title{
+    color:#D40300;
+	text-transform:none;
+	line-height:1.6em;
+	background: url(/static/assets/img/postbg.gif) repeat-x left bottom;
+}
+.post .title a:link, .post .title a:active, .post .title a:visited {
+	border:none;
+    color:#C42B5B;
+}
+.post .title a:hover{
+	border-bottom:1px solid;
+}
+.post .title span{
+    font-size:60%;
+}
+
+.main .post .headetail .title{
+    color:#D40300;
+    text-align:center;
+	background:#fff;
+    font-size:150%;
+	line-height:2em;
+}
+.post .info{
+    padding:6px;margin-bottom:12px;
+    line-height:18px;
+    color:#004C7D;
+    font-size:80%;
+    background:#EAF0F4;
+    border-bottom:1px solid #d9d9d9;border-top:1px solid #d9d9d9;
+}
+.post .meta{
+	font-size:0.9em;
+	padding: 5px 0;
+	background: url(/static/assets/img/dotborder.gif) repeat-x;
+}
+.post .meta p {
+	margin: 0;
+	line-height: normal;
+	color: #999;
+}
+.post .meta .categories {
+	padding: 0 20px 0 12px;
+	background: url(/static/assets/img/category.gif) no-repeat left center;
+}
+.post .meta .comments {
+	float:right;
+	padding-left: 16px;
+	background: url(/static/assets/img/comments.gif) no-repeat left center;
+}
+.post .meta .user {
+	padding:0 14px;
+	background: url(/static/img/user.png) no-repeat left center;
+}
+
+/* Comments */
+#comments,.comment-form{
+    margin-top:20px;
+}
+
+#comments h2{
+	padding-left: 30px;
+	background: url(/static/assets/img/comments_list.gif) no-repeat left center;
+}
+#main .comment-form h2{
+	padding-left: 30px;
+	background: url(/static/assets/img/respond.gif) no-repeat left center;
+}
+.commentlist{
+	margin:0;
+	padding:0;
+	border-top:#93045E 1px dashed;
+}
+.commentlist li{
+	padding: 0.5em;
+	border-bottom:#75C22A 1px dotted;
+}
+.commentlist li.odd{
+    background:#F4F4F4;
+}
+
+.commentlist li img{
+    border: 1px solid #D7D7D7;
+    padding:2px;
+    margin:0;
+    margin-right:6px;
+    vertical-align:top;
+}
+.nocomments{
+	color:#999;
+	text-align:center;
+}
+
+/* The FOOTER */
+#footer {
+  background: rgba(255,255,255, .8);
+  border-top: 1px dashed #0099cc;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  padding: 8px 0;
+  font-size: 90%;
+}
+
+#footer p {
+  color: #666;
+  line-height: 1.5em;
+  padding-top: 6px;
+}
+
+#footer p a {padding: 6px;}
+
+#footer p a:hover {text-decoration: underline;}
+
+
+
+
+
+
+
+
+
+
+
