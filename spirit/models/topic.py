@@ -13,6 +13,10 @@ from spirit.signals.topic import topic_viewed
 from spirit.managers.topic import TopicManager
 from spirit.utils.models import AutoSlugField
 
+from wingzen.settings import UEDITOR_SETTINGS_TOPIC, UPLOAD_SETTINGS_TOPIC
+
+from DjangoUeditor.models import UEditorField
+
 CONTENT_MAX_LEN = 3000
 
 class Topic(models.Model):
@@ -21,7 +25,7 @@ class Topic(models.Model):
     category = models.ForeignKey('spirit.Category', verbose_name=_("category"))
 
     title = models.CharField(_("title"), max_length=75)
-    content = models.TextField(_("content"), max_length=CONTENT_MAX_LEN)
+    content = UEditorField(_("content"), max_length=CONTENT_MAX_LEN, imagePath="ueditor/topic/images/", settings=UEDITOR_SETTINGS_TOPIC, upload_settings=UPLOAD_SETTINGS_TOPIC, blank=True)
     slug = AutoSlugField(populate_from="title", db_index=False, blank=True)
     date = models.DateTimeField(_("date"), auto_now_add=True)
     last_active = models.DateTimeField(_("last active"), auto_now_add=True)

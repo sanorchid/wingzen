@@ -180,7 +180,7 @@ INSTALLED_APPS += (
     #'lbforum',
     #'haystack',
     'microwingzen',
-    #'djangobb_forum',
+    'DjangoUeditor',
     #'south',
 )
 
@@ -255,4 +255,40 @@ EMAIL_USE_TLS = True
 #)
 #ANONYMOUS_USER_ID = False
 
+# For DjangoUeditor settings
+UEDITOR_TOOLBARS = {
+    "wiztopic": [
+            ['source','|','cleardoc','undo', 'redo', 'drafts', '|', 'link', 'unlink','|','map', 'music', 'insertvideo','|', 'insertable', 'insertrow', 'insertcol', 'mergeright', 'mergedown', 'deleterow', 'deletecol', 'splittorows', 'splittocols', 'mergecells'],
+            [ 'pasteplain','|', 'bold', 'italic', 'underline', 'removeformat', 'formatmatch', 'autotypeset','|', 'forecolor', 'backcolor','|', 'simpleupload', 'insertimage', 'attachment', 'emotion', '|', 'print', 'preview', ]
+        ],
+    "wizcomment": [
+            ['source','|','cleardoc','undo', 'redo', 'drafts', '|', 'link', 'unlink','|','map', '|', 'insertable', 'insertrow', 'insertcol', 'deleterow', 'deletecol', 'splittorows', 'splittocols', ],
+            [ 'pasteplain','|', 'bold', 'italic', 'underline', 'removeformat', 'formatmatch', 'autotypeset','|', 'forecolor', 'backcolor','|', 'simpleupload', 'insertimage', 'attachment', 'emotion', ]
+        ],
+}
+
+UEDITOR_SETTINGS_TOPIC = {
+    "toolbars": UEDITOR_TOOLBARS["wiztopic"],
+    "initialFrameWidth": 1130,
+}
+
+UEDITOR_SETTINGS_COMMENT = {
+    "toolbars": UEDITOR_TOOLBARS["wizcomment"],
+    "initialFrameWidth": 900,
+    "initialFrameHeight": 200,
+}
+
+UPLOAD_SETTINGS_TOPIC = {
+    "videoMaxSize": 10240000,
+    "fileMaxSize": 5120000,
+    "imagePathFormat": "ueditor/topic/images/",
+    "filePathFormat": "ueditor/topic/files/",
+}
+
+UPLOAD_SETTINGS_COMMENT = {
+    "videoMaxSize": 5120000,
+    "fileMaxSize": 2560000,
+    "imagePathFormat": "ueditor/comment/images/",
+    "filePathFormat": "ueditor/comment/files/",
+}
 

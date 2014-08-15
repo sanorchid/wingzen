@@ -26,6 +26,7 @@ urlpatterns = patterns('',
     url(r'^calendar/', include('django_bootstrap_calendar.urls')),
     url(r'^bbs/', include('spirit.urls', namespace="spirit", app_name="spirit")),
     url(r'^weixin/', include('microwingzen.urls')),
+    url(r'^ueditor/', include('DjangoUeditor.urls')),
 ) + static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()

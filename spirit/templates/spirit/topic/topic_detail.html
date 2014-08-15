@@ -46,9 +46,13 @@
           </div>
         </div>
       </div>
-          <div class="topic-content">{{ topic.content }}</div>
+          <div class="topic-content">
+            {% autoescape off %}
+              {{ topic.content|removetags:"script" }}
+            {% endautoescape %}
+          </div>
           {% if user.is_moderator %}
-            <div class="topic-moderation js-tabs-container">
+          <div class="topic-moderation js-tabs-container">
                 <a class="dropdown-button js-tab" href="#" data-related=".js-mod-content"><i class="fa fa-cogs"></i></a>
 
                 <div class="tab-content js-tab-content js-mod-content">
@@ -74,7 +78,7 @@
                         {% endif %}
                     </ul>
                 </div>
-            </div>
+          </div>
 
 
             <div class="move-comments" style="display:none;">

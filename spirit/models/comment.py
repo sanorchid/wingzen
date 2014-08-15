@@ -12,6 +12,10 @@ from ..signals.topic import topic_post_moderate
 from spirit.managers.comment import CommentManager
 from ..signals.comment import comment_post_update
 
+from wingzen.settings import UEDITOR_SETTINGS_COMMENT, UPLOAD_SETTINGS_COMMENT
+
+from DjangoUeditor.models import UEditorField
+
 
 COMMENT_MAX_LEN = 3000  # changing this needs migration
 
@@ -32,7 +36,8 @@ class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_("user"))
     topic = models.ForeignKey('spirit.Topic')
 
-    comment = models.TextField(_("comment"), max_length=COMMENT_MAX_LEN)
+    comment = UEditorField(_("content"), max_length=COMMENT_MAX_LEN, imagePath="ueditor/comment/images/", upload_settings=UPLOAD_SETTINGS_COMMENT, settings=UEDITOR_SETTINGS_COMMENT, command=None, blank=True)
+    #comment = models.TextField(_("comment"), max_length=COMMENT_MAX_LEN)
     comment_html = models.TextField(_("comment html"))
     action = models.IntegerField(_("action"), choices=ACTION, default=COMMENT)
     date = models.DateTimeField(auto_now_add=True)

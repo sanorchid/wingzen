@@ -36,7 +36,9 @@
 
                         <div class="comment-text">
                             {% if not c.action %}
-                                {{ c.comment_html|safe }}
+                              {% autoescape off %}
+                                {{ c.comment|removetags:"script" }}
+                              {% endautoescape %}
                             {% else %}
                                 <p>{% get_comment_action_text c.action %}.</p>
                             {% endif %}

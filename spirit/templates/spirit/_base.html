@@ -9,6 +9,7 @@
     <meta name="description" content="{{ config.site_description }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css">
 
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" >
@@ -24,14 +25,15 @@
     <script src="{{ STATIC_URL }}spirit/scripts/social_share.js"></script>
 
     {% if user.is_authenticated %}
+        <script type="text/javascript" src="{{ STATIC_URL }}ueditor/ueditor.config.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}ueditor/ueditor.all.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}ueditor/lang/zh-cn/zh-cn.js"></script>
+
         <script src="{{ STATIC_URL }}spirit/scripts/vendors/atwho/jquery.caret.min.js"></script>
         <script src="{{ STATIC_URL }}spirit/scripts/vendors/atwho/jquery.atwho.min.js"></script>
         <script src="{{ STATIC_URL }}spirit/scripts/vendors/marked/marked.min.js"></script>
         <script src="{{ STATIC_URL }}spirit/scripts/vendors/waypoints/waypoints.min.js"></script>
-        <script src="{{ STATIC_URL }}spirit/scripts/store.js"></script>
-        <script src="{{ STATIC_URL }}spirit/scripts/editor_image_upload.js"></script>
-	    <script src="{{ STATIC_URL }}spirit/scripts/editor.js"></script>
-        <script src="{{ STATIC_URL }}spirit/scripts/emoji_list.js"></script>
+
         <script src="{{ STATIC_URL }}spirit/scripts/like.js"></script>
         <script src="{{ STATIC_URL }}spirit/scripts/bookmark.js"></script>
         <script src="{{ STATIC_URL }}spirit/scripts/notification.js"></script>

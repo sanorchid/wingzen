@@ -12,9 +12,7 @@
         {% csrf_token %}
         {% include "spirit/_form.html" %}
 
-        <div class="container">
-            {% include "spirit/comment/_editor.html" %}
-
+        <div class="wiz-container">
             <input class="button reply-button" type="submit" value="{% trans "Publish" %}" />
         </div>
     </form>
