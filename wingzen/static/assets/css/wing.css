@@ -37,7 +37,7 @@ a, a:hover {text-decoration: none;}
 /* THE TOP NAVBAR */
 .navbar {
   padding-top: 2.5em;
-  background: rgba(255,255,255, .8) url('/static/assets/img/logo11.png') no-repeat 10% top;
+  background: rgba(255,255,255, .8) url('/static/assets/img/logoand.jpg') no-repeat 3% top;
 }
 
 .navbar ul.nav {
