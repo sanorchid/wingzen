@@ -47,9 +47,30 @@
     <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-thumbs-o-up "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:32 }}</a></li>
     {% endfor %}
 </ul>
-<div class="ad"><a href="news/2014/06/18/2014sjbrzz/"><img src="{% static 'assets/img/ads11.gif' %}"></a></div>
 {% endblock %}
 
+{% block ad1 %}
+<div class="row">
+<div class="col-md-5 col-md-offset-1 ad">
+<a href="news/2014/08/23/2014czqjbxzms/"><img src="{% static 'assets/img/qjbczzs.jpg' %}"></a></div>
+<div class="col-md-5 align-r ad"><a href="news/2014/08/23/2014xxqjbzs/"><img src="{% static 'assets/img/qjbxxzs.jpg' %}"></a></div>
+</div>
+
+<div class="row">
+<div class="col-md-5 col-md-offset-1 ad">
+<a href="news/2014/08/23/2015gzgkdkdz/"><img src="{% static 'assets/img/qjbdkdzzs.jpg' %}"></a></div>
+<div class="col-md-5 align-r ad"><a href="news/2014/08/23/2014gzqjb12/"><img src="{% static 'assets/img/qjgzxzs.jpg' %}"></a></div>
+</div>
+{% endblock %}
+{% block ad2 %}
+
+{% endblock %}
+{% block ad3 %}
+
+{% endblock %}
+{% block ad4 %}
+
+{% endblock %}
 {% block lst_wzdt %}
 <ul>
     {% get_category_content zenews.news 'wzdt' 5 as latest_wzdt %}

@@ -161,9 +161,10 @@ ul.msg li p.rpl_btn{color:#0A60D6;}
     padding:6px;margin:0;
     text-align:left;
 }
+.ad { margin-top: 10px;}
 .ad img{
     width:100%;
-    border:0;
+    border:1px solid #5CB85C ;
 }
 
 /* Flatpages layout */
