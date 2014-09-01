@@ -184,7 +184,7 @@ INSTALLED_APPS += (
     #'haystack',
     'microwingzen',
     'DjangoUeditor',
-    #'adzone',
+    'adzone',
     #'south',
 )
 
