@@ -150,3 +150,9 @@ HAYSTACK_CONNECTIONS = {
         'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
     },
 }
+
+# django-upload-avatar
+
+#INSTALLED_APPS += (
+    #'upload_avatar',
+#)

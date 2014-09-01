@@ -1,5 +1,8 @@
+#*-* coding: utf-8 *-*
 from django.contrib import admin
 from zenews.models import Category, News
+
+from uuslug import slugify
 
 #from django.contrib.flatpages.models import FlatPage
 #from django.contrib.flatpages.admin import FlatPageAdmin as FlatPageAdminOld
@@ -20,12 +23,12 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 
 class NewsAdmin(admin.ModelAdmin):
-    exclude = ('author',)
+    exclude = ('author', 'slug',)
     list_select_related = True
     list_filter =("categories__title", 'pub_date', 'tags__name')
     list_display = ('title', 'the_tags', 'pub_date', 'source', 'author')
     date_hierarchy = 'pub_date'
-    prepopulated_fields = {'slug': ['title']}
+    #prepopulated_fields = {'slug': ['title']}
 
     def has_change_permission(self, request, obj=None):
         has_class_permission = super(NewsAdmin, self).has_change_permission(request, obj)
@@ -43,6 +46,7 @@ class NewsAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         if not change:
             obj.author = request.user
+        obj.slug = slugify(obj.title, max_length=23, word_boundary=True)
         obj.save()
     #def formfield_for_foreignkey(self, db_field, request, **kwargs):
         #if db_field.name == 'author':

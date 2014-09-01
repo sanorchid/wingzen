@@ -1,3 +1,5 @@
+#*-* coding: utf-8 *-*
+
 from django.conf.urls import patterns, include, url
 from zenews.models import News
 from zenews.views import  NewsIndexView, NewsDetailView, CategoryListView, NewsListView, TagListView, TagView

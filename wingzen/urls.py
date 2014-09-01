@@ -27,6 +27,9 @@ urlpatterns = patterns('',
     url(r'^bbs/', include('spirit.urls', namespace="spirit", app_name="spirit")),
     url(r'^weixin/', include('microwingzen.urls')),
     url(r'^ueditor/', include('DjangoUeditor.urls')),
+    #url(r'^avatar/', include('upload_avatar.urls')),
+    #url(r'^upload/', 'spirit.views.user.upload'),
+    url(r'adzone/', include('adzone.urls')),
 ) + static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()

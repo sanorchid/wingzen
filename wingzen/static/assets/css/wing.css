@@ -176,7 +176,7 @@ a, a:hover {text-decoration: none;}
 }
 
 .banner .ad {
-  width:594px;
+  width:100%;
   margin-left:6px;
   border:1px solid #60B410;
 }

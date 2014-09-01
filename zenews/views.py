@@ -1,3 +1,5 @@
+#*-* coding: utf-8 *-*
+
 from django.shortcuts import get_object_or_404, render_to_response
 from django.views.generic import ArchiveIndexView, TemplateView, RedirectView, DateDetailView, ListView
 from zenews.models import Category,News

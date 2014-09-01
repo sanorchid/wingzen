@@ -1,12 +1,13 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
-from spirit.settings import *
 import os.path
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 HERE = os.path.dirname(os.path.abspath(__file__))
 PARENT = os.path.split(HERE)[0]
+
+from spirit.settings import *
+
 ADMINS = (
     ('jason', 'admin@wingzen.com'),
 )
@@ -108,13 +109,14 @@ TEMPLATE_LOADERS += (
 #   'django.template.loaders.eggs.Loader',
 )
 
-#TEMPLATE_CONTEXT_PROCESSORS = (
-#    'django.contrib.auth.context_processors.auth',
-#    'django.core.context_processors.debug',
-#    'django.core.context_processors.i18n',
-#    'django.core.context_processors.media',
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
 #    'django.core.context_processors.request',
-#)
+    'adzone.context_processors.get_source_ip',
+)
 
 
 MIDDLEWARE_CLASSES += (
@@ -161,6 +163,7 @@ INSTALLED_APPS += (
     'akismet',
     #'mailer',
     #'markdown',
+    #'pytz',
     'registration',
     'taggit',
     #'testbank',
@@ -181,6 +184,7 @@ INSTALLED_APPS += (
     #'haystack',
     'microwingzen',
     'DjangoUeditor',
+    'adzone',
     #'south',
 )
 
@@ -243,7 +247,7 @@ EMAIL_HOST_PASSWORD = 'iyuelcaynbzfmrwd'
 EMAIL_USE_TLS = True
 
 # For custom user model.
-#AUTH_USER_MODEL = 'wingoa.staff'
+AUTH_USER_MODEL = 'spirit.User'
 
 # For debug_toobal settings
 #INTERNAL_IPS = ('127.0.0.1',)
@@ -292,3 +296,9 @@ UPLOAD_SETTINGS_COMMENT = {
     "filePathFormat": "ueditor/comment/files/",
 }
 
+
+
+#UPLOAD_AVATAR_UPLOAD_ROOT = os.path.join(MEDIA_ROOT, 'upload').replace('\\', '/')
+#UPLOAD_AVATAR_AVATAR_ROOT = os.path.join(MEDIA_ROOT, 'avatar').replace('\\', '/')
+#UPLOAD_AVATAR_URL_PREFIX_ORIGINAL = '/media/uploadedimage/'
+#UPLOAD_AVATAR_URL_PREFIX_CROPPED = '/media/avatar/'

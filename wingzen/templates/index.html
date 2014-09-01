@@ -50,18 +50,16 @@
 {% endblock %}
 
 {% block ad1 %}
+{% load adzone_tags %}
+<div class="row"><div class="col-md-12 col-md-offset-1 ad"></div></div>
 <div class="row">
-<div class="col-md-5 col-md-offset-1 ad">
-<a href="news/2014/08/23/2014czqjbxzms/"><img src="{% static 'assets/img/qjbczzs.jpg' %}"></a></div>
-<div class="col-md-5 align-r ad"><a href="news/2014/08/23/2014xxqjbzs/"><img src="{% static 'assets/img/qjbxxzs.jpg' %}"></a></div>
+<div class="col-md-3 col-md-offset-1 ad">{% ad_by_title 'ppp' 'msg' %}</div>
+<div class="col-md-2 align-r ad">{% random_zone_ad 'msg' %}</div>
 </div>
 
-<div class="row">
-<div class="col-md-5 col-md-offset-1 ad">
-<a href="news/2014/08/23/2015gzgkdkdz/"><img src="{% static 'assets/img/qjbdkdzzs.jpg' %}"></a></div>
-<div class="col-md-5 align-r ad"><a href="news/2014/08/23/2014gzqjb12/"><img src="{% static 'assets/img/qjgzxzs.jpg' %}"></a></div>
-</div>
+
 {% endblock %}
+
 {% block ad2 %}
 
 {% endblock %}

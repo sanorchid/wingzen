@@ -20,6 +20,7 @@ from ..models.comment import Comment
 
 from ..forms.user import UserProfileForm, RegistrationForm, LoginForm, EmailChangeForm, ResendActivationForm
 
+#from upload_avatar import get_uploadavatar_context
 
 User = get_user_model()
 
@@ -77,7 +78,9 @@ def register(request):
     else:
         form = RegistrationForm()
 
-    return render(request, 'spirit/user/register.html', {'form': form, })
+    #get_uploadavatar_context().update( {'form': form, })
+
+    return render(request, 'spirit/user/register.html',  {'form': form, }, )
 
 
 def registration_activation(request, pk, token):
@@ -112,6 +115,12 @@ def resend_activation_email(request):
 
     return render(request, 'spirit/user/activation_resend.html', {'form': form, })
 
+#@login_required
+#def upload(request):
+ #   return render(request,
+ #       'spirit/upload.html',
+  #      get_uploadavatar_context(),
+  #      )
 
 @login_required
 def profile_update(request):
@@ -125,7 +134,10 @@ def profile_update(request):
     else:
         form = UserProfileForm(instance=request.user)
 
-    return render(request, 'spirit/user/profile_update.html', {'form': form, })
+    #user_context=get_uploadavatar_context()
+    #user_context.update( {'form': form, })
+
+    return render(request, 'spirit/user/profile_update.html', {'form': form, },)
 
 
 @login_required

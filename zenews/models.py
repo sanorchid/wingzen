@@ -1,18 +1,23 @@
-#coding=utf-8
+# *-* coding: utf-8 *-*
 from datetime import datetime
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 
 from markdown import markdown
 from taggit.managers import TaggableManager
 
 from django.conf import settings
 
-from redactor.fields import RedactorField
+#from redactor.fields import RedactorField
+from DjangoUeditor.models import UEditorField
+from wingzen.settings import UEDITOR_SETTINGS_TOPIC, UPLOAD_SETTINGS_TOPIC
 
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
+
+CONTENT_MAX_LEN = 50000
 
 class LiveNewsManager(models.Manager):
     def get_query_set(self):
@@ -48,7 +53,7 @@ class News(models.Model):
     # Core fields.
     title = models.CharField(max_length = 250,  verbose_name='标题')
     excerpt = models.TextField(blank = True,  verbose_name='摘要')
-    body = RedactorField(verbose_name='内容')
+    body = UEditorField(verbose_name='内容', max_length=CONTENT_MAX_LEN, imagePath="ueditor/news/images/", settings=UEDITOR_SETTINGS_TOPIC, upload_settings=UPLOAD_SETTINGS_TOPIC)
     cover = models.ImageField(upload_to='newscover/%Y/%m/%d', blank=True, verbose_name='焦点图片')
     cover_thumbnail = ImageSpecField(source='cover',
                                      processors=[ResizeToFill(406,208)],
