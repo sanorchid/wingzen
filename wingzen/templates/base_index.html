@@ -4,20 +4,20 @@
 {% load staticfiles %}
 {% load chunks %}
 {% block wrap %}
-<div class="container-fluid">
+<div class="container">
 <div class="row">
-<div class="col-md-10 col-md-offset-1">
+<div class="col-md-12">
 <div class="cform">{% block cform %}{% endblock %}</div>
 </div>
 </div>
 <div class="row">
-<div class="col-md-4 col-md-offset-1 playbox">{% block focpic %}{% endblock %}</div>
-<div class="col-md-6 banner">{% block banner %}{% endblock %}</div>
+<div class="col-md-4 playbox">{% block focpic %}{% endblock %}</div>
+<div class="col-md-8 banner">{% block banner %}{% endblock %}</div>
 </div>
 {% block ad1 %}{% endblock %}
 
 <div class="row">
-<div class="col-md-4 col-md-offset-1 col-info">
+<div class="col-md-4 col-info">
   <div class="panel panel-default">
       <div class="panel-heading">
           <h3 class="panel-title">{% chunk "href-wzdt" %}</h3>
@@ -31,7 +31,7 @@
       <div class="panel-body">{% block lst_zfb %}{% endblock %}</div>
   </div>
 </div>
-<div class="col-md-3 col-info">
+<div class="col-md-4 col-info">
   <div class="panel panel-default">
       <div class="panel-heading">
           <h3 class="panel-title">{% chunk "href-jzkt" %}</h3>
@@ -39,7 +39,7 @@
       <div class="panel-body">{% block lst_jzkt %}{% endblock %}</div>
   </div>
 </div>
-<div class="col-md-3 col-info col-r">
+<div class="col-md-4 col-info col-r">
   <div class="panel panel-default">
       <div class="panel-heading">
           <h3 class="panel-title">{% chunk "href-jyzx" %}</h3>
@@ -54,7 +54,7 @@
   </div>
 </div>
 <div class="row">
-<div class="col-md-4 col-md-offset-1 col-info">
+<div class="col-md-4 col-info">
   <div class="panel panel-default">
       <div class="panel-heading">
           <h3 class="panel-title">{% chunk "href-xsfm" %}</h3>
@@ -62,7 +62,7 @@
       <div class="panel-body">{% block lst_xsfm %}{% endblock %}</div>
   </div>
 </div>
-<div class="col-md-3 col-info">
+<div class="col-md-4 col-info">
   <div class="panel panel-default">
       <div class="panel-heading">
           <h3 class="panel-title">{% chunk "href-jyzc" %}</h3>
@@ -70,7 +70,7 @@
       <div class="panel-body">{% block lst_jyzc %}{% endblock %}</div>
   </div>
 </div>
-<div class="col-md-3 col-info col-r">
+<div class="col-md-4 col-info col-r">
   <div class="panel panel-default">
       <div class="panel-heading">
           <h3 class="panel-title">{% chunk "href-jypx" %}</h3>
@@ -85,7 +85,7 @@
   </div>
 </div>
 <div class="row">
-<div class="col-md-10 col-md-offset-1">
+<div class="col-md-12">
       <ul class="nav nav-tabs">
           <li class="active"><a href="#tab_a" data-toggle="tab">科学</a></li>
           <li><a href="#tab_b" data-toggle="tab">数学</a></li>

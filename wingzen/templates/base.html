@@ -50,11 +50,13 @@
 
 <div id="wrap">
 {% block wrap %}
+<div class="container">
 <div class="row">
-  <div class="col-md-7 col-md-offset-1 main">{% block main %}{% endblock %}
+  <div class="col-md-7 main">{% block main %}{% endblock %}
   </div>
-  <div class="col-md-3 side">{% block side %}{% endblock %}
+  <div class="col-md-5 side">{% block side %}{% endblock %}
   </div>
+</div>
 </div>
 {% endblock %}
 </div>
@@ -63,15 +65,15 @@
 {% block footer %}
 <div class="container">
 <div class="row">
-<div class="col-md-5 col-md-offset-1">
+<div class="col-md-6">
 <p>&copy; {% now "Y" %} {% chunk "copyright" %}</p>
 </div>
-<div class="col-md-5 right">
+<div class="col-md-6 right">
 <p>{% chunk "href-aboutus" %}|{% chunk "href-business" %}|{% chunk "href-teachers" %}|{% chunk "href-joinus" %}|{% chunk "href-advice" %}|{% chunk "href-mail" %}|{% chunk "href-admin" %}</p>
 </div>
 </div>
 <div class="row">
-<div class="col-md-10 col-md-offset-1">{% chunk "contact-info" %}</div>
+<div class="col-md-12">{% chunk "contact-info" %}</div>
 </div>
 </div>
 {% endblock %}

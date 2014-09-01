@@ -2,8 +2,9 @@
 {% load zenews_filters %}
 
 {% block wrap %}
+<div class="container">
 <div class="row">
-<div class="col-md-5 col-md-offset-1 col-info">
+<div class="col-md-6 col-info">
   <div class="panel panel-default">
       <div class="panel-heading">
           <h3 class="panel-title">初中语文</h3>
@@ -16,7 +17,7 @@
       </div>
       <div class="panel-body">{% block lst_czyy %}{% endblock %}</div>
   </div></div>
-<div class="col-md-5 col-info">
+<div class="col-md-6 col-info">
   <div class="panel panel-default">
       <div class="panel-heading">
           <h3 class="panel-title">初中数学</h3>
@@ -31,7 +32,7 @@
   </div></div>
 </div>
 <div class="row">
-<div class="col-md-5 col-md-offset-1 col-info">
+<div class="col-md-6 col-info">
   <div class="panel panel-default">
       <div class="panel-heading">
           <h3 class="panel-title">小学语文</h3>
@@ -44,7 +45,7 @@
       </div>
       <div class="panel-body">{% block lst_xxyy %}{% endblock %}</div>
   </div></div>
-<div class="col-md-5 col-info">
+<div class="col-md-6 col-info">
   <div class="panel panel-default">
       <div class="panel-heading">
           <h3 class="panel-title">小学数学</h3>
@@ -57,5 +58,6 @@
       </div>
       <div class="panel-body">{% block lst_xxkx %}{% endblock %}</div>
   </div></div>
+</div>
 </div>
 {% endblock %}
