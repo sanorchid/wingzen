@@ -90,7 +90,7 @@
 
 {% block lst_jzkt %}
 <ul>
-    {% get_category_content zenews.news 'jzkt' 10 as latest_jzkt %}
+    {% get_category_content zenews.news 'jzkt' 12 as latest_jzkt %}
     {% for item in latest_jzkt %}
   <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-book "></i> <a href="{{ item.get_absolute_url }}" title="{{ item.title}}">{{ item.title|truncatehanzi:16 }}</a></li>
     {% endfor %}
@@ -99,7 +99,7 @@
 
 {% block lst_jyzx %}
 <ul>
-    {% get_category_content zenews.news 'jyzx' 10 as latest_jyzx %}
+    {% get_category_content zenews.news 'jyzx' 12 as latest_jyzx %}
     {% for item in latest_jyzx %}
     <li><span class="r-date">[{{ item.pub_date.date|unlocalize }}]</span><i class="fa fa-lightbulb-o "></i> <a href='{{ item.get_absolute_url }}' title="{{ item.title}}">{{ item.title|truncatehanzi:16 }}</a></li>
     {% endfor %}
